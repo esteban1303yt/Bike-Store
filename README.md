@@ -1,6 +1,5 @@
-# Login Project
-Este proyecto implementa un sistema básico de login
-Se compone de backend con Node.js + Express, frontend sencillo y base de datos MySQL.
+# Bike Store
+TEXT...
 
 ## Instrucciones para ejecutar
 
