@@ -1,0 +1,77 @@
+/* Sección principal */
+main {
+    padding: 50px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+main h2 {
+    color: #ffffff;
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+main p {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+/* Tipos de formación */
+.tipo-formacion {
+    display: flex;
+    gap: 5%;
+    /* flex-wrap: wrap; */
+    justify-content: center;
+}
+
+.formacion {
+    background-color: #ffffff;
+    border: 2px solid #ababab;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 30%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.formacion img {
+    width: 300px;
+    padding: 30px;
+}
+
+
+.formacion h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.formacion p {
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* Botón de tipos de formación */
+.boton-formacion {
+    text-decoration: none;
+    background-color: #3638be;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 5px;
+    border-bottom: 5px solid #310c75;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.boton-formacion:hover {
+    background-color: #191a57;
+    transition: transform 0.05s ease;
+}
+
+.boton-formacion:active {
+    transform: translateY(2px);
+}

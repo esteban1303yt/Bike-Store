@@ -1,0 +1,84 @@
+/* Pie de página */
+footer {
+    background: #0E1010; /* Degradado verde-azul */
+    color: #fff;
+    padding: 40px 30px 20px 30px;
+    font-size: 15px;
+}
+
+/* Contenedor principal (2 columnas) */
+footer .footer-top {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* Horarios alineados en fila */
+footer .horarios {
+    display: flex;
+    gap: 40px;
+    margin-top: 10px;
+}
+
+/* Caja de contacto (íconos + texto) */
+footer .contacto {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+/* Número */
+.numero {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.numero img {
+    width: 50px;
+}
+
+/* WhatsApp */
+.whatsapp {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.whatsapp img {
+    width: 50px;
+}
+
+#bold {
+    font-weight: bold;
+}
+
+.titulo-trazo {
+    border-bottom: 4px solid #ffffff;
+    width: 180px;
+}
+
+.info-izquierda {
+    align-content: center;
+    width: fit-content;
+    height: fit-content;
+}
+
+.descripcion-footer1 {
+    width: 400px;
+    height: fit-content;
+}
+
+/* Línea final de copyright */
+footer .copy {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 15px;
+    border-top: 4px solid rgba(255, 255, 255, 0.295);
+    padding-top: 10px;
+}
+
+.imagen-footer {
+    width: 120px;
+    fill: #ffffff; /* cambia el color del logo del footer */
+}
