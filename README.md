@@ -1,5 +1,5 @@
-# Bike Store
-![alt text](https://github.com/esteban1303yt/Bike-Store-Esteban-Santiago-Hair/blob/main/Logo.svg?raw=true)
+# BIKE TRAIL
+![Bike Trail Logo](https://github.com/esteban1303yt/Bike-Store-Esteban-Santiago-Hair/blob/main/logo.svg?raw=true)
 
 ## Instrucciones para ejecutar
 

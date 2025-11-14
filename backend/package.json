@@ -1,5 +1,5 @@
 {
-  "name": "package-lock",
+  "name": "bike-trail",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
@@ -7,7 +7,11 @@
     "dev":"nodemon server.js"
   },
   "keywords": [],
-  "author": "erazo-lemos-garcia",
+  "authors": [
+    "Esteban Garcia Valencia",
+    "Hair Erazo",
+    "Santiago Lemos"
+  ],
   "license": "ISC",
   "description": "bike_store",
   "dependencies": {

@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bike Trail</title>
-    <link rel="icon" href="/images/icons/logo_black.svg">
-    <link rel="stylesheet" href="/styles/styles.css">
-    <link rel="stylesheet" href="/styles/header.css">
-    <link rel="stylesheet" href="/styles/main.css">
-    <link rel="stylesheet" href="/styles/footer.css">
+    <link rel="icon" href="/media/icons/logo_black.svg">
+    <link rel="stylesheet" href="/styles/styles.css"><!-- CSS general -->
+    <link rel="stylesheet" href="/styles/header.css"><!-- CSS del header -->
+    <link rel="stylesheet" href="/styles/main.css"><!-- CSS del main -->
+    <link rel="stylesheet" href="/styles/footer.css"><!-- CSS del footer -->
 </head>
 
 <body>
@@ -17,7 +17,7 @@
     <header>
         <div class="header-content">
             <div class="header-centro">
-                <img src="/images/icons/logo_black.svg" alt="logo-bike-trail-negro">
+                <img src="/media/icons/logo_black.svg" alt="logo-bike-trail-negro">
             </div>
             <!-- Barra de navegación -->
             <nav class="header-nav">
@@ -30,9 +30,9 @@
             </nav>
             <!-- Botones de inicio/registro, carrito y opciones -->
             <div class="nav-other">
-                <img src="/images/icons/profile.svg" alt="perfil" width="40px">
-                <img src="/images/icons/cart.svg" alt="carrito" width="40px">
-                <img src="/images/icons/ellipsis_vertical.svg" alt="otro" width="40px">
+                <img src="/media/icons/profile.svg" alt="perfil" width="40px">
+                <img src="/media/icons/cart.svg" alt="carrito" width="40px">
+                <img src="/media/icons/ellipsis_vertical.svg" alt="otro" width="40px">
             </div>
         </div>
 
@@ -42,17 +42,26 @@
     <main>
 
         <!-- Sidebar con filtros -->
-        <section class="filters">
-            <div class="filter-buttons">
-                <button>Ordenar +</button>
-                <button>Categoría +</button>
+        <section class="sidebar">
+            <div class="filter-box">
+                <div class="filter">
+                    <p>Ordenar</p>
+                    <p>+</p>
+                </div>
+            </div>
+
+            <div class="filter-box">
+                <div class="filter">
+                    <p>Categoría</p>
+                    <p>+</p>
+                </div>
             </div>
         </section>
 
         <!-- Contenido principal con searchbar -->
         <section class="principal">
             <div class="search-bar">
-                <img src="/images/icons/search.svg" alt="">
+                <img src="/media/icons/search.svg" alt="">
                 <input type="text" placeholder="Buscar">
             </div>
 
@@ -61,7 +70,7 @@
                 <article class="product-card">
                     <div class="badge">Disponible</div>
                     <div class="year">2025</div>
-                    <img src="/images/productos/bicicleta1.webp" alt="Bicicleta">
+                    <img src="/media/productos/bicicleta1.webp" alt="Bicicleta">
                     <div class="card-info">
                         <div class="texto-principal">
                             <h3>Nombre principal</h3>
@@ -74,7 +83,7 @@
                 <article class="product-card">
                     <div class="badge">Disponible</div>
                     <div class="year">2025</div>
-                    <img src="/images/productos/bicicleta2.png" alt="Bicicleta">
+                    <img src="/media/productos/bicicleta2.png" alt="Bicicleta">
                     <div class="card-info">
                         <h3>Nombre principal</h3>
                         <p class="subtitle">Nombre secundario</p>
@@ -85,7 +94,7 @@
                 <article class="product-card">
                     <div class="badge">Disponible</div>
                     <div class="year">2025</div>
-                    <img src="/images/productos/bicicleta3.png" alt="Bicicleta">
+                    <img src="/media/productos/bicicleta3.png" alt="Bicicleta">
                     <div class="card-info">
                         <h3>Nombre principal</h3>
                         <p class="subtitle">Nombre secundario</p>
@@ -96,7 +105,7 @@
                 <article class="product-card">
                     <div class="badge">Disponible</div>
                     <div class="year">2025</div>
-                    <img src="/images/productos/bicicleta4.jpg" alt="Bicicleta">
+                    <img src="/media/productos/bicicleta4.jpg" alt="Bicicleta">
                     <div class="card-info">
                         <div class="texto-principal">
                             <h3>Nombre principal</h3>
@@ -109,7 +118,7 @@
                 <article class="product-card">
                     <div class="badge">Disponible</div>
                     <div class="year">2025</div>
-                    <img src="/images/productos/bicicleta1.webp" alt="Bicicleta">
+                    <img src="/media/productos/bicicleta1.webp" alt="Bicicleta">
                     <div class="card-info">
                         <div class="texto-principal">
                             <h3>Nombre principal</h3>
@@ -122,7 +131,7 @@
                 <article class="product-card">
                     <div class="badge">Disponible</div>
                     <div class="year">2025</div>
-                    <img src="/images/productos/bicicleta2.png" alt="Bicicleta">
+                    <img src="/media/productos/bicicleta2.png" alt="Bicicleta">
                     <div class="card-info">
                         <div class="texto-principal">
                             <h3>Nombre principal</h3>
@@ -142,7 +151,7 @@
             <!-- Columna izquierda -->
             <div class="info-izquierda">
                 <!-- Logo -->
-                <img src="/images/icons/logo_white.svg" alt="logo-bike-trail-blanco">
+                <img src="/media/icons/logo_white.svg" alt="logo-bike-trail-blanco">
                 <div class="descripcion-footer1">
                     <p id="bold">Tu tienda online especializada en bicicletas, componentes y accesorios.</p>
                     <p>Tecnologia, calidad y pasion por el ciclismo en Colombia co.</p>
@@ -196,6 +205,8 @@
             <p>&copy;Bike Trail. Todos los derechos reservados</p>
         </div>
     </footer>
+
+    <script src="/scripts/index.js"></script>
 
 </body>
 

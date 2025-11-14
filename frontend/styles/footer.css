@@ -1,23 +1,16 @@
-/* Pie de página */
 footer {
     background: #0E1010;
-    /* Degradado verde-azul */
     color: #fff;
-    padding: 40px 30px 20px 30px;
+    padding: 0px;
     font-size: 15px;
 }
 
 /* Contenedor principal (2 columnas) */
 footer .footer-top {
+    flex-wrap: wrap;
+    padding: 64px 0px;
     display: flex;
     justify-content: space-evenly;
-}
-
-/* Horarios alineados en fila */
-footer .horarios {
-    display: flex;
-    gap: 40px;
-    margin-top: 10px;
 }
 
 footer ul {
@@ -89,9 +82,10 @@ footer .contacto {
 
 /* Línea final de copyright */
 footer .copy {
-    margin-top: 25px;
+    width: auto;
+    margin: 0px;
     text-align: center;
     font-size: 15px;
-    border-top: 4px solid rgba(255, 255, 255, 0.295);
-    padding-top: 10px;
+    border-top: 2px solid rgba(255, 255, 255, 0.20);
+    padding: 10px;
 }
