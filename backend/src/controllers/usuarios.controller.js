@@ -1,13 +1,13 @@
-const db = require( "../config/db.js");
+const db = require("../config/db.js");
 
-class crudController  {
+class crudController {
 
-// Obtener todos los usuarios
-    async obtenerUsuarios(tabla){
-            const [resultado] = await db.query(`SELECT * FROM ${tabla}`);
-            return resultado;
-        }
-        
+  // Obtener todos los usuarios
+  async obtenerUsuarios(tabla) {
+    const [resultado] = await db.query(`SELECT * FROM ${tabla}`);
+    return resultado;
+  }
+
   // Obtener un registro por ID
   async obtenerUno(tabla, idCampo, id) {
     try {
@@ -53,5 +53,6 @@ class crudController  {
       throw error;
     }
   }
-};  
+};
+
 module.exports = crudController;

@@ -32,10 +32,10 @@ router.get('/:id', async (req, res) => {
 //crear nuevo usuario
 router.post('/', async (req, res) => {
   try {
-    const nuevoDato = await crud.crear(tabla,  res.body);
+    const nuevoDato = await crud.crear(tabla, req.body);
     res.status(201).json(nuevoDato)
   } catch (error) {
-    res.status(500).json({error: error.message });
+    res.status(500).json({ error: error.message });
   }
 });
 

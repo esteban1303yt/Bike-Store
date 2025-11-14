@@ -89,8 +89,7 @@ main p {
   width: 380px;
   height: 380px;
   background: #ffffff;
-  border-style: solid;
-  border-color: #F1F1F1;
+  border: 2px solid #F1F1F1;
   border-radius: 10px;
   overflow: hidden;
   display: flex;
@@ -127,6 +126,7 @@ main p {
   margin-top: auto;
   margin-bottom: auto;
 }
+
 /* Subtitulo */
 .subtitle {
   color: hsla(0, 0%, 0%, 0.500);
@@ -135,6 +135,7 @@ main p {
   margin-top: auto;
   margin-bottom: auto;
 }
+
 /* Precio */
 .price {
   font-weight: bold;

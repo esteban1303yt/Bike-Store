@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bike Trail</title>
-    <link rel="icon" href="/media/icons/logo_black.svg">
-    <link rel="stylesheet" href="/styles/styles.css"><!-- CSS general -->
-    <link rel="stylesheet" href="/styles/header.css"><!-- CSS del header -->
-    <link rel="stylesheet" href="/styles/main.css"><!-- CSS del main -->
-    <link rel="stylesheet" href="/styles/footer.css"><!-- CSS del footer -->
+    <link rel="icon" href="/frontend/media/icons/logo_black.svg">
+    <link rel="stylesheet" href="/frontend/styles/styles.css"><!-- CSS general -->
+    <link rel="stylesheet" href="/frontend/styles/header.css"><!-- CSS del header -->
+    <link rel="stylesheet" href="/frontend/styles/main.css"><!-- CSS del main -->
+    <link rel="stylesheet" href="/frontend/styles/footer.css"><!-- CSS del footer -->
 </head>
 
 <body>
@@ -17,7 +17,7 @@
     <header>
         <div class="header-content">
             <div class="header-centro">
-                <img src="/media/icons/logo_black.svg" alt="logo-bike-trail-negro">
+                <img src="/frontend/media/icons/logo_black.svg" alt="logo-bike-trail-negro">
             </div>
             <!-- Barra de navegación -->
             <nav class="header-nav">
@@ -30,9 +30,9 @@
             </nav>
             <!-- Botones de inicio/registro, carrito y opciones -->
             <div class="nav-other">
-                <img src="/media/icons/profile.svg" alt="perfil" width="40px">
-                <img src="/media/icons/cart.svg" alt="carrito" width="40px">
-                <img src="/media/icons/ellipsis_vertical.svg" alt="otro" width="40px">
+                <img src="/frontend/media/icons/profile.svg" alt="perfil" width="40px">
+                <img src="/frontend/media/icons/cart.svg" alt="carrito" width="40px">
+                <img src="/frontend/media/icons/ellipsis_vertical.svg" alt="otro" width="40px">
             </div>
         </div>
 
@@ -61,7 +61,7 @@
         <!-- Contenido principal con searchbar -->
         <section class="principal">
             <div class="search-bar">
-                <img src="/media/icons/search.svg" alt="">
+                <img src="/frontend/media/icons/search.svg" alt="">
                 <input type="text" placeholder="Buscar">
             </div>
 
@@ -70,7 +70,7 @@
                 <article class="product-card">
                     <div class="badge">Disponible</div>
                     <div class="year">2025</div>
-                    <img src="/media/productos/bicicleta1.webp" alt="Bicicleta">
+                    <img src="/frontend/media/img/bikes/bicicleta1.webp" alt="Bicicleta">
                     <div class="card-info">
                         <div class="texto-principal">
                             <h3>Nombre principal</h3>
@@ -83,7 +83,7 @@
                 <article class="product-card">
                     <div class="badge">Disponible</div>
                     <div class="year">2025</div>
-                    <img src="/media/productos/bicicleta2.png" alt="Bicicleta">
+                    <img src="/frontend/media/img/bikes/bicicleta2.png" alt="Bicicleta">
                     <div class="card-info">
                         <h3>Nombre principal</h3>
                         <p class="subtitle">Nombre secundario</p>
@@ -94,7 +94,7 @@
                 <article class="product-card">
                     <div class="badge">Disponible</div>
                     <div class="year">2025</div>
-                    <img src="/media/productos/bicicleta3.png" alt="Bicicleta">
+                    <img src="/frontend/media/img/bikes/bicicleta3.png" alt="Bicicleta">
                     <div class="card-info">
                         <h3>Nombre principal</h3>
                         <p class="subtitle">Nombre secundario</p>
@@ -105,7 +105,7 @@
                 <article class="product-card">
                     <div class="badge">Disponible</div>
                     <div class="year">2025</div>
-                    <img src="/media/productos/bicicleta4.jpg" alt="Bicicleta">
+                    <img src="/frontend/media/img/bikes/bicicleta4.jpg" alt="Bicicleta">
                     <div class="card-info">
                         <div class="texto-principal">
                             <h3>Nombre principal</h3>
@@ -118,7 +118,7 @@
                 <article class="product-card">
                     <div class="badge">Disponible</div>
                     <div class="year">2025</div>
-                    <img src="/media/productos/bicicleta1.webp" alt="Bicicleta">
+                    <img src="/frontend/media/img/bikes/bicicleta1.webp" alt="Bicicleta">
                     <div class="card-info">
                         <div class="texto-principal">
                             <h3>Nombre principal</h3>
@@ -131,7 +131,7 @@
                 <article class="product-card">
                     <div class="badge">Disponible</div>
                     <div class="year">2025</div>
-                    <img src="/media/productos/bicicleta2.png" alt="Bicicleta">
+                    <img src="/frontend/media/img/bikes/bicicleta2.png" alt="Bicicleta">
                     <div class="card-info">
                         <div class="texto-principal">
                             <h3>Nombre principal</h3>
@@ -147,54 +147,34 @@
 
     <!-- Pie de página -->
     <footer>
-        <div class="footer-top">
+        <div class="content">
             <!-- Columna izquierda -->
             <div class="info-izquierda">
                 <!-- Logo -->
-                <img src="/media/icons/logo_white.svg" alt="logo-bike-trail-blanco">
+                <img src="/frontend/media/icons/logo_white.svg" alt="logo-bike-trail-blanco">
                 <div class="descripcion-footer1">
-                    <p id="bold">Tu tienda online especializada en bicicletas, componentes y accesorios.</p>
-                    <p>Tecnologia, calidad y pasion por el ciclismo en Colombia co.</p>
+                    <p id="footer-text">Tu tienda online especializada en bicicletas, componentes y accesorios.</p>
+                    <p id="footer-text">Tecnologia, calidad y pasion por el ciclismo en Colombia co.</p>
                 </div>
-            </div>
-
-            <!-- Columna central -->
-            <div class="info-centro">
-                <div class="titulo-trazo">
-                    <h3>Enlaces Rápidos</h3>
-                </div>
-                <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Contacto</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Ofertas</a></li>
-                </ul>
             </div>
 
             <!-- Columna derecha -->
-            <div class="atencion">
-                <p id="bold">Líneas de atención</p>
-                <span>a los ciudadanos, empresarios y línea PQRS</span>
-
-                <!-- Contenidos de contacto -->
-                <div class="contacto">
-                    <!-- Numeros telefonicos -->
-                    <div class="numero">
-                        <img src="https://betowa.sena.edu.co/assets/icons/phone.svg" alt="Telefono">
-                        <div class="numero-contenido">
-                            <p id="bold">Bogotá:</p>
-                            <p>+(57) 601 736 60 60</p>
-                            <p id="bold">Línea gratuita resto del país:</p>
-                            <p>018000910270</p>
-                        </div>
+            <div class="info-derecha">
+                <div class="titulo-trazo">
+                    <h3>Contacto</h3>
+                </div>
+                <div class="lista-contacto">
+                    <div class="medio-contacto">
+                        <img src="/frontend/media/icons/map-pin.svg" alt="ubicación">
+                        <p id="footer-text">Palmira, Colombia</p>
                     </div>
-                    <div class="whatsapp">
-                        <!-- Numero de whatsapp -->
-                        <img src="https://betowa.sena.edu.co/assets/icons/whatsapp.svg" alt="WhatsApp">
-                        <div class="whatsapp-contenido">
-                            <p id="bold">Línea de WhatsApp:</p>
-                            <p>3112545028</p>
-                        </div>
+                    <div class="medio-contacto">
+                        <img src="/frontend/media/icons/phone.svg" alt="télefono">
+                        <p id="footer-text">+57 300 123 4567</p>
+                    </div>
+                    <div class="medio-contacto">
+                        <img src="/frontend/media/icons/mail.svg" alt="correo">
+                        <p id="footer-text">contacto@biketrail.com.co</p>
                     </div>
                 </div>
             </div>
