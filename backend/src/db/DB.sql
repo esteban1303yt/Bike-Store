@@ -1,6 +1,6 @@
--- DROP DATABASE IF EXISTS BikeStore;
-CREATE DATABASE IF NOT EXISTS BikeStore;
-USE BikeStore;
+-- DROP DATABASE IF EXISTS bike_store;
+CREATE DATABASE IF NOT EXISTS bike_store;
+USE bike_store;
 
 -- ===========================
 -- TABLA: usuario
