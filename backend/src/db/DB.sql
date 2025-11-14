@@ -1,4 +1,5 @@
-CREATE DATABASE BikeStore;
+-- DROP DATABASE IF EXISTS BikeStore;
+CREATE DATABASE IF NOT EXISTS BikeStore;
 USE BikeStore;
 
 -- ===========================
@@ -51,7 +52,7 @@ CREATE TABLE entradas (
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
-DROP TABLE entradas;
+
 -- ===========================
 -- TABLA: venta
 -- ===========================
@@ -81,8 +82,6 @@ CREATE TABLE detalle_venta (
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
-
-
 
 -- ===========================
 -- TABLA: usuarios
@@ -137,7 +136,6 @@ VALUES
 (8, 'entrada', 5),  -- Canyon Precede:ON
 (9, 'entrada', 20); -- Brooklyn Bicycle Co. Wythe Fixie
 
-
 -- ===========================
 -- TABLA: venta
 -- ===========================
@@ -154,4 +152,5 @@ VALUES
 (1, 2, 1, 1500000),  -- Trail 500
 (1, 3, 2, 130000),   -- 2 cadenas Shimano HG40
 (1, 7, 1, 650000);
- SELECT * FROM detalle_venta;
+
+SELECT * FROM detalle_venta;

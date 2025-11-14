@@ -1,4 +1,4 @@
-const db = require( "../config/conexion_DB.js");
+const db = require( "../config/db.js");
 
 class crudController  {
 
