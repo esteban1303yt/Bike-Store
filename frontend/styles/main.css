@@ -1,6 +1,6 @@
 main {
   padding: 32px 12px;
-  max-width: 1200px;
+  max-width: 100%;
   display: flex;
   margin: 0px;
   gap: 20px;
@@ -127,7 +127,7 @@ main p {
   margin-top: auto;
   margin-bottom: auto;
 }
-
+/* Subtitulo */
 .subtitle {
   color: hsla(0, 0%, 0%, 0.500);
   text-align: left;
@@ -135,7 +135,7 @@ main p {
   margin-top: auto;
   margin-bottom: auto;
 }
-
+/* Precio */
 .price {
   font-weight: bold;
   font-size: 15px;
