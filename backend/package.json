@@ -8,12 +8,12 @@
   },
   "keywords": [],
   "authors": [
-    "Esteban Garcia Valencia",
-    "Hair Erazo",
-    "Santiago Lemos"
+    "Andersson Hair Erazo",
+    "Esteban García Valencia",
+    "Santiago Lemos Guevara"
   ],
   "license": "ISC",
-  "description": "bike_store",
+  "description": "Proyecto de bike store",
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",

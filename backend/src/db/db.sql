@@ -3,7 +3,7 @@ CREATE DATABASE IF NOT EXISTS bike_store;
 USE bike_store;
 
 -- ===========================
--- TABLA: usuario
+-- TABLA: usuarios
 -- ===========================
 CREATE TABLE usuarios (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
@@ -16,7 +16,7 @@ CREATE TABLE usuarios (
 );
 
 -- ===========================
--- TABLA: categoria
+-- TABLA: categorias
 -- ===========================
 CREATE TABLE categorias (
     id_categoria INT AUTO_INCREMENT PRIMARY KEY,
