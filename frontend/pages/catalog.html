@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bike Trail</title>
+    <title>Bike Trail | Catálogo</title>
     <link rel="icon" href="/frontend/media/icons/logo_black.svg">
     <link rel="stylesheet" href="/frontend/styles/styles.css"> <!-- CSS general -->
     <link rel="stylesheet" href="/frontend/styles/header.css"> <!-- CSS del header -->
     <link rel="stylesheet" href="/frontend/styles/main.css"> <!-- CSS del main -->
+    <link rel="stylesheet" href="/frontend/styles/catalog/catalog.css"> <!-- CSS de la página -->
     <link rel="stylesheet" href="/frontend/styles/footer.css"> <!-- CSS del footer -->
 </head>
 
@@ -22,8 +23,8 @@
             <!-- Barra de navegación -->
             <nav class="header-nav">
                 <ul>
-                    <li><a href="#" class="active">Inicio</a></li>
-                    <li><a href="/frontend/pages/catalog.html">Catálogo</a></li>
+                    <li><a href="/frontend/pages/index.html">Inicio</a></li>
+                    <li><a href="#" class="active">Catálogo</a></li>
                     <li><a href="/frontend/pages/contact.html">Contacto</a></li>
                 </ul>
             </nav>
@@ -37,8 +38,46 @@
 
     </header>
 
+    <!-- Información pricipal -->
     <main>
-        <p>aaa</p>
+
+        <!-- Sidebar con filtros -->
+        <section class="sidebar">
+            <div class="filter-box">
+                <div class="filter">
+                    <p>Ordenar</p>
+                    <p>+</p>
+                </div>
+            </div>
+
+            <div class="filter-box">
+                <div class="filter">
+                    <p>Categoría</p>
+                    <p>+</p>
+                </div>
+            </div>
+
+            <div class="filter-box">
+                <div class="filter">
+                    <p>Marca</p>
+                    <p>+</p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Contenido principal con searchbar -->
+        <section class="principal">
+            <div class="search-bar">
+                <img src="/frontend/media/icons/search.svg" alt="">
+                <input type="text" placeholder="Buscar">
+            </div>
+
+            <!-- Productos -->
+            <section id="product-container" class="product-grid"></section>
+
+        </section>
+
     </main>
 
     <!-- Pie de página -->
@@ -82,7 +121,7 @@
         </div>
     </footer>
 
-    <script src="/frontend/scripts/index.js"></script>
+    <script src="/frontend/scripts/catalog.js"></script>
 
 </body>
 
