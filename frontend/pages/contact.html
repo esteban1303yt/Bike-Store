@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/frontend/styles/styles.css"> <!-- CSS general -->
     <link rel="stylesheet" href="/frontend/styles/header.css"> <!-- CSS del header -->
     <link rel="stylesheet" href="/frontend/styles/main.css"> <!-- CSS del main -->
+    <link rel="stylesheet" href="/frontend/styles/pages/contact.css"> <!-- CSS de la página -->
     <link rel="stylesheet" href="/frontend/styles/footer.css"> <!-- CSS del footer -->
 </head>
 
@@ -38,7 +39,20 @@
     </header>
 
     <main>
-        <p>aaa</p>
+        <div class="contact-container">
+            <h2>Contáctanos</h2>
+
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" placeholder="Ingresa tu nombre" required>
+
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" placeholder="Ingresa tu correo" required>
+
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" placeholder="Escribe tu mensaje" required></textarea>
+
+            <button type="submit" class="submit-btn">Enviar</button>
+        </div>
     </main>
 
     <!-- Pie de página -->
