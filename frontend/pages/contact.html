@@ -8,7 +8,6 @@
     <link rel="icon" href="/frontend/media/icons/logo_black.svg">
     <link rel="stylesheet" href="/frontend/styles/styles.css"> <!-- CSS general -->
     <link rel="stylesheet" href="/frontend/styles/header.css"> <!-- CSS del header -->
-    <link rel="stylesheet" href="/frontend/styles/main.css"> <!-- CSS del main -->
     <link rel="stylesheet" href="/frontend/styles/pages/contact.css"> <!-- CSS de la página -->
     <link rel="stylesheet" href="/frontend/styles/footer.css"> <!-- CSS del footer -->
 </head>
@@ -18,7 +17,9 @@
     <header>
         <div class="header-content">
             <div class="header-centro">
-                <img src="/frontend/media/icons/logo_black.svg" alt="logo-bike-trail-negro">
+                <a href="/frontend/pages/index.html">
+                    <img src="/frontend/media/icons/logo_black.svg" alt="logo-bike-trail-negro">
+                </a>
             </div>
             <!-- Barra de navegación -->
             <nav class="header-nav">
@@ -41,17 +42,18 @@
     <main>
         <div class="contact-container">
             <h2>Contáctanos</h2>
+            <div class="contact-content">
+                <label for="nombre">Nombre completo</label>
+                <input type="text" id="nombre" placeholder="Ingresa tu nombre" required>
 
-            <label for="nombre">Nombre completo</label>
-            <input type="text" id="nombre" placeholder="Ingresa tu nombre" required>
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" placeholder="Ingresa tu correo" required>
 
-            <label for="email">Correo electrónico</label>
-            <input type="email" id="email" placeholder="Ingresa tu correo" required>
+                <label for="mensaje">Mensaje</label>
+                <textarea id="mensaje" placeholder="Escribe tu mensaje" required></textarea>
 
-            <label for="mensaje">Mensaje</label>
-            <textarea id="mensaje" placeholder="Escribe tu mensaje" required></textarea>
-
-            <button type="submit" class="submit-btn">Enviar</button>
+                <button type="submit" class="submit-btn">Enviar</button>
+            </div>
         </div>
     </main>
 

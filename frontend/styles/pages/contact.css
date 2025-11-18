@@ -5,35 +5,31 @@ main {
     padding: 40px 20px;
 }
 
-
 .contact-container {
-border: 4px solid #F1F1F1;
-    display: flex;
+    border: 4px solid #F1F1F1;
     background: white;
     padding: 20px 16px;
-    margin: 20px;
     width: 24%;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    flex-direction: column;
 }
 
+.contact-content {
+    display: flex;
+    flex-direction: column;
+}
 
 .contact-container h2 {
     width: fit-content;
     color: #000000;
     font-size: 28px;
-    margin-bottom: 20px;
-    position: relative;
+    margin: auto;
 }
 
 
 label {
-    width: fit-content;
-    display: block;
     margin: 18px 0 8px;
-    font-weight: bold;
-    color: #444;
+    color: hsla(0, 0%, 0%, 0.7);
 }
 
 
@@ -48,7 +44,7 @@ textarea {
 
 
 textarea {
-    height: 140px;
+    height: 150px;
     resize: none;
 }
 

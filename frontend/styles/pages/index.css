@@ -1,0 +1,62 @@
+main {
+    display: flex;
+    padding: 40px 20px;
+    flex-direction: column;
+}
+
+/* CONTENEDOR QUE OCUPA TODA LA PANTALLA */
+.carrusel-full {
+    width: 100%;
+    overflow: hidden;
+    /* Oculta el desbordamiento */
+    background: #ffffff;
+    /* El color grisáceo que tienes */
+    padding: 40px 0;
+}
+
+/* ANIMACIÓN LATERAL */
+.carrusel-marcas {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    width: max-content;
+    animation: deslizar 20s linear infinite;
+}
+
+/* ESTILO DE LOS LOGOS */
+.carrusel-marcas img {
+    height: 70px;
+    display: block;
+    filter: grayscale(100%);
+    opacity: 0.9;
+    transition: 0.3s;
+}
+
+.carrusel-marcas img:hover {
+    filter: none;
+    opacity: 1;
+}
+
+/* ANIMACIÓN */
+@keyframes deslizar {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+        /* Mueve la mitad para hacer loop perfecto */
+    }
+}
+
+.brands-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.brands-title {
+    color: rgb(0, 0, 0);
+    border-bottom: 4px #000000 solid;
+    text-align: center;
+    width: fit-content;
+}
