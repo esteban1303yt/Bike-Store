@@ -7,7 +7,7 @@ Tienda en línea de bicicletas.
 
 * Andersson Hair Erazo
 * Esteban García Valencia
-* Santiago Lemos Guevara
+* Santiago Lemos Rengifo
 
 ## Instrucciones para ejecutar
 
