@@ -12,7 +12,8 @@ async function cargarProductos() {
                 <div class="badge">${producto.stock > 0 ? "Disponible" : "Agotado"}</div>
                 <div class="year">2025</div>
 
-                <img src="/frontend/media/img/bikes/bicicleta1.webp" alt="${producto.nombre_producto}">
+                <img src="/frontend/media/img/products/${producto.imagen ?? "default.png"}" 
+    alt="${producto.nombre_producto}">
 
                 <div class="card-info">
                     <div class="texto-principal">
@@ -34,3 +35,5 @@ async function cargarProductos() {
 }
 
 cargarProductos();
+
+console.log(productos.imagen);

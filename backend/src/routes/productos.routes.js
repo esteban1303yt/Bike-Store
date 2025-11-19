@@ -1,15 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const productos = require('../controllers/productos.controller'); // tu controller
+const productos = require('../controllers/productos.controller');
 
-const tabla = 'productos';
-const idCampo = 'id_producto';
-
-
-// Obtener todos
+// Obtener todos los productos
 router.get('/', async (req, res) => {
     try {
-        // Llamamos al método del controller pasando req y res
         await productos.obtenerProductos(req, res);
     } catch (error) {
         console.error('Error al obtener los productos', error);

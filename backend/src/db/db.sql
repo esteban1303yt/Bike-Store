@@ -2,45 +2,70 @@
 CREATE DATABASE IF NOT EXISTS bike_store;
 USE bike_store;
 
--- ===========================
+-- =====================================
 -- TABLA: usuarios
--- ===========================
+-- =====================================
 CREATE TABLE usuarios (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
-    contrasena VARCHAR (50) NOT NULL,
+    apellido VARCHAR(100),
+    telefono VARCHAR(20),
+    clave VARCHAR (50) NOT NULL,
     correo VARCHAR(150) UNIQUE NOT NULL,
     fecha_registro DATETIME DEFAULT CURRENT_TIMESTAMP,
     rol ENUM('administrador', 'cliente') DEFAULT 'cliente'
 );
 
--- ===========================
+-- =====================================
 -- TABLA: categorias
--- ===========================
+-- =====================================
 CREATE TABLE categorias (
     id_categoria INT AUTO_INCREMENT PRIMARY KEY,
     nombre_categoria VARCHAR(250) NOT NULL
 );
 
--- ===========================
+-- =====================================
+-- TABLA: marcas
+-- =====================================
+CREATE TABLE marcas (
+    id_marca INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_marca VARCHAR(150) NOT NULL UNIQUE
+);
+
+INSERT INTO marcas (nombre_marca)
+VALUES
+('KSW BIKES'),
+('TYESO'),
+('Specialized'),
+('Giant'),
+('Cannondale'),
+('Garmin');
+
+-- =====================================
 -- TABLA: productos
--- ===========================
+-- =====================================
 CREATE TABLE productos (
     id_producto INT AUTO_INCREMENT PRIMARY KEY,
-    id_categoria INT,
     nombre_producto VARCHAR(250) NOT NULL,
-    descripcion TEXT,
+    id_categoria INT,
+    id_marca INT NULL,
     precio DECIMAL(10,2) NOT NULL,
+    descripcion TEXT,
     stock INT DEFAULT 0,
-    fecha_actualizacion DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    imagen VARCHAR(255) NULL,
+    fecha_actualizacion DATETIME DEFAULT CURRENT_TIMESTAMP 
+        ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE,
+    FOREIGN KEY (id_marca) REFERENCES marcas(id_marca)
         ON DELETE SET NULL
         ON UPDATE CASCADE
 );
 
--- ===========================
--- TABLA: entrada (registro de inventario)
--- ===========================
+-- =====================================
+-- TABLA: entradas
+-- =====================================
 CREATE TABLE entradas (
     id_entrada INT AUTO_INCREMENT PRIMARY KEY,
     id_producto INT NOT NULL,
@@ -52,9 +77,9 @@ CREATE TABLE entradas (
         ON UPDATE CASCADE
 );
 
--- ===========================
+-- =====================================
 -- TABLA: venta
--- ===========================
+-- =====================================
 CREATE TABLE venta (
     id_venta INT AUTO_INCREMENT PRIMARY KEY,
     id_usuario INT NOT NULL,
@@ -65,9 +90,9 @@ CREATE TABLE venta (
         ON UPDATE CASCADE
 );
 
--- ===========================
--- TABLA: detalle_venta (relación tiene)
--- ===========================
+-- =====================================
+-- TABLA: detalle_venta
+-- =====================================
 CREATE TABLE detalle_venta (
     id_detalle INT AUTO_INCREMENT PRIMARY KEY,
     id_venta INT NOT NULL,
@@ -82,18 +107,19 @@ CREATE TABLE detalle_venta (
         ON UPDATE CASCADE
 );
 
--- ===========================
--- TABLA: usuarios
--- ===========================
-INSERT INTO usuarios (nombre, contrasena, correo, rol)
+-- =====================================
+-- INSERTAR USUARIOS
+-- =====================================
+INSERT INTO usuarios (nombre, apellido, clave, correo, rol)
 VALUES
-('Anderson Erazo',  'iii', 'jairerazo420@gmail.com', 'administrador'),
-('Carlos Pérez',  'eee', 'carlos@gmail.com', 'cliente'),
-('Camilo Garcia', 'aaa', 'garcia.cam@gmail.com', 'cliente');
--- ===========================
-SELECT * FROM usuarios;
--- TABLA: categorias
--- ===========================
+('Anderson', 'Erazo', 'admin', 'esteban.garcia.valencia13@gmail.com', 'administrador'),
+('Esteban', 'Garcia', 'admin', 'jairerazo420@gmail.com', 'administrador'),
+('Santiago', 'Lemos', 'admin', 'santyagolemosr@gmail.com', 'administrador'),
+('Carlos', 'Pérez', '123', 'carlos@gmail.com', 'cliente');
+
+-- =====================================
+-- INSERTAR CATEGORÍAS
+-- =====================================
 INSERT INTO categorias (nombre_categoria)
 VALUES
 ('Montaña'),
@@ -103,53 +129,49 @@ VALUES
 ('Accesorios'),
 ('Repuestos');
 
-SELECT * FROM categorias;
--- ===========================
--- TABLA: productos
--- ===========================
-INSERT INTO productos (id_categoria, nombre_producto, descripcion, precio, stock)
+-- =====================================
+-- INSERTAR PRODUCTOS
+-- (marcas NULL e imágenes NULL por defecto)
+-- =====================================
+INSERT INTO productos (nombre_producto, id_categoria, id_marca, precio, descripcion, stock, imagen)
 VALUES
-(1, 'MTB Pro XT', 'Bicicleta de montaña con suspensión delantera y marco de aluminio', 2500000, 10),
-(1, 'Trail 500', 'Bicicleta de montaña para principiantes con frenos de disco mecánicos', 1500000, 8),
-(4, 'Cadena Shimano HG40', 'Cadena para bicicleta de 8 velocidades', 65000, 15),
-(4, 'UrbanBiker UB200', 'E-Bike urbana de suspensión completa de la marca UrbanBiker, ideal para ciudad', 1800000, 7),
-(3, 'Scott Sub Cross 6', 'Bicicleta urbana/trekking Scott Sub Cross 6, marco aluminio, ruedas 28”', 1200000, 12),
-(4, 'Canyon Precede:ON', 'E-Bike urbana premium Canyon Precede:ON con asistencia eléctrica y componentes de alta gama', 4000000, 3),
-(3, 'Brooklyn Bicycle Co. Wythe Fixie', 'Bicicleta urbana estilo fixie de Brooklyn Bicycle Co.', 650000, 15),
-(5, 'TENWAYS CGO600', 'E-Bike ciudad TENWAYS CGO600 – serie ligera para movilidad urbana eléctrica', 1500000, 8),
-(2, 'Cinelli VIGORELLI Fixie', 'Bicicleta urbana/track Cinelli VIGORELLI – muy buscada entre entusiastas urbanos', 900000, 10);
+('MTB Pro XT', 1, 1, 2500000, 'Bicicleta de montaña con suspensión delantera y marco de aluminio', 10, 'mtb_pro_xt.png'),
+('Trail 500', 1, 5, 1500000, 'Bicicleta de montaña para principiantes con frenos de disco mecánicos', 8, 'trail_500.png'),
+('Cadena Shimano HG40', 4, 1, 65000, 'Cadena para bicicleta de 8 velocidades', 15, 'cadena_shimano_hg40.png'),
+('Urban Glide Classic 28', 4, 6, 1900000, 'Urban Glide Classic 28, bicicleta urbana de estilo retro.', 7, 'urban_glide_glassic_28.png'),
+('Scott Sub Cross 6', 3, 4, 1200000, 'Bicicleta urbana / trekking Scott', 12, NULL),
+('Verde TrailRider 300', 4, 3, 4000000, 'Bicicleta de montaña diseñada para aventureros.', 3, 'verde_trailrider_300.png'),
+('Brooklyn Bicycle Co. Wythe Fixie', 3, NULL, 650000, 'Fixie urbana', 15, NULL),
+('TENWAYS CGO600', 5, 2, 1500000, 'E-Bike ligera para ciudad', 8, NULL),
+('Blue Ridge X-Trail', 2, 5, 900000, 'Bicicleta de montaña moderna, diseñada para ofrecer control y rendimiento en terrenos exigentes.', 10, 'blue_ridge_x-trail.png');
 
-SELECT * FROM productos;
--- ===========================
--- TABLA: entradas (inventario inicial)
--- ===========================
+-- =====================================
+-- INSERTAR ENTRADAS (inventario)
+-- =====================================
 INSERT INTO entradas (id_producto, tipo, cantidad)
 VALUES
-(1, 'entrada', 15), -- Bicicleta MTB Pro XT
-(2, 'entrada', 10), -- Bicicleta Trail 500
-(3, 'entrada', 8),  -- Bicicleta de Ruta AeroSpeed
-(4, 'entrada', 10), -- Casco MTB RockRider
-(5, 'entrada', 15), -- Cadena Shimano HG40
-(6, 'entrada', 10), -- UrbanBiker UB200
-(7, 'entrada', 15), -- Scott Sub Cross 6
-(8, 'entrada', 5),  -- Canyon Precede:ON
-(9, 'entrada', 20); -- Brooklyn Bicycle Co. Wythe Fixie
+(1, 'entrada', 15),
+(2, 'entrada', 10),
+(3, 'entrada', 8),
+(4, 'entrada', 10),
+(5, 'entrada', 15),
+(6, 'entrada', 10),
+(7, 'entrada', 15),
+(8, 'entrada', 5),
+(9, 'entrada', 20);
 
--- ===========================
--- TABLA: venta
--- ===========================
+-- =====================================
+-- INSERTAR VENTA
+-- =====================================
 INSERT INTO venta (id_usuario, monto_total)
-VALUES
-(2, 5150000);  -- Carlos Pérez
-UPDATE venta SET monto_total = 4780000 WHERE id_venta = 1;
--- ===========================
--- TABLA: detalle_venta
--- ===========================
+VALUES (2, 4780000);
+
+-- =====================================
+-- DETALLE VENTA
+-- =====================================
 INSERT INTO detalle_venta (id_venta, id_producto, cantidad, monto_total)
 VALUES
-(1, 1, 1, 2500000),  -- MTB Pro XT
-(1, 2, 1, 1500000),  -- Trail 500
-(1, 3, 2, 130000),   -- 2 cadenas Shimano HG40
+(1, 1, 1, 2500000),
+(1, 2, 1, 1500000),
+(1, 3, 2, 130000),
 (1, 7, 1, 650000);
-
-SELECT * FROM detalle_venta;
