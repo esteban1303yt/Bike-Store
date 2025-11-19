@@ -8,8 +8,7 @@ USE bike_store;
 CREATE TABLE usuarios (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
-    telefono VARCHAR(20),
-    direccion VARCHAR(255),
+    contrasena VARCHAR (50) NOT NULL,
     correo VARCHAR(150) UNIQUE NOT NULL,
     fecha_registro DATETIME DEFAULT CURRENT_TIMESTAMP,
     rol ENUM('administrador', 'cliente') DEFAULT 'cliente'
@@ -86,11 +85,11 @@ CREATE TABLE detalle_venta (
 -- ===========================
 -- TABLA: usuarios
 -- ===========================
-INSERT INTO usuarios (nombre, telefono, direccion, correo, rol)
+INSERT INTO usuarios (nombre, contrasena, correo, rol)
 VALUES
-('Anderson Erazo', '3004567890', 'Calle 12 #45-23', 'jairerazo420@gmail.com', 'administrador'),
-('Carlos Pérez', '3109876543', 'Carrera 5 #10-22', 'carlos@gmail.com', 'cliente'),
-('Camilo Garcia', '3176543123', 'Carrera 23 #40-12', 'garcia.cam@gmail.com', 'cliente');
+('Anderson Erazo',  'iii', 'jairerazo420@gmail.com', 'administrador'),
+('Carlos Pérez',  'eee', 'carlos@gmail.com', 'cliente'),
+('Camilo Garcia', 'aaa', 'garcia.cam@gmail.com', 'cliente');
 -- ===========================
 SELECT * FROM usuarios;
 -- TABLA: categorias
