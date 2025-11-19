@@ -18,14 +18,33 @@ class crudController {
     }
   }
 
-  // Crear un nuevo registro
-  async crear(tabla, data) {
-    try {
-      const [resultado] = await db.query(`INSERT INTO ?? SET ?`, [tabla, data]);
-      return { ...data, id: resultado.insertId };
-    } catch (error) {
-      throw error;
-    }
+ // crear cliente
+  async registrarCliente(data) {
+    const { nombre, correo, contrasena } = data;
+
+    const rol = "cliente";
+
+    const [resultado] = await db.query(
+      "INSERT INTO usuarios (nombre, correo, contrasena, rol) VALUES (?, ?, ?, ?)",
+      [nombre, correo, contrasena, rol]
+    );
+
+    return { id_usuario: resultado.insertId, nombre, correo, rol };
+  }
+
+
+   // Crear administrador
+  async registrarAdmin(data) {
+    const { nombre, correo, contrasena } = data;
+
+    const rol = "administrador";
+
+    const [resultado] = await db.query(
+      "INSERT INTO usuarios (nombre, correo, contrasena, rol) VALUES (?, ?, ?, ?)",
+      [nombre, correo, contrasena, rol]
+    );
+
+    return { id_usuario: resultado.insertId, nombre, correo, rol };
   }
 
   // Actualizar un registro por ID
@@ -53,6 +72,7 @@ class crudController {
       throw error;
     }
   }
-};
+}
+
 
 module.exports = crudController;

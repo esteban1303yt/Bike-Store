@@ -29,15 +29,27 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-//crear nuevo usuario
+
+// Registrar cliente (DEFAULT)
 router.post('/', async (req, res) => {
   try {
-    const nuevoDato = await crud.crear(tabla, req.body);
-    res.status(201).json(nuevoDato)
+    const nuevo = await crud.registrarCliente(req.body);
+    res.status(201).json(nuevo);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
+
+// Registrar administrador (solo backend)
+router.post('/admin', async (req, res) => {
+  try {
+    const nuevo = await crud.registrarAdmin(req.body);
+    res.status(201).json(nuevo);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 
 // actualizar usuario
 router.put('/:id', async (req, res) => {
@@ -63,5 +75,7 @@ router.delete('/:id', async (req, res) => {
     }
   }
 });
+
+
 
 module.exports = router;
