@@ -7,6 +7,4 @@ const crud = new crudController;
 const tabla = 'usuarios';
 const idCampo = 'id_usuario';
 
-
-
 module.exports = router;

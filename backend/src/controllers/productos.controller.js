@@ -76,8 +76,8 @@ class Productos {
 
             const [result] = await db.query(
                 `INSERT INTO productos 
-                 (nombre_producto, id_categoria, id_marca, precio, descripcion, stock, imagen)
-                 VALUES (?, ?, ?, ?, ?, ?, ?)`,
+                (nombre_producto, id_categoria, id_marca, precio, descripcion, stock, imagen)
+                VALUES (?, ?, ?, ?, ?, ?, ?)`,
                 [nombre_producto, id_categoria, id_marca, precio, descripcion, stock, imagen]
             );
 
@@ -102,14 +102,14 @@ class Productos {
 
             await db.query(
                 `UPDATE productos 
-                 SET nombre_producto = ?, 
-                     id_categoria = ?, 
-                     id_marca = ?, 
-                     precio = ?, 
-                     descripcion = ?, 
-                     stock = ?, 
-                     imagen = ?
-                 WHERE id_producto = ?`,
+                SET nombre_producto = ?, 
+                    id_categoria = ?, 
+                    id_marca = ?, 
+                    precio = ?, 
+                    descripcion = ?, 
+                    stock = ?, 
+                    imagen = ?
+                WHERE id_producto = ?`,
                 [nombre_producto, id_categoria, id_marca, precio, descripcion, stock, imagen, id]
             );
 

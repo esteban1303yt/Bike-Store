@@ -72,3 +72,11 @@ header {
     width: 160px;
     height: fit-content;
 }
+
+.btn-icons {
+    border: none;
+    background: none;
+    padding: 0px;
+    margin: 4px;
+    display: flex;
+}

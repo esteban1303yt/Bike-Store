@@ -47,21 +47,3 @@ textarea {
     height: 150px;
     resize: none;
 }
-
-
-button {
-    margin: 20px 0px 0px;
-    padding: 14px 25px;
-    background: black;
-    border: none;
-    border-radius: 8px;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: opacity .2s;
-}
-
-
-button:hover {
-    opacity: .85;
-}

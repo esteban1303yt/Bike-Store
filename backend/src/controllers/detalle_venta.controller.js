@@ -4,5 +4,4 @@ class crudController {
   
 }
 
-
 module.exports = crudController;

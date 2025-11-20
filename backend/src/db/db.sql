@@ -10,7 +10,7 @@ CREATE TABLE usuarios (
     nombre VARCHAR(100) NOT NULL,
     apellido VARCHAR(100),
     telefono VARCHAR(20),
-    clave VARCHAR (50) NOT NULL,
+    clave VARCHAR (255) NOT NULL,
     correo VARCHAR(150) UNIQUE NOT NULL,
     fecha_registro DATETIME DEFAULT CURRENT_TIMESTAMP,
     rol ENUM('administrador', 'cliente') DEFAULT 'cliente'
@@ -112,10 +112,10 @@ CREATE TABLE detalle_venta (
 -- =====================================
 INSERT INTO usuarios (nombre, apellido, clave, correo, rol)
 VALUES
-('Anderson', 'Erazo', 'admin', 'esteban.garcia.valencia13@gmail.com', 'administrador'),
-('Esteban', 'Garcia', 'admin', 'jairerazo420@gmail.com', 'administrador'),
-('Santiago', 'Lemos', 'admin', 'santyagolemosr@gmail.com', 'administrador'),
-('Carlos', 'Pérez', '123', 'carlos@gmail.com', 'cliente');
+('Anderson', 'Erazo', '$2b$10$wXz2pV0X8FvlXQ.7b8TChOGoCEIqFzjWbzF6Z91F5ZB1Q9bkL.z5O', 'jairerazo420@gmail.com', 'administrador'),
+('Esteban', 'Garcia', '$2b$10$yrqYvFzyhXuJwUkLh7F7le/pF4GNdGZcCq/6QRC2M9o8dZl2P7q4G', 'esteban.garcia.valencia13@gmail.com', 'administrador'),
+('Santiago', 'Lemos', '$2b$10$0xg6Dk8B9f7j3LgYqB3mceqXbP8rQdJkV3Utb1e5F6H8L4M9YcQ1p', 'santyagolemosr@gmail.com', 'administrador'),
+('John', 'Doe', '$2b$10$3FqU9KpD5vYbNfH8LrS6OeQwJ7xFhT2vLkP1bZ4N0wH9YqR6JdW3C', 'john@gmail.com', 'cliente');
 
 -- =====================================
 -- INSERTAR CATEGORÍAS
