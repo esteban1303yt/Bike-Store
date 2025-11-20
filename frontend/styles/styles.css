@@ -24,3 +24,15 @@ body {
     font-weight: bold;
     margin: auto;
 }
+
+/* Estilos del checkbox */
+input[type="checkbox"] {
+    -webkit-appearance: auto;
+    /* Mantener apariencia del sistema */
+    appearance: auto;
+    border: 2px solid black;
+    /* Borde negro por defecto */
+    cursor: pointer;
+    accent-color: black;
+    /* Color de la checkmark y fondo al marcar */
+}

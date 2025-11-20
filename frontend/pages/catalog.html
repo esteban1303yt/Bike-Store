@@ -39,24 +39,51 @@
     <!-- Información principal -->
     <main>
         <!-- Sidebar con filtros -->
-        <section class="sidebar">
-
-            <!-- Ordenar (solo visual) -->
+        <aside class="sidebar">
+            <!-- Ordenar -->
             <div class="filter-box">
-                <div class="filter">
+                <div class="filter" id="btnOrdenar">
                     <p>Ordenar</p>
-                    <p>+</p>
+                    <p class="toggle-icon">+</p>
+                </div>
+                <div class="dropdown-inner" id="listaOrdenar">
+                    <label>
+                        <input type="radio" name="ordenar" value="anio-asc">
+                        Más reciente
+                    </label>
+                                        <label>
+                        <input type="radio" name="ordenar" value="anio-desc">
+                        Más antiguo
+                    </label>
+
+                    <label>
+                        <input type="radio" name="ordenar" value="precio-asc">
+                        Precio: menor a mayor
+                    </label>
+                    <label>
+                        <input type="radio" name="ordenar" value="precio-desc">
+                        Precio: mayor a menor
+                    </label>
+                    <label>
+                        <input type="radio" name="ordenar" value="nombre-asc">
+                        A-Z
+                    </label>
+                    <label>
+                        <input type="radio" name="ordenar" value="nombre-desc">
+                        Z-A
+                    </label>
                 </div>
             </div>
 
+
             <!-- Categoría -->
-            <div class="filter-box dropdown">
+            <div class="filter-box">
                 <div class="filter" id="btnCategorias">
                     <p>Categoría</p>
-                    <p>+</p>
+                    <p class="toggle-icon">+</p>
                 </div>
-                <div class="dropdown-list" id="listaCategorias">
-                    <!-- JS llenará dinámicamente los checkboxes de categorías -->
+                <div class="dropdown-inner" id="listaCategorias">
+                    <!-- JS llenará dinámicamente -->
                 </div>
             </div>
 
@@ -64,30 +91,13 @@
             <div class="filter-box">
                 <div class="filter" id="btnMarcas">
                     <p>Marca</p>
-                    <p>+</p>
+                    <p class="toggle-icon">+</p>
                 </div>
-                <div class="dropdown-list" id="listaMarcas">
+                <div class="dropdown-inner" id="listaMarcas">
                     <!-- JS llenará dinámicamente -->
                 </div>
             </div>
-
-            <!-- Precio -->
-            <div class="filter-box">
-                <div class="filter">
-                    <p>Precio</p>
-                </div>
-                <div class="dropdown-list" style="padding: 10px;">
-                    <label>
-                        Mínimo:
-                        <input type="number" id="precioMin" placeholder="0" min="0">
-                    </label>
-                    <label>
-                        Máximo:
-                        <input type="number" id="precioMax" placeholder="10000000" min="0">
-                    </label>
-                </div>
-            </div>
-        </section>
+        </aside>
 
         <!-- Contenido principal -->
         <section class="principal">

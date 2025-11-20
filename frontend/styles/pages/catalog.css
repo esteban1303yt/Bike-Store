@@ -13,18 +13,17 @@ main {
     display: flex;
     gap: 12px;
     flex-direction: column;
-    height: fit-content;
+    width: fit-content;
 }
 
 /* ======================
-    DROPDOWN BASE (TU DISEÑO)
+    FILTROS / DROPDOWN
 ====================== */
 .filter-box {
     background: #bcbcc1;
     border-radius: 20px;
     padding: 8px;
-    position: relative;
-    width: fit-content;
+    width: -webkit-fill-available;
 }
 
 /* Botón del filtro */
@@ -34,37 +33,41 @@ main {
     border-radius: 10px;
     cursor: pointer;
     display: flex;
-    width: 216px;
     justify-content: space-between;
     align-items: center;
     user-select: none;
 }
 
-/* Texto dentro del botón */
+/* Texto y icono + / - */
 .filter p {
     font-weight: bold;
     font-size: 18px;
     margin: 0px;
 }
 
-/* Contenedor desplegable */
-.dropdown-list {
-    display: none;
-    position: absolute;
-    top: 60px;
-    left: 8px;
-    background: #fff;
-    width: 216px;
-    max-height: 220px;
-    overflow-y: auto;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    padding: 10px;
-    z-index: 50;
+.filter .toggle-icon {
+    font-size: 18px;
+    font-weight: bold;
 }
 
-/* Opciones individuales (checkbox + texto) */
-.dropdown-list label {
+/* Contenedor interno que se expande */
+/* Dropdown acordeón */
+.dropdown-inner {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0 10px;
+    background: #fff;
+    border-radius: 12px;
+}
+
+.dropdown-inner.active {
+    max-height: 500px; /* suficiente para todos los items */
+    padding: 10px;
+}
+
+/* Etiquetas dentro de dropdown */
+.dropdown-inner label {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -73,19 +76,24 @@ main {
     font-size: 16px;
 }
 
-/* Hover sobre opción */
-.dropdown-list label:hover {
+.dropdown-inner label:hover {
     background: #eee;
     border-radius: 8px;
 }
 
-/* Tamaño checkbox */
-.dropdown-list input {
-    transform: scale(1.2);
+/* Checkbox tamaño */
+.dropdown-inner input[type="checkbox"] {
+    transform: scale(1.4);
 }
 
-.checkbox-marca {
-    background: #111;
+/* Mensaje cuando no hay productos */
+.product-grid-empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    font-size: 18px;
+    color: #555;
 }
 
 /* ======================
@@ -95,6 +103,7 @@ main {
     display: flex;
     gap: 20px;
     flex-direction: column;
+    width: fit-content;
 }
 
 .search-bar {
@@ -103,6 +112,7 @@ main {
     padding: 8px 12px;
     border-radius: 200px;
     border: 2px solid #808080;
+    width: -webkit-fill-available;
 }
 
 .search-bar input {
