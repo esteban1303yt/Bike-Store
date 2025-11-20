@@ -12,6 +12,15 @@ router.get('/', async (req, res) => {
     }
 });
 
+// Buscar productos por texto
+router.get('/buscar/:texto', async (req, res) => {
+    try {
+        await productos.buscarProducto(req, res);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 // Obtener un producto por ID
 router.get('/:id', async (req, res) => {
     try {
@@ -44,11 +53,8 @@ router.delete('/:id', async (req, res) => {
     try {
         await productos.eliminarProducto(req, res);
     } catch (error) {
-        if (error.message.includes('Registro no encontrado')) {
-            res.status(404).json({ error: 'Producto no encontrado' });
-        } else {
-            res.status(500).json({ error: 'Error al eliminar el producto: ' + error.message });
-        }
+        console.error("Error al eliminar producto", error);
+        res.status(500).json({ error: error.message });
     }
 });
 

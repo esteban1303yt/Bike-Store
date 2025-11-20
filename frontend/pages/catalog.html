@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bike Trail | Catálogo</title>
     <link rel="icon" href="/frontend/media/icons/logo_black.svg">
-    <link rel="stylesheet" href="/frontend/styles/styles.css"> <!-- CSS general -->
-    <link rel="stylesheet" href="/frontend/styles/header.css"> <!-- CSS del header -->
-    <link rel="stylesheet" href="/frontend/styles/pages/catalog.css"> <!-- CSS de la página -->
-    <link rel="stylesheet" href="/frontend/styles/footer.css"> <!-- CSS del footer -->
+    <link rel="stylesheet" href="/frontend/styles/styles.css">
+    <link rel="stylesheet" href="/frontend/styles/header.css">
+    <link rel="stylesheet" href="/frontend/styles/pages/catalog.css">
+    <link rel="stylesheet" href="/frontend/styles/footer.css">
 </head>
 
 <body>
@@ -21,7 +21,6 @@
                     <img src="/frontend/media/icons/logo_black.svg" alt="logo-bike-trail-negro">
                 </a>
             </div>
-            <!-- Barra de navegación -->
             <nav class="header-nav">
                 <ul>
                     <li><a href="/frontend/pages/index.html">Inicio</a></li>
@@ -29,21 +28,20 @@
                     <li><a href="/frontend/pages/contact.html">Contacto</a></li>
                 </ul>
             </nav>
-            <!-- Botones de inicio/registro, carrito y opciones -->
             <div class="nav-other">
                 <img src="/frontend/media/icons/cart.svg" alt="carrito" width="40px">
                 <img src="/frontend/media/icons/profile.svg" alt="perfil" width="40px">
                 <img src="/frontend/media/icons/ellipsis_vertical.svg" alt="otro" width="40px">
             </div>
         </div>
-
     </header>
 
-    <!-- Información pricipal -->
+    <!-- Información principal -->
     <main>
-
         <!-- Sidebar con filtros -->
         <section class="sidebar">
+
+            <!-- Ordenar (solo visual) -->
             <div class="filter-box">
                 <div class="filter">
                     <p>Ordenar</p>
@@ -51,50 +49,68 @@
                 </div>
             </div>
 
-            <div class="filter-box">
-                <div class="filter">
+            <!-- Categoría -->
+            <div class="filter-box dropdown">
+                <div class="filter" id="btnCategorias">
                     <p>Categoría</p>
                     <p>+</p>
                 </div>
-            </div>
-
-            <div class="filter-box">
-                <div class="filter">
-                    <p>Marca</p>
-                    <p>+</p>
+                <div class="dropdown-list" id="listaCategorias">
+                    <!-- JS llenará dinámicamente los checkboxes de categorías -->
                 </div>
             </div>
 
+            <!-- Marcas -->
+            <div class="filter-box">
+                <div class="filter" id="btnMarcas">
+                    <p>Marca</p>
+                    <p>+</p>
+                </div>
+                <div class="dropdown-list" id="listaMarcas">
+                    <!-- JS llenará dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Precio -->
+            <div class="filter-box">
+                <div class="filter">
+                    <p>Precio</p>
+                </div>
+                <div class="dropdown-list" style="padding: 10px;">
+                    <label>
+                        Mínimo:
+                        <input type="number" id="precioMin" placeholder="0" min="0">
+                    </label>
+                    <label>
+                        Máximo:
+                        <input type="number" id="precioMax" placeholder="10000000" min="0">
+                    </label>
+                </div>
+            </div>
         </section>
 
-        <!-- Contenido principal con searchbar -->
+        <!-- Contenido principal -->
         <section class="principal">
             <div class="search-bar">
                 <img src="/frontend/media/icons/search.svg" alt="">
-                <input type="text" placeholder="Buscar">
+                <input type="text" id="searchInput" placeholder="Buscar">
             </div>
 
             <!-- Productos -->
             <section id="product-container" class="product-grid"></section>
-
         </section>
-
     </main>
 
-    <!-- Pie de página -->
+    <!-- Footer -->
     <footer>
         <div class="content">
-            <!-- Columna izquierda -->
             <div class="info-izquierda">
-                <!-- Logo -->
                 <img src="/frontend/media/icons/logo_white.svg" alt="logo-bike-trail-blanco">
                 <div class="descripcion-footer1">
                     <p id="footer-text">Tu tienda online especializada en bicicletas, componentes y accesorios.</p>
-                    <p id="footer-text">Tecnologia, calidad y pasion por el ciclismo en Colombia co.</p>
+                    <p id="footer-text">Tecnología, calidad y pasión por el ciclismo en Colombia.</p>
                 </div>
             </div>
-
-            <!-- Columna derecha -->
             <div class="info-derecha">
                 <div class="titulo-trazo">
                     <h3>Contacto</h3>
@@ -105,7 +121,7 @@
                         <p id="footer-text">Palmira, Colombia</p>
                     </div>
                     <div class="medio-contacto">
-                        <img src="/frontend/media/icons/phone.svg" alt="télefono">
+                        <img src="/frontend/media/icons/phone.svg" alt="teléfono">
                         <p id="footer-text">+57 300 123 4567</p>
                     </div>
                     <div class="medio-contacto">
@@ -115,15 +131,12 @@
                 </div>
             </div>
         </div>
-
-        <!-- Copyright -->
         <div class="copy">
-            <p>&copy;Bike Trail. Todos los derechos reservados</p>
+            <p>&copy; Bike Trail. Todos los derechos reservados</p>
         </div>
     </footer>
 
     <script src="/frontend/scripts/catalog.js"></script>
-
 </body>
 
 </html>

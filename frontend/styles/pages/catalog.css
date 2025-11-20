@@ -6,7 +6,9 @@ main {
     gap: 20px;
 }
 
-/* Sidebar */
+/* ======================
+    SIDEBAR
+====================== */
 .sidebar {
     display: flex;
     gap: 12px;
@@ -14,31 +16,81 @@ main {
     height: fit-content;
 }
 
+/* ======================
+    DROPDOWN BASE (TU DISEÑO)
+====================== */
 .filter-box {
     background: #bcbcc1;
     border-radius: 20px;
     padding: 8px;
+    position: relative;
+    width: fit-content;
 }
 
+/* Botón del filtro */
 .filter {
     background: #fff;
     padding: 8px 16px;
     border-radius: 10px;
     cursor: pointer;
     display: flex;
-    height: auto;
     width: 216px;
     justify-content: space-between;
     align-items: center;
+    user-select: none;
 }
 
+/* Texto dentro del botón */
 .filter p {
     font-weight: bold;
     font-size: 18px;
     margin: 0px;
 }
 
-/* Barra de busqueda */
+/* Contenedor desplegable */
+.dropdown-list {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 8px;
+    background: #fff;
+    width: 216px;
+    max-height: 220px;
+    overflow-y: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    padding: 10px;
+    z-index: 50;
+}
+
+/* Opciones individuales (checkbox + texto) */
+.dropdown-list label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Hover sobre opción */
+.dropdown-list label:hover {
+    background: #eee;
+    border-radius: 8px;
+}
+
+/* Tamaño checkbox */
+.dropdown-list input {
+    transform: scale(1.2);
+}
+
+.checkbox-marca {
+    background: #111;
+}
+
+/* ======================
+    SEARCH BAR
+====================== */
 .principal {
     display: flex;
     gap: 20px;
@@ -64,7 +116,9 @@ main {
     width: 30px;
 }
 
-/* PRODUCT GRID */
+/* ======================
+    PRODUCT GRID
+====================== */
 .product-grid {
     display: flex;
     gap: 16px;
@@ -116,7 +170,6 @@ main {
     margin-bottom: auto;
 }
 
-/* Subtitulo */
 .subtitle {
     color: hsla(0, 0%, 0%, 0.500);
     text-align: left;
@@ -125,7 +178,6 @@ main {
     margin-bottom: auto;
 }
 
-/* Precio */
 .price {
     font-weight: bold;
     font-size: 15px;
@@ -134,7 +186,6 @@ main {
     margin-bottom: auto;
 }
 
-/* Etiqueta de disponibilidad */
 .badge {
     position: absolute;
     top: 10px;
@@ -146,11 +197,10 @@ main {
     border-radius: 6px;
 }
 
-/* Año */
 .year {
     position: absolute;
     top: 10px;
     right: 10px;
-    color: #777;
+    color: hsla(0, 0%, 0%, 0.527);
     font-size: 14px;
 }

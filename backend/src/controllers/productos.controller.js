@@ -2,9 +2,7 @@ const db = require("../config/db");
 
 class Productos {
 
-    // ==========================================
-    // OBTENER TODOS LOS PRODUCTOS
-    // ==========================================
+    // Obtener todos los productos
     async obtenerProductos(req, res) {
         try {
             const [rows] = await db.query(`
@@ -14,7 +12,6 @@ class Productos {
                 FROM productos p
                 LEFT JOIN marcas m ON p.id_marca = m.id_marca
             `);
-
             res.json(rows);
         } catch (error) {
             console.error(error);
@@ -22,13 +19,10 @@ class Productos {
         }
     }
 
-    // ==========================================
-    // OBTENER PRODUCTO POR ID
-    // ==========================================
+    // Obtener producto por ID
     async obtenerProductoPorId(req, res) {
         try {
             const { id } = req.params;
-
             const [rows] = await db.query(`
                 SELECT 
                     p.*,
@@ -49,9 +43,30 @@ class Productos {
         }
     }
 
-    // ==========================================
-    // CREAR PRODUCTO
-    // ==========================================
+    // Buscar productos por texto (nombre, descripción o marca)
+    async buscarProducto(req, res) {
+        try {
+            const { texto } = req.params;
+
+            const [rows] = await db.query(`
+                SELECT p.*, m.nombre_marca
+                FROM productos p
+                LEFT JOIN marcas m ON p.id_marca = m.id_marca
+                WHERE 
+                    p.nombre_producto LIKE ? 
+                    OR p.descripcion LIKE ?
+                    OR m.nombre_marca LIKE ?
+            `, [`%${texto}%`, `%${texto}%`, `%${texto}%`]);
+
+            res.json(rows);
+
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ mensaje: "Error al buscar productos", error });
+        }
+    }
+
+    // Crear producto
     async crearProducto(req, res) {
         try {
             let { nombre_producto, id_categoria, id_marca, precio, descripcion, stock, imagen } = req.body;
@@ -61,8 +76,8 @@ class Productos {
 
             const [result] = await db.query(
                 `INSERT INTO productos 
-                (nombre_producto, id_categoria, id_marca, precio, descripcion, stock, imagen)
-                VALUES (?, ?, ?, ?, ?, ?, ?)`,
+                 (nombre_producto, id_categoria, id_marca, precio, descripcion, stock, imagen)
+                 VALUES (?, ?, ?, ?, ?, ?, ?)`,
                 [nombre_producto, id_categoria, id_marca, precio, descripcion, stock, imagen]
             );
 
@@ -77,15 +92,12 @@ class Productos {
         }
     }
 
-    // ==========================================
-    // ACTUALIZAR PRODUCTO
-    // ==========================================
+    // Actualizar producto
     async actualizarProducto(req, res) {
         try {
             const { id } = req.params;
             let { nombre_producto, id_categoria, id_marca, precio, descripcion, stock, imagen } = req.body;
 
-            // Convertir nombre de imagen a minúsculas
             imagen = imagen ? imagen.toLowerCase() : null;
 
             await db.query(
@@ -109,20 +121,15 @@ class Productos {
         }
     }
 
-    // ==========================================
-    // ELIMINAR PRODUCTO
-    // ==========================================
+    // Eliminar producto
     async eliminarProducto(req, res) {
         try {
             const { id } = req.params;
-
             await db.query(
                 "DELETE FROM productos WHERE id_producto = ?",
                 [id]
             );
-
             res.json({ mensaje: "Producto eliminado" });
-
         } catch (error) {
             console.error(error);
             res.status(500).json({ mensaje: "Error al eliminar producto", error });

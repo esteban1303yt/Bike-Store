@@ -66,6 +66,8 @@ header {
 }
 
 .nav-other {
+    margin: 8px;
+    display: flex;
     gap: 20px;
     width: 160px;
     height: fit-content;
