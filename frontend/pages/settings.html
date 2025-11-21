@@ -6,6 +6,82 @@
     <title>Document</title>
 </head>
 <body>
+
+        <!-- Encabezado -->
+    <header>
+        <div class="header-content">
+            <div class="header-centro">
+                <a href="#">
+                    <img src="/frontend/media/icons/logo_black.svg" alt="logo-bike-trail-negro">
+                </a>
+            </div>
+            <!-- Barra de navegación -->
+            <nav class="header-nav">
+                <ul>
+                    <li><a href="#" class="active">Inicio</a></li>
+                    <li><a href="/frontend/pages/catalog.html">Catálogo</a></li>
+                    <li><a href="/frontend/pages/contact.html">Contacto</a></li>
+                </ul>
+            </nav>
+            <!-- Botones de inicio/registro, carrito y opciones -->
+            <div class="nav-other">
+                <img src="/frontend/media/icons/cart.svg" alt="carrito" width="40px">
+
+                <!-- BOTÓN PERFIL -->
+                <div class="profile-wrapper">
+                    <button id="profileBtn" class="btn-icons">
+                        <img src="/frontend/media/icons/profile.svg" alt="perfil">
+                    </button>
+                    <div class="profile-dropdown hidden" id="profileDropdown">
+                        <p id="profileName"></p>
+                        <div id="adminPanel" class="dropdown-item hidden">📊Panel</div>
+                        <div id="settingsBtn" class="dropdown-item">⚙️Ajustes</div>
+                        <div id="logoutBtn" class="dropdown-item logout">↪️Cerrar sesión</div>
+                    </div>
+                </div>
+
+                <img src="/frontend/media/icons/ellipsis_vertical.svg" alt="otro" width="40px">
+            </div>
+        </div>
+
+    </header>
     
+    <main></main>
+
+        <!-- Pie de página -->
+    <footer>
+        <div class="content">
+            <div class="info-izquierda">
+                <img src="/frontend/media/icons/logo_white.svg" alt="logo-bike-trail-blanco">
+                <div class="descripcion-footer1">
+                    <p>Tu tienda online especializada en bicicletas, componentes y accesorios.</p>
+                    <p>Tecnología, calidad y pasión por el ciclismo en Colombia.</p>
+                </div>
+            </div>
+            <div class="info-derecha">
+                <div class="titulo-trazo">
+                    <h3>Contacto</h3>
+                </div>
+                <div class="lista-contacto">
+                    <div class="medio-contacto">
+                        <img src="/frontend/media/icons/map-pin.svg" alt="ubicación">
+                        <p>Palmira, Colombia</p>
+                    </div>
+                    <div class="medio-contacto">
+                        <img src="/frontend/media/icons/phone.svg" alt="teléfono">
+                        <p>+57 300 123 4567</p>
+                    </div>
+                    <div class="medio-contacto">
+                        <img src="/frontend/media/icons/mail.svg" alt="correo">
+                        <p>contacto@biketrail.com.co</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copy">
+            <p>&copy; Bike Trail. Todos los derechos reservados</p>
+        </div>
+    </footer>
+
 </body>
 </html>

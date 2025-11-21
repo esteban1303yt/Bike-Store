@@ -62,7 +62,8 @@ main {
 }
 
 .dropdown-inner.active {
-    max-height: 500px; /* suficiente para todos los items */
+    max-height: 500px;
+    /* suficiente para todos los items */
     padding: 10px;
 }
 
@@ -103,7 +104,7 @@ main {
     display: flex;
     gap: 20px;
     flex-direction: column;
-    width: fit-content;
+    width: -webkit-fill-available;
 }
 
 .search-bar {
@@ -139,8 +140,8 @@ main {
 .product-card {
     gap: 4px;
     position: relative;
-    width: 380px;
-    height: 380px;
+    width: 450px;
+    height: 470px;
     background: #ffffff;
     border: 2px solid #F1F1F1;
     border-radius: 10px;
@@ -162,15 +163,20 @@ main {
     background-color: #fff;
 }
 
+.product-desc {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 16px;
+}
+
 .card-info {
     display: grid;
-    gap: 10px;
-    padding-left: 16px;
+    gap: 6px;
 }
 
 .texto-principal {
     display: grid;
-    gap: 5px;
+    gap: 3px;
 }
 
 .card-info h3 {

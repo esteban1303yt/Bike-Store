@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/frontend/styles/header.css"> <!-- CSS del header -->
     <link rel="stylesheet" href="/frontend/styles/pages/catalog.css"> <!-- CSS de la página -->
     <link rel="stylesheet" href="/frontend/styles/footer.css"> <!-- CSS del footer -->
+    <link rel="stylesheet" href="/frontend/styles/templates/carrito.css"> <!-- Carrito -->
 </head>
 
 <body>
@@ -30,9 +31,13 @@
             </nav>
             <!-- Botones de inicio/registro, carrito y opciones -->
             <div class="nav-other">
-                <img src="/frontend/media/icons/cart.svg" alt="carrito" width="40px">
 
-                <!-- BOTÓN PERFIL -->
+                <!-- Botón carrito -->
+                <button onclick="toggleCarrito()" class="btn-icons">
+                    <img src="/frontend/media/icons/cart.svg" alt="carrito">
+                </button>
+
+                <!-- Botón perfil -->
                 <div class="profile-wrapper">
                     <button id="profileBtn" class="btn-icons">
                         <img src="/frontend/media/icons/profile.svg" alt="perfil">
@@ -45,7 +50,7 @@
                     </div>
                 </div>
 
-                <img src="/frontend/media/icons/ellipsis_vertical.svg" alt="otro" width="40px">
+                <img src="/frontend/media/icons/ellipsis_vertical.svg" alt="otro" class="btn-icons">
             </div>
         </div>
     </header>
@@ -114,25 +119,25 @@
         </aside>
 
         <!-- Contenido principal -->
-        <section class="principal">
+        <div class="principal">
             <div class="search-bar">
                 <img src="/frontend/media/icons/search.svg" alt="">
                 <input type="text" id="searchInput" placeholder="Buscar">
             </div>
 
             <!-- Productos -->
-            <section id="product-container" class="product-grid"></section>
-        </section>
+            <div id="product-container" class="product-grid"></div>
+        </div>
     </main>
 
-    <!-- Footer -->
+    <!-- Pie de página -->
     <footer>
         <div class="content">
             <div class="info-izquierda">
                 <img src="/frontend/media/icons/logo_white.svg" alt="logo-bike-trail-blanco">
                 <div class="descripcion-footer1">
-                    <p id="footer-text">Tu tienda online especializada en bicicletas, componentes y accesorios.</p>
-                    <p id="footer-text">Tecnología, calidad y pasión por el ciclismo en Colombia.</p>
+                    <p>Tu tienda online especializada en bicicletas, componentes y accesorios.</p>
+                    <p>Tecnología, calidad y pasión por el ciclismo en Colombia.</p>
                 </div>
             </div>
             <div class="info-derecha">
@@ -142,15 +147,15 @@
                 <div class="lista-contacto">
                     <div class="medio-contacto">
                         <img src="/frontend/media/icons/map-pin.svg" alt="ubicación">
-                        <p id="footer-text">Palmira, Colombia</p>
+                        <p>Palmira, Colombia</p>
                     </div>
                     <div class="medio-contacto">
                         <img src="/frontend/media/icons/phone.svg" alt="teléfono">
-                        <p id="footer-text">+57 300 123 4567</p>
+                        <p>+57 300 123 4567</p>
                     </div>
                     <div class="medio-contacto">
                         <img src="/frontend/media/icons/mail.svg" alt="correo">
-                        <p id="footer-text">contacto@biketrail.com.co</p>
+                        <p>contacto@biketrail.com.co</p>
                     </div>
                 </div>
             </div>
@@ -160,7 +165,7 @@
         </div>
     </footer>
 
-    <!-- MODAL LOGIN/REGISTRO -->
+    <!-- Modal Login/Registro -->
     <div class="modal-overlay" id="modal-overlay">
         <div class="modal" id="modal">
             <!-- LOGIN -->
@@ -196,8 +201,23 @@
         </div>
     </div>
 
+    <!-- Modal carrito -->
+    <div id="sidebarCarrito" class="carrito-sidebar">
+        <div class="carrito-header">
+            <h3>Mi Carrito</h3>
+            <button onclick="toggleCarrito()" class="cerrar-carrito">X</button>
+        </div>
+
+        <div id="carritoItems" class="carrito-items"></div>
+
+        <div class="carrito-footer">
+            <h3>Total: $<span id="totalCarrito">0</span></h3>
+        </div>
+    </div>
+
     <script src="/frontend/scripts/catalog.js"></script>
     <script src="/frontend/scripts/modals.js"></script>
+    <script src="/frontend/scripts/carrito.js"></script>
 
 </body>
 

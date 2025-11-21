@@ -1,0 +1,75 @@
+.carrito-sidebar {
+    position: fixed;
+    top: 0;
+    border: 4px solid #F1F1F1;
+    background: white;
+    padding: 20px 16px;
+    right: -500px;
+    width: 20%;
+    height: -webkit-fill-available;
+    box-shadow: -5px 0px 15px rgba(0, 0, 0, 0.2);
+    transition: right 0.4s ease;
+    padding: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+}
+
+.carrito-sidebar.active {
+    right: 0;
+}
+
+.carrito-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cerrar-carrito {
+    background: red;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.carrito-items {
+    flex: 1;
+    overflow-y: auto;
+    margin-top: 20px;
+}
+
+.carrito-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.carrito-item img {
+    width: 60px;
+}
+
+.carrito-item button {
+    padding: 5px 8px;
+    cursor: pointer;
+}
+
+
+.vaciar-carrito-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.vaciar-carrito-btn:hover {
+    background: #c9302c;
+}

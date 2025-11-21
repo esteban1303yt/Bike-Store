@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="listaProductos"></div>
+
+    <h2>Carrito</h2>
+    <div id="carrito"></div>
+
+    <h2 id="totalCarrito">Total: $0</h2>
+
+
+
+    <div class="carrito-footer">
+        <h3>Total: $<span id="totalCarrito">0</span></h3>
+
+        <button class="vaciar-carrito-btn" onclick="vaciarCarrito()">
+            Vaciar Carrito
+        </button>
+    </div>
+
+    <script src="carrito.html"></script>
+    <script>
+        cargarProductos();
+        mostrarCarrito();
+    </script>
+
+</body>
+
+</html>

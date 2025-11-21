@@ -45,12 +45,15 @@ function renderizarProductos(productos) {
             <div class="badge">${p.stock > 0 ? "Disponible" : "Agotado"}</div>
             <div class="year">${p.year ?? 2025}</div>
             <img src="/frontend/media/img/products/${p.imagen ?? "default.png"}" alt="${p.nombre_producto}">
-            <div class="card-info">
-                <div class="texto-principal">
-                    <h3>${p.nombre_producto}</h3>
-                    <p class="subtitle">${p.descripcion ?? ""}</p>
+            <div class="product-desc">
+                <div class="card-info">
+                    <div class="texto-principal">
+                        <h3>${p.nombre_producto}</h3>
+                        <p class="subtitle">${p.descripcion ?? ""}</p>
+                    </div>
+                    <p class="price">$ ${Number(p.precio).toLocaleString("es-CO")}</p>
                 </div>
-                <p class="price">$ ${Number(p.precio).toLocaleString("es-CO")}</p>
+                <button>Agregar al carrito</button>
             </div>
         </article>
     `).join("");
