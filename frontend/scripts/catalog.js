@@ -14,6 +14,42 @@ const btnCategorias = document.getElementById("btnCategorias");
 const listaOrdenar = document.getElementById("listaOrdenar");
 const btnOrdenar = document.getElementById("btnOrdenar");
 
+
+
+
+// ===============================
+// AGREGAR AL CARRITO
+// ===============================
+function agregarAlCarrito(producto) {
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+    // ¿El producto ya está en el carrito?
+    const itemExistente = carrito.find(item => item.id_producto === producto.id_producto);
+
+    if (itemExistente) {
+        itemExistente.cantidad++;
+    } else {
+        carrito.push({
+            ...producto,
+            cantidad: 1
+        });
+    }
+
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+
+    // Actualizar el carrito visual inmediatamente
+    if (typeof renderizarCarrito === "function") {
+        renderizarCarrito();
+    }
+
+    // Abrir el carrito al agregar
+    toggleCarrito();
+}
+
+
+
+
+
 // Cache de productos
 let productosCache = [];
 
@@ -53,7 +89,17 @@ function renderizarProductos(productos) {
                     </div>
                     <p class="price">$ ${Number(p.precio).toLocaleString("es-CO")}</p>
                 </div>
-                <button>Agregar al carrito</button>
+                <button class="btn-add-cart"
+    onclick='agregarAlCarrito({
+        id_producto: ${p.id_producto},
+        nombre_producto: "${p.nombre_producto}",
+        precio: Number(${p.precio}),
+        imagen: "${p.imagen}"
+    })'>
+    Agregar al carrito
+</button>
+
+
             </div>
         </article>
     `).join("");

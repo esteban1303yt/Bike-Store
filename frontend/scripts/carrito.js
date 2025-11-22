@@ -1,6 +1,49 @@
 // ===============================
 // CARRITO CON LOCALSTORAGE
 // ===============================
+
+//Mostrar / ocultar carrito
+function toggleCarrito() {
+    const sidebar = document.getElementById("sidebarCarrito");
+    sidebar.classList.toggle("active");
+    renderizarCarrito();
+}
+
+// Renderizar carrito
+function renderizarCarrito() {
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    const contenedor = document.getElementById("carritoItems");
+    const totalSpan = document.getElementById("totalCarrito");
+
+    if (carrito.length === 0) {
+        contenedor.innerHTML = "<p class='empty'>Carrito vacío</p>";
+        totalSpan.textContent = "0";
+        return;
+    }
+
+    let total = 0;
+
+    contenedor.innerHTML = carrito
+        .map(item => {
+            total += item.precio * item.cantidad;
+            return `
+                <div class="carrito-item">
+                    <img src="/frontend/media/img/products/${item.imagen}">
+                    <div class="info">
+                        <h4>${item.nombre_producto}</h4>
+                        <p>$${item.precio.toLocaleString()}</p>
+                        <p>Cantidad: ${item.cantidad}</p>
+                    </div>
+                </div>
+            `;
+        })
+        .join("");
+
+    totalSpan.textContent = total.toLocaleString("es-CO");
+}
+
+
+
 // Abrir / cerrar panel lateral
 function toggleCarrito() {
     document.getElementById("sidebarCarrito").classList.toggle("active");
@@ -19,24 +62,31 @@ function guardarCarrito(carrito) {
 
 // Agregar producto al carrito
 function agregarAlCarrito(producto) {
-    let carrito = cargarCarrito();
 
-    const productoExistente = carrito.find(item => item.id_producto === producto.id_producto);
+    producto.precio = Number(producto.precio); // ← ¡Corrección clave!
 
-    if (productoExistente) {
-        productoExistente.cantidad++;
-        productoExistente.subtotal = productoExistente.cantidad * productoExistente.precio;
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+    const itemExistente = carrito.find(item => item.id_producto === producto.id_producto);
+
+    if (itemExistente) {
+        itemExistente.cantidad++;
     } else {
         carrito.push({
             ...producto,
-            cantidad: 1,
-            subtotal: producto.precio
+            cantidad: 1
         });
     }
 
-    guardarCarrito(carrito);
-    mostrarCarrito();
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+
+    if (typeof renderizarCarrito === "function") {
+        renderizarCarrito();
+    }
+
+    toggleCarrito();
 }
+
 
 // Quitar una unidad
 function restarProducto(id_producto) {
