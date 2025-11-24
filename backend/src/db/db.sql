@@ -112,9 +112,9 @@ CREATE TABLE detalle_venta (
 -- =====================================
 INSERT INTO usuarios (nombre, apellido, clave, correo, rol)
 VALUES
-('Anderson', 'Erazo', '$2b$10$wXz2pV0X8FvlXQ.7b8TChOGoCEIqFzjWbzF6Z91F5ZB1Q9bkL.z5O', 'jairerazo420@gmail.com', 'administrador'),
-('Esteban', 'Garcia', '$2b$10$yrqYvFzyhXuJwUkLh7F7le/pF4GNdGZcCq/6QRC2M9o8dZl2P7q4G', 'esteban.garcia.valencia13@gmail.com', 'administrador'),
-('Santiago', 'Lemos', '$2b$10$0xg6Dk8B9f7j3LgYqB3mceqXbP8rQdJkV3Utb1e5F6H8L4M9YcQ1p', 'santyagolemosr@gmail.com', 'administrador'),
+('Anderson', 'Erazo', '$2b$10$jq01JbaQHZv6MDbz1pWvpuDXvR/dbPTm.WZtQrBCDfZzuPxtoRiii', 'jairerazo420@gmail.com', 'administrador'),
+('Esteban', 'Garcia', '$2b$10$jq01JbaQHZv6MDbz1pWvpuDXvR/dbPTm.WZtQrBCDfZzuPxtoRiii', 'esteban.garcia.valencia13@gmail.com', 'administrador'),
+('Santiago', 'Lemos', '$2b$10$jq01JbaQHZv6MDbz1pWvpuDXvR/dbPTm.WZtQrBCDfZzuPxtoRiii', 'santyagolemosr@gmail.com', 'administrador'),
 ('John', 'Doe', '$2b$10$3FqU9KpD5vYbNfH8LrS6OeQwJ7xFhT2vLkP1bZ4N0wH9YqR6JdW3C', 'john@gmail.com', 'cliente');
 
 -- =====================================
