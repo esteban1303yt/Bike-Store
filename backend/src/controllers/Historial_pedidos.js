@@ -3,6 +3,9 @@ const db = require("../config/db");
 class HistorialPedidos {
 
 //Obtener todo el historial de pedidos realizados en la pagina
+
+
+//obtener todos
     async obtenerTodos() {
         try{
             const query =`
@@ -29,7 +32,7 @@ class HistorialPedidos {
 
 // obtener el historial por medio del id
 
-
+//obtener por id
 async obtenerporid (id) {
 
     try {
