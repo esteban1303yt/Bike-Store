@@ -1,97 +1,183 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Productos - Admin</title>
-    <style>
-        body {
-            font-family: Arial;
-            padding: 20px;
-        }
+<meta charset="UTF-8">
+<title>Productos - Admin</title>
+<style>
+    body { font-family: Arial; padding: 20px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 8px; border: 1px solid #ccc; text-align: left; }
+    button { margin-right: 5px; }
+    input { width: 90%; }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+    /* --- ESTILOS DEL MODAL --- */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.4);
+        justify-content: center;
+        align-items: center;
+    }
 
-        th,
-        td {
-            padding: 8px;
-            border: 1px solid #ccc;
-            text-align: left;
-        }
+    .modal-content {
+        background: white;
+        width: 350px;
+        padding: 20px;
+        border-radius: 8px;
+    }
 
-        button {
-            margin-right: 5px;
-        }
+    .cerrar {
+        float: right;
+        font-size: 20px;
+        cursor: pointer;
+    }
 
-        input {
-            width: 90%;
-        }
-    </style>
+    .modal input, .modal textarea {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 6px;
+    }
+
+    .btn-guardar {
+        width: 100%;
+        padding: 10px;
+        background: #2d6cdf;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+</style>
 </head>
-
 <body>
-    <h1>Productos</h1>
-    <table id="tablaProductos">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Precio</th>
-                <th>Stock</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
 
-    <script>
-        async function cargarProductos() {
-            const res = await fetch('/api/productos');
-            const productos = await res.json();
-            const tbody = document.querySelector('#tablaProductos tbody');
-            tbody.innerHTML = '';
-            productos.forEach(p => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
+<h1>Productos</h1>
+
+<table id="tablaProductos">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<!-- #######################
+     ###   MODAL EDITAR   ###
+     ####################### -->
+<div id="modalEditar" class="modal">
+    <div class="modal-content">
+        <span id="cerrarModal" class="cerrar">&times;</span>
+        <h3>Editar Producto</h3>
+
+        <input type="hidden" id="editId">
+        <label>Nombre:</label>
+        <input type="text" id="editNombre">
+
+        <label>Precio:</label>
+        <input type="number" id="editPrecio">
+
+        <label>Stock:</label>
+        <input type="number" id="editStock">
+
+        <label>Descripción:</label>
+        <textarea id="editDescripcion"></textarea>
+
+        <button class="btn-guardar" onclick="guardarCambios()">Guardar Cambios</button>
+    </div>
+</div>
+
+<script>
+async function cargarProductos() {
+    const res = await fetch('/api/productos');
+    const productos = await res.json();
+    const tbody = document.querySelector('#tablaProductos tbody');
+    tbody.innerHTML = '';
+
+    productos.forEach(p => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
             <td>${p.id_producto}</td>
             <td><input type="text" value="${p.nombre_producto}" id="nombre-${p.id_producto}"></td>
             <td><input type="number" value="${p.precio}" id="precio-${p.id_producto}"></td>
             <td><input type="number" value="${p.stock}" id="stock-${p.id_producto}"></td>
             <td>
-                <button onclick="editar(${p.id_producto})">Editar</button>
+                <button onclick="abrirModal(${p.id_producto})">Editar</button>
                 <button onclick="eliminar(${p.id_producto})">Eliminar</button>
             </td>
         `;
-                tbody.appendChild(tr);
-            });
-        }
+        tbody.appendChild(tr);
+    });
+}
 
-        async function eliminar(id) {
-            await fetch('/api/productos/' + id, { method: 'DELETE' });
-            cargarProductos();
-        }
+async function eliminar(id) {
+    await fetch('/api/productos/' + id, { method: 'DELETE' });
+    cargarProductos();
+}
 
-        async function editar(id) {
-            const nombre = document.getElementById('nombre-' + id).value;
-            const precio = document.getElementById('precio-' + id).value;
-            const stock = document.getElementById('stock-' + id).value;
-            await fetch('/api/productos/' + id, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    nombre_producto: nombre,
-                    precio: precio,
-                    stock: stock
-                })
-            });
-            cargarProductos();
-        }
+/* --------------------------
+   MODAL: abrir con datos
+--------------------------- */
+async function abrirModal(id) {
+    const nombre = document.getElementById("nombre-" + id).value;
+    const precio = document.getElementById("precio-" + id).value;
+    const stock = document.getElementById("stock-" + id).value;
 
-        cargarProductos();
-    </script>
+    // Llenar el modal
+    document.getElementById("editId").value = id;
+    document.getElementById("editNombre").value = nombre;
+    document.getElementById("editPrecio").value = precio;
+    document.getElementById("editStock").value = stock;
+
+    // Descripción desde la BD
+    const res = await fetch('/api/productos/' + id);
+    const data = await res.json();
+    document.getElementById("editDescripcion").value = data.descripcion || "";
+
+    document.getElementById("modalEditar").style.display = "flex";
+}
+
+/* --------------------------
+   MODAL: cerrar
+--------------------------- */
+document.getElementById("cerrarModal").onclick = () => {
+    document.getElementById("modalEditar").style.display = "none";
+};
+
+/* --------------------------
+   Modal: Guardar Cambios
+--------------------------- */
+async function guardarCambios() {
+    const id = document.getElementById("editId").value;
+    const nombre = document.getElementById("editNombre").value;
+    const precio = document.getElementById("editPrecio").value;
+    const stock = document.getElementById("editStock").value;
+    const descripcion = document.getElementById("editDescripcion").value;
+
+    await fetch('/api/productos/' + id, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            nombre_producto: nombre,
+            precio: precio,
+            stock: stock,
+            descripcion: descripcion
+        })
+    });
+
+    document.getElementById("modalEditar").style.display = "none";
+    cargarProductos();
+}
+
+cargarProductos();
+</script>
+
 </body>
-
 </html>

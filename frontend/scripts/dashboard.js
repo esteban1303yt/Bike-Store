@@ -27,7 +27,7 @@ async function mostrarProductos() {
         productos.forEach(p => {
             html += `
                 <div class="tarjeta">
-                    <img src="/frontend/media/img/products/${p.imagen ?? "default.jpg"}" alt="${p.nombre_producto}">
+                 <img src="/frontend/media/img/products/${p.imagen ?? "default.png"}" alt="${p.nombre_producto}">
                     <h3>${p.nombre_producto}</h3>
                     <p><strong>Precio:</strong> ${p.precio}</p>
                     <p><strong>Stock:</strong> ${p.stock}</p>
@@ -57,21 +57,22 @@ async function eliminarProducto(id) {
     }
 }
 
-// Función para editar producto
-function editarProducto(id) {
-    const nuevoNombre = prompt('Nuevo nombre:');
-    const nuevoPrecio = prompt('Nuevo precio:');
-    const nuevoStock = prompt('Nuevo stock:');
+// Abrir modal de edición desde el dashboard
+// Abrir modal de edición desde el dashboard
+async function editarProducto(id) {
 
-    if (nuevoNombre && nuevoPrecio && nuevoStock) {
-        fetch(`http://localhost:3000/api/productos/${id}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                nombre_producto: nuevoNombre,
-                precio: nuevoPrecio,
-                stock: nuevoStock
-            })
-        }).then(() => mostrarProductos());
-    }
+    // Obtener datos del producto desde la API
+    const res = await fetch(`http://localhost:3000/api/productos/${id}`);
+    const p = await res.json();
+
+    // Llenar los inputs del modal
+    document.getElementById("editId").value = id;
+    document.getElementById("editNombre").value = p.nombre_producto;
+    document.getElementById("editPrecio").value = p.precio;
+    document.getElementById("editStock").value = p.stock;
+    document.getElementById("editDescripcion").value = p.descripcion || "";
+
+    // Mostrar modal
+    document.getElementById("modalEditar").style.display = "flex";
 }
+
