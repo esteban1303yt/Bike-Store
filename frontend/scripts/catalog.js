@@ -20,7 +20,7 @@ const btnOrdenar = document.getElementById("btnOrdenar");
 // ===============================
 // AGREGAR AL CARRITO
 // ===============================
-function agregarAlCarrito(producto) {
+function agregarProductoCatalogo(producto) {
     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
     // ¿El producto ya está en el carrito?

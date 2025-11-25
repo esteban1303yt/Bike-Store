@@ -4,53 +4,12 @@
 
 //Mostrar / ocultar carrito
 function toggleCarrito() {
-    const sidebar = document.getElementById("sidebarCarrito");
+    const sidebar = document.getElementById("carritoLateral");
     sidebar.classList.toggle("active");
-    renderizarCarrito();
+    mostrarCarrito();
 }
 
-// Renderizar carrito
-function renderizarCarrito() {
-    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-    const contenedor = document.getElementById("carritoItems");
-    const totalSpan = document.getElementById("totalCarrito");
-
-    if (carrito.length === 0) {
-        contenedor.innerHTML = "<p class='empty'>Carrito vacío</p>";
-        totalSpan.textContent = "0";
-        return;
-    }
-
-    let total = 0;
-
-    contenedor.innerHTML = carrito
-        .map(item => {
-            total += item.precio * item.cantidad;
-            return `
-                <div class="carrito-item">
-                    <img src="/frontend/media/img/products/${item.imagen}">
-                    <div class="info">
-                        <h4>${item.nombre_producto}</h4>
-                        <p>$${item.precio.toLocaleString()}</p>
-                        <p>Cantidad: ${item.cantidad}</p>
-                    </div>
-                </div>
-            `;
-        })
-        .join("");
-
-    totalSpan.textContent = total.toLocaleString("es-CO");
-}
-
-
-
-// Abrir / cerrar panel lateral
-function toggleCarrito() {
-    document.getElementById("sidebarCarrito").classList.toggle("active");
-    mostrarCarrito(); // refresca los datos al abrir
-}
-
-// Cargar carrito desde localStorage
+// Obtener carrito
 function cargarCarrito() {
     return JSON.parse(localStorage.getItem("carrito")) || [];
 }
@@ -59,101 +18,100 @@ function cargarCarrito() {
 function guardarCarrito(carrito) {
     localStorage.setItem("carrito", JSON.stringify(carrito));
 }
-
 // Agregar producto al carrito
 function agregarAlCarrito(producto) {
+    let carrito = cargarCarrito();
 
-    producto.precio = Number(producto.precio); // ← ¡Corrección clave!
+    const item = carrito.find(p => p.id_producto === producto.id_producto);
 
-    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    if (item) item.cantidad++;
+    else carrito.push({ ...producto, cantidad: 1 });
 
-    const itemExistente = carrito.find(item => item.id_producto === producto.id_producto);
-
-    if (itemExistente) {
-        itemExistente.cantidad++;
-    } else {
-        carrito.push({
-            ...producto,
-            cantidad: 1
-        });
-    }
-
-    localStorage.setItem("carrito", JSON.stringify(carrito));
-
-    if (typeof renderizarCarrito === "function") {
-        renderizarCarrito();
-    }
-
+    guardarCarrito(carrito);
     toggleCarrito();
 }
 
-
-// Quitar una unidad
-function restarProducto(id_producto) {
+// Suma la cantidad y el valor del carrito
+function agregarUnidad(id) {
     let carrito = cargarCarrito();
+    const item = carrito.find(p => p.id_producto === id);
+    if (item) item.cantidad++;
+    guardarCarrito(carrito);
+    mostrarCarrito();
+}
 
-    const item = carrito.find(p => p.id_producto === id_producto);
 
+// Resta la cantidad y el valor del producto
+function restarProducto(id) {
+    let carrito = cargarCarrito();
+    const item = carrito.find(p => p.id_producto === id);
     if (!item) return;
 
     item.cantidad--;
-    item.subtotal = item.cantidad * item.precio;
 
-    if (item.cantidad <= 0) {
-        carrito = carrito.filter(p => p.id_producto !== id_producto);
-    }
+    if (item.cantidad <= 0)
+        carrito = carrito.filter(p => p.id_producto !== id);
 
     guardarCarrito(carrito);
     mostrarCarrito();
 }
 
-// Eliminar completamente un producto
-function eliminarProducto(id_producto) {
-    let carrito = cargarCarrito().filter(p => p.id_producto !== id_producto);
-
+// Eliminar todas las cantidades del producto que estan en el carrito
+function eliminarProducto(id) {
+    let carrito = cargarCarrito().filter(p => p.id_producto !== id);
     guardarCarrito(carrito);
     mostrarCarrito();
 }
 
-// Calcular total
-function calcularTotal() {
-    const carrito = cargarCarrito();
-    return carrito.reduce((sum, p) => sum + p.subtotal, 0);
-}
 
-//vaciar carrito 
+// Vaciar carrito
 function vaciarCarrito() {
     localStorage.removeItem("carrito");
     mostrarCarrito();
 }
 
 
+// Calcular total de todos los productos y arrojar el valor total
+function calcularTotal() {
+    return cargarCarrito().reduce((acc, p) => acc + p.precio * p.cantidad, 0);
+}
 
-// Mostrar carrito en HTML
+
+// Mostrar el carrito 
 function mostrarCarrito() {
     const carrito = cargarCarrito();
-    const contenedor = document.getElementById("carritoItems");
-    const totalElemento = document.getElementById("totalCarrito");
+    const cont = document.getElementById("carritoItems");
+    const total = document.getElementById("totalCarrito");
 
-    if (!contenedor) return; // protege si el HTML no tiene panel
+    cont.innerHTML = "";
 
-    contenedor.innerHTML = "";
+    if (carrito.length === 0) {
+        cont.innerHTML = "<p class='empty'>Carrito vacío</p>";
+        total.textContent = "0";
+        return;
+    }
 
     carrito.forEach(p => {
-        contenedor.innerHTML += `
-            <div class="carrito-item">
-                <img src="${p.imagen}">
-                <div>
-                    <p>${p.nombre_producto}</p>
-                    <p>$${p.precio}</p>
-                    <p>Cantidad: ${p.cantidad}</p>
-                </div>
+        cont.innerHTML += `
+        <div class="carrito-item">
+            <img src="/frontend/media/img/products/${p.imagen}" />
 
-                <button onclick='agregarAlCarrito(${JSON.stringify(p)})'>+</button>
-                <button onclick='restarProducto(${p.id_producto})'>-</button>
-                <button onclick='eliminarProducto(${p.id_producto})'>🗑️</button>
+            <div class="info">
+                <h4>${p.nombre_producto}</h4>
+                <p>Precio: $${p.precio.toLocaleString("es-CO")}</p>
+                <p>Cantidad: ${p.cantidad}</p>
             </div>
-        `;
+
+            <div class="acciones">
+                <button onclick="agregarUnidad(${p.id_producto})">+</button>
+                <button onclick="restarProducto(${p.id_producto})">-</button>
+                <button onclick="eliminarProducto(${p.id_producto})">Eliminar</button>
+            </div>
+        </div>`;
     });
-    totalElemento.innerText = calcularTotal();
+
+    total.textContent = calcularTotal().toLocaleString("es-CO");
 }
+
+
+

@@ -1,75 +1,109 @@
-.carrito-sidebar {
+.panelCarrito {
     position: fixed;
     top: 0;
-    border: 4px solid #F1F1F1;
-    background: white;
-    padding: 20px 16px;
     right: -500px;
-    width: 20%;
-    height: -webkit-fill-available;
-    box-shadow: -5px 0px 15px rgba(0, 0, 0, 0.2);
-    transition: right 0.4s ease;
+    width: 400px;
+    height: 100%;
+    background: white;
+    border-left: 2px solid #ccc;
     padding: 20px;
+    transition: 0.4s ease;
     z-index: 9999;
     display: flex;
     flex-direction: column;
 }
 
-.carrito-sidebar.active {
+.panelCarrito.active {
     right: 0;
 }
 
+/* HEADER */
 .carrito-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.cerrar-carrito {
+.close-btn {
     background: red;
     color: white;
     border: none;
-    padding: 8px 12px;
+    padding: 6px 12px;
     cursor: pointer;
     border-radius: 5px;
 }
 
+/* ITEMS */
 .carrito-items {
     flex: 1;
     overflow-y: auto;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .carrito-item {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 80px 1fr 80px;
     gap: 10px;
-    padding: 10px;
+    padding: 10px 0;
     border-bottom: 1px solid #ddd;
 }
 
 .carrito-item img {
-    width: 60px;
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
 }
 
-.carrito-item button {
-    padding: 5px 8px;
+.carrito-item .acciones {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.carrito-item .acciones button {
+    padding: 5px;
     cursor: pointer;
 }
 
-
-.vaciar-carrito-btn {
+.btn-vaciar {
     width: 100%;
-    padding: 12px;
-    margin-top: 10px;
-    background: #d9534f;
+    padding: 10px;
+    background: red;
     color: white;
     border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
+    border-radius: 6px;
+    margin-bottom: 10px;
 }
 
-.vaciar-carrito-btn:hover {
-    background: #c9302c;
+.carrito-footer {
+    font-size: 20px;
+    border-top: 2px solid #000;
+    padding-top: 15px;
+}
+
+
+.btn-finalizar {
+    background-color: #2ecc71; /* Verde brillante */
+    color: #fff;
+    padding: 12px 18px;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3);
+}
+
+/* Efecto al pasar el mouse: disolver (bajar opacidad) */
+.btn-finalizar:hover {
+    opacity: 0.8;
+    background-color: #27ae60; /* Verde más oscuro */
+}
+
+/* Efecto al hacer clic */
+.btn-finalizar:active {
+    opacity: 0.6;
+    transform: scale(0.98);
 }

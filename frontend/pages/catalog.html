@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bike Trail | Catálogo</title>
+
     <link rel="icon" href="/frontend/media/icons/logo_black.svg">
+
+    <!-- Estilos -->
     <link rel="stylesheet" href="/frontend/styles/styles.css"> <!-- CSS general -->
     <link rel="stylesheet" href="/frontend/styles/header.css"> <!-- CSS del header -->
     <link rel="stylesheet" href="/frontend/styles/pages/catalog.css"> <!-- CSS de la página -->
@@ -59,6 +62,7 @@
     <main>
         <!-- Sidebar con filtros -->
         <aside class="sidebar">
+
             <!-- Ordenar -->
             <div class="filter-box">
                 <div class="filter" id="btnOrdenar">
@@ -121,7 +125,7 @@
         <!-- Contenido principal -->
         <div class="principal">
             <div class="search-bar">
-                <img src="/frontend/media/icons/search.svg" alt="">
+                <img src="/frontend/media/icons/search.svg" >
                 <input type="text" id="searchInput" placeholder="Buscar">
             </div>
 
@@ -201,20 +205,29 @@
         </div>
     </div>
 
-    <!-- Modal carrito -->
-    <div id="sidebarCarrito" class="carrito-sidebar">
+
+
+
+    <!-- Modal carrito correcciones echas  -->
+
+
+
+    <div id="carritoLateral" class="panelCarrito">
         <div class="carrito-header">
             <h3>Mi Carrito</h3>
-            <button onclick="toggleCarrito()" class="cerrar-carrito">X</button>
+            <button class="close-btn" onclick="toggleCarrito()">X</button>
         </div>
 
         <div id="carritoItems" class="carrito-items"></div>
+
+        <button class="btn-vaciar" onclick="vaciarCarrito()">Vaciar carrito</button>
 
         <div class="carrito-footer">
             <h3>Total: $<span id="totalCarrito">0</span></h3>
         </div>
     </div>
 
+    <!-- SCRIPTS -->
     <script src="/frontend/scripts/carrito.js"></script>
     <script src="/frontend/scripts/catalog.js"></script>
     <script src="/frontend/scripts/modals.js"></script>

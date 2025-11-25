@@ -6,23 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-
+<!--estructura de la lista del carito  donde se visualizan los productos -->
 <body>
     <div id="listaProductos"></div>
 
     <h2>Carrito</h2>
     <div id="carrito"></div>
 
-    <h2 id="totalCarrito">Total: $0</h2>
+<div id="carritoLateral" class="panelCarrito">
 
+    <div class="carrito-header">
+            <h3>Mi Carrito</h3>
+            <button class="close-btn" onclick="toggleCarrito()">X</button>
+        </div>
 
+        <div id="carritoItems" class="carrito-items"></div>
+
+    <button class="btn-vaciar" onclick="vaciarCarrito()">Vaciar carrito</button>
 
     <div class="carrito-footer">
-        <h3>Total: $<span id="totalCarrito">0</span></h3>
+        <p class="total">Total: <span id="totalCarrito">0</span></p>
+        <button class="btn-finalizar">Finalizar compra</button>
+    </div>
 
-        <button class="vaciar-carrito-btn" onclick="vaciarCarrito()">
-            Vaciar Carrito
-        </button>
+    
     </div>
 
     <script src="carrito.html"></script>
@@ -30,6 +37,7 @@
         cargarProductos();
         mostrarCarrito();
     </script>
+
 
 </body>
 
