@@ -94,24 +94,22 @@ function mostrarCarrito() {
     carrito.forEach(p => {
         cont.innerHTML += `
         <div class="carrito-item">
-            <img src="/frontend/media/img/products/${p.imagen}" />
-
-            <div class="info">
-                <h4>${p.nombre_producto}</h4>
-                <p>Precio: $${p.precio.toLocaleString("es-CO")}</p>
-                <p>Cantidad: ${p.cantidad}</p>
+            <div class="carrito-product">
+                <img src="/frontend/media/img/products/${p.imagen ?? "default.jpg"}" alt="${p.nombre_producto}"/>
+                <div class="info">
+                    <h4>${p.nombre_producto}</h4>
+                    <p>Precio: $${p.precio.toLocaleString("es-CO")}</p>
+                    <p>Cantidad: ${p.cantidad}</p>
+                </div>
             </div>
 
             <div class="acciones">
                 <button onclick="agregarUnidad(${p.id_producto})">+</button>
                 <button onclick="restarProducto(${p.id_producto})">-</button>
-                <button onclick="eliminarProducto(${p.id_producto})">Eliminar</button>
+                <button onclick="eliminarProducto(${p.id_producto})">🗑</button>
             </div>
         </div>`;
     });
 
     total.textContent = calcularTotal().toLocaleString("es-CO");
 }
-
-
-

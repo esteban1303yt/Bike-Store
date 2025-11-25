@@ -27,7 +27,7 @@ async function mostrarProductos() {
         productos.forEach(p => {
             html += `
                 <div class="tarjeta">
-                 <img src="/frontend/media/img/products/${p.imagen ?? "default.png"}" alt="${p.nombre_producto}">
+                    <img src="/frontend/media/img/products/${p.imagen ?? "default.jpg"}" alt="${p.nombre_producto}">
                     <h3>${p.nombre_producto}</h3>
                     <p><strong>Precio:</strong> ${p.precio}</p>
                     <p><strong>Stock:</strong> ${p.stock}</p>
@@ -63,14 +63,14 @@ function editarProducto(id) {
     const nuevoPrecio = prompt('Nuevo precio:');
     const nuevoStock = prompt('Nuevo stock:');
 
-    if(nuevoNombre && nuevoPrecio && nuevoStock) {
+    if (nuevoNombre && nuevoPrecio && nuevoStock) {
         fetch(`http://localhost:3000/api/productos/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                nombre_producto: nuevoNombre, 
-                precio: nuevoPrecio, 
-                stock: nuevoStock 
+            body: JSON.stringify({
+                nombre_producto: nuevoNombre,
+                precio: nuevoPrecio,
+                stock: nuevoStock
             })
         }).then(() => mostrarProductos());
     }

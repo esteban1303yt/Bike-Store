@@ -74,26 +74,30 @@ button:hover {
   display: none;
 }
 
-.profile-dropdown p {
+.user-name {
   margin: 0 0 10px;
   font-weight: bold;
-  text-decoration: underline;
+  display: flex;
+  gap: 4px;
+  border-bottom: black solid;
+}
+
+.profile-dropdown p {
+  font-size: 16px;
+  width: fit-content;
 }
 
 .dropdown-item {
-  padding: 8px 0;
   cursor: pointer;
   font-size: 16px;
+  display: flex;
+  gap: 4px;
+  width: -webkit-fill-available;
+  height: fit-content;
 }
 
 .dropdown-item:hover {
   opacity: 0.7;
-}
-
-.logout {
-  margin-top: 10px;
-  color: red;
-  font-weight: bold;
 }
 
 /* ----- MODAL ----- */
@@ -161,4 +165,8 @@ button:hover {
   text-align: center;
   display: inline-block;
   margin-top: 8px;
+}
+
+.hidden {
+  display: none !important;
 }

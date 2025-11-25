@@ -41,28 +41,30 @@
 }
 
 .carrito-item {
-    display: grid;
-    grid-template-columns: 80px 1fr 80px;
-    gap: 10px;
+    display: flex;
+    flex-direction: column;
     padding: 10px 0;
     border-bottom: 1px solid #ddd;
 }
 
 .carrito-item img {
-    width: 70px;
-    height: 70px;
+    width: 120px;
     object-fit: contain;
 }
 
 .carrito-item .acciones {
     display: flex;
-    flex-direction: column;
     gap: 5px;
 }
 
 .carrito-item .acciones button {
-    padding: 5px;
+    padding: 12px 16px;
     cursor: pointer;
+}
+
+.carrito-product {
+    display: flex;
+    gap: 20px;
 }
 
 .btn-vaciar {

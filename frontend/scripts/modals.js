@@ -37,10 +37,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (user) {
         profileName.textContent = `${user.nombre} ${user.apellido}`;
 
-        if (user.rol === "administrador") {
+        // Mostrar Panel de admin si el rol lo permite
+        if (user.rol && user.rol.toLowerCase() === "administrador") {
             adminPanel.classList.remove("hidden");
+
+            adminPanel.addEventListener("click", () => {
+                window.location.href = "/frontend/pages/admin/dashboard.html";
+            });
         }
 
+        // Abrir menú del perfil
         profileBtn.addEventListener("click", () => {
             dropdown.classList.toggle("hidden");
         });
@@ -72,104 +78,124 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ──────────── FORMULARIO REGISTRO ────────────
-    registerForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
+    if (registerForm) {
+        registerForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
 
-        const data = {
-            nombre: document.getElementById("regNombre").value,
-            apellido: document.getElementById("regApellido").value,
-            correo: document.getElementById("regEmail").value,
-            clave: document.getElementById("regClave").value
-        };
+            const data = {
+                nombre: document.getElementById("regNombre").value,
+                apellido: document.getElementById("regApellido").value,
+                correo: document.getElementById("regEmail").value,
+                clave: document.getElementById("regClave").value
+            };
 
-        const clave2 = document.getElementById("regClave2").value;
+            const clave2 = document.getElementById("regClave2").value;
 
-        if (data.clave !== clave2) {
-            mensajeRegistro.style.display = "block";
-            mensajeRegistro.style.color = "red";
-            mensajeRegistro.textContent = "Las contraseñas no coinciden";
-            return;
-        }
-
-        try {
-            const res = await fetch(`${API_BASE}/registro`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data)
-            });
-
-            const result = await res.json();
-
-            if (result.success) {
-                localStorage.setItem("usuarioActual", JSON.stringify(result.usuario));
-                window.location.reload();
-            } else {
+            if (data.clave !== clave2) {
                 mensajeRegistro.style.display = "block";
                 mensajeRegistro.style.color = "red";
-                mensajeRegistro.textContent = result.message || "Error al registrar";
+                mensajeRegistro.textContent = "Las contraseñas no coinciden";
+                return;
             }
 
-        } catch (error) {
-            mensajeRegistro.style.display = "block";
-            mensajeRegistro.style.color = "red";
-            mensajeRegistro.textContent = "Error en el servidor";
-            console.error(error);
-        }
-    });
+            try {
+                const res = await fetch(`${API_BASE}/registro`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data)
+                });
+
+                if (!res.ok) throw new Error("Error HTTP " + res.status);
+
+                const result = await res.json();
+
+                if (result.success) {
+                    localStorage.setItem("usuarioActual", JSON.stringify(result.usuario));
+
+                    // Si backend devuelve token, lo guardamos
+                    if (result.token) {
+                        localStorage.setItem("token", result.token);
+                    }
+
+                    window.location.reload();
+                } else {
+                    mensajeRegistro.style.display = "block";
+                    mensajeRegistro.style.color = "red";
+                    mensajeRegistro.textContent = result.message || "Error al registrar";
+                }
+
+            } catch (error) {
+                mensajeRegistro.style.display = "block";
+                mensajeRegistro.style.color = "red";
+                mensajeRegistro.textContent = "Error en el servidor";
+                console.error(error);
+            }
+        });
+    }
 
     // ──────────── FORMULARIO LOGIN ────────────
-    loginForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
+    if (loginForm) {
+        loginForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
 
-        const data = {
-            correo: document.getElementById("loginEmail").value,
-            clave: document.getElementById("loginClave").value
-        };
+            const data = {
+                correo: document.getElementById("loginEmail").value,
+                clave: document.getElementById("loginClave").value
+            };
 
-        try {
-            const res = await fetch(`${API_BASE}/login`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data)
-            });
+            try {
+                const res = await fetch(`${API_BASE}/login`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data)
+                });
 
-            const result = await res.json();
+                if (!res.ok) throw new Error("Error HTTP " + res.status);
 
-            if (result.success) {
-                localStorage.setItem("usuarioActual", JSON.stringify(result.usuario));
-                localStorage.setItem("token", result.token);
-                window.location.reload();
-            } else {
+                const result = await res.json();
+
+                if (result.success) {
+                    localStorage.setItem("usuarioActual", JSON.stringify(result.usuario));
+                    localStorage.setItem("token", result.token);
+                    window.location.reload();
+                } else {
+                    mensajeLogin.style.display = "block";
+                    mensajeLogin.style.color = "red";
+                    mensajeLogin.textContent = result.message || "Error al iniciar sesión";
+                }
+
+            } catch (error) {
                 mensajeLogin.style.display = "block";
                 mensajeLogin.style.color = "red";
-                mensajeLogin.textContent = result.message || "Error al iniciar sesión";
+                mensajeLogin.textContent = "Error en el servidor";
+                console.error(error);
             }
-
-        } catch (error) {
-            mensajeLogin.style.display = "block";
-            mensajeLogin.style.color = "red";
-            mensajeLogin.textContent = "Error en el servidor";
-            console.error(error);
-        }
-    });
+        });
+    }
 
     // ──────────── Cerrar sesión ────────────
-    logoutBtn.addEventListener("click", () => {
-        localStorage.removeItem("usuarioActual");
-        localStorage.removeItem("token");
-        window.location.reload();
-    });
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", () => {
+            localStorage.removeItem("usuarioActual");
+            localStorage.removeItem("token");
+            window.location.reload();
+        });
+    }
 
     // ──────────── Ir a ajustes ────────────
-    settingsBtn.addEventListener("click", () => {
-        window.location.href = "/frontend/pages/settings.html";
-    });
+    if (settingsBtn) {
+        settingsBtn.addEventListener("click", () => {
+            window.location.href = "/frontend/pages/settings.html";
+        });
+    }
 
     // ──────────── Cerrar modal tocando afuera ────────────
-    modalOverlay.addEventListener("click", (e) => {
-        if (e.target === modalOverlay) {
-            modalOverlay.classList.remove("show");
-            modal.classList.remove("show");
-        }
-    });
+    if (modalOverlay) {
+        modalOverlay.addEventListener("click", (e) => {
+            if (e.target === modalOverlay) {
+                modalOverlay.classList.remove("show");
+                modal.classList.remove("show");
+            }
+        });
+    }
 });

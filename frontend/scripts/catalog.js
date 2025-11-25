@@ -80,7 +80,7 @@ function renderizarProductos(productos) {
         <article class="product-card">
             <div class="badge">${p.stock > 0 ? "Disponible" : "Agotado"}</div>
             <div class="year">${p.year ?? 2025}</div>
-            <img src="/frontend/media/img/products/${p.imagen ?? "default.png"}" alt="${p.nombre_producto}">
+            <img src="/frontend/media/img/products/${p.imagen ?? "default.jpg"}" alt="${p.nombre_producto}"/>
             <div class="product-desc">
                 <div class="card-info">
                     <div class="texto-principal">

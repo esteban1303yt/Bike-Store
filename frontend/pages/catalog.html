@@ -5,10 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bike Trail | Catálogo</title>
-
     <link rel="icon" href="/frontend/media/icons/logo_black.svg">
-
-    <!-- Estilos -->
     <link rel="stylesheet" href="/frontend/styles/styles.css"> <!-- CSS general -->
     <link rel="stylesheet" href="/frontend/styles/header.css"> <!-- CSS del header -->
     <link rel="stylesheet" href="/frontend/styles/pages/catalog.css"> <!-- CSS de la página -->
@@ -46,10 +43,22 @@
                         <img src="/frontend/media/icons/profile.svg" alt="perfil">
                     </button>
                     <div class="profile-dropdown hidden" id="profileDropdown">
-                        <p id="profileName"></p>
-                        <div id="adminPanel" class="dropdown-item hidden">📊Panel</div>
-                        <div id="settingsBtn" class="dropdown-item">⚙️Ajustes</div>
-                        <div id="logoutBtn" class="dropdown-item logout">↪️Cerrar sesión</div>
+                        <div class="user-name">
+                            <img src="/frontend/media/icons/profile.svg" alt="perfil">
+                            <p id="profileName"></p>
+                        </div>
+                        <a id="adminPanel" class="dropdown-item hidden">
+                            <img src="/frontend/media/icons/layout-dashboard.svg" alt="panel">
+                            <p>Panel</p>
+                        </a>
+                        <a id="settingsBtn" class="dropdown-item">
+                            <img src="/frontend/media/icons/cog.svg" alt="ajustes">
+                            <p>Ajustes</p>
+                        </a>
+                        <a id="logoutBtn" class="dropdown-item">
+                            <img src="/frontend/media/icons/log-out.svg" alt="cerrar-sesión">
+                            <p>Cerrar sesión</p>
+                        </a>
                     </div>
                 </div>
 
@@ -125,7 +134,7 @@
         <!-- Contenido principal -->
         <div class="principal">
             <div class="search-bar">
-                <img src="/frontend/media/icons/search.svg" >
+                <img src="/frontend/media/icons/search.svg">
                 <input type="text" id="searchInput" placeholder="Buscar">
             </div>
 
@@ -172,7 +181,7 @@
     <!-- Modal Login/Registro -->
     <div class="modal-overlay" id="modal-overlay">
         <div class="modal" id="modal">
-            <!-- LOGIN -->
+            <!-- Login -->
             <div id="loginView">
                 <h2>Iniciar sesión</h2>
                 <div id="mensajeLogin" style="display:none;color:red;text-align:center;"></div>
@@ -186,7 +195,7 @@
                 </p>
 
             </div>
-            <!-- REGISTRO -->
+            <!-- Registro -->
             <div id="registerView" style="display:none;">
                 <h2>Registro</h2>
                 <div id="mensajeRegistro" style="display:none;color:red;text-align:center;"></div>
@@ -205,13 +214,7 @@
         </div>
     </div>
 
-
-
-
-    <!-- Modal carrito correcciones echas  -->
-
-
-
+    <!-- Modal carrito  -->
     <div id="carritoLateral" class="panelCarrito">
         <div class="carrito-header">
             <h3>Mi Carrito</h3>

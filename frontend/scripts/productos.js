@@ -26,7 +26,7 @@ async function cargarProductos() {
 
 // Función para eliminar producto
 async function eliminarProducto(id) {
-    if(confirm('¿Deseas eliminar este producto?')) {
+    if (confirm('¿Deseas eliminar este producto?')) {
         await fetch(`${apiURL}/${id}`, { method: 'DELETE' });
         cargarProductos();
     }
@@ -38,14 +38,14 @@ function editarProducto(id) {
     const nuevoPrecio = prompt('Nuevo precio:');
     const nuevoStock = prompt('Nuevo stock:');
 
-    if(nuevoNombre && nuevoPrecio && nuevoStock) {
+    if (nuevoNombre && nuevoPrecio && nuevoStock) {
         fetch(`${apiURL}/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                nombre_producto: nuevoNombre, 
-                precio: nuevoPrecio, 
-                stock: nuevoStock 
+            body: JSON.stringify({
+                nombre_producto: nuevoNombre,
+                precio: nuevoPrecio,
+                stock: nuevoStock
             })
         }).then(() => cargarProductos());
     }
@@ -57,14 +57,14 @@ function crearProducto() {
     const precio = prompt('Precio:');
     const stock = prompt('Stock:');
 
-    if(nombre && precio && stock) {
+    if (nombre && precio && stock) {
         fetch(apiURL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                nombre_producto: nombre, 
-                precio: precio, 
-                stock: stock 
+            body: JSON.stringify({
+                nombre_producto: nombre,
+                precio: precio,
+                stock: stock
             })
         }).then(() => cargarProductos());
     }

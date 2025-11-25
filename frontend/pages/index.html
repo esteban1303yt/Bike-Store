@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/frontend/styles/header.css"> <!-- CSS del header -->
     <link rel="stylesheet" href="/frontend/styles/pages/index.css"> <!-- CSS de la página -->
     <link rel="stylesheet" href="/frontend/styles/footer.css"> <!-- CSS del footer -->
+    <link rel="stylesheet" href="/frontend/styles/templates/carrito.css"> <!-- Carrito -->
 </head>
 
 <body>
@@ -31,18 +32,34 @@
             </nav>
             <!-- Botones de inicio/registro, carrito y opciones -->
             <div class="nav-other">
-                <img src="/frontend/media/icons/cart.svg" alt="carrito" width="40px">
 
-                <!-- BOTÓN PERFIL -->
+                <!-- Botón carrito -->
+                <button onclick="toggleCarrito()" class="btn-icons">
+                    <img src="/frontend/media/icons/cart.svg" alt="carrito">
+                </button>
+
+                <!-- Botón perfil -->
                 <div class="profile-wrapper">
                     <button id="profileBtn" class="btn-icons">
                         <img src="/frontend/media/icons/profile.svg" alt="perfil">
                     </button>
                     <div class="profile-dropdown hidden" id="profileDropdown">
-                        <p id="profileName"></p>
-                        <div id="adminPanel" class="dropdown-item hidden">📊Panel</div>
-                        <div id="settingsBtn" class="dropdown-item">⚙️Ajustes</div>
-                        <div id="logoutBtn" class="dropdown-item logout">↪️Cerrar sesión</div>
+                        <div class="user-name">
+                            <img src="/frontend/media/icons/profile.svg" alt="perfil">
+                            <p id="profileName"></p>
+                        </div>
+                        <a id="adminPanel" class="dropdown-item hidden">
+                            <img src="/frontend/media/icons/layout-dashboard.svg" alt="panel">
+                            <p>Panel</p>
+                        </a>
+                        <a id="settingsBtn" class="dropdown-item">
+                            <img src="/frontend/media/icons/cog.svg" alt="ajustes">
+                            <p>Ajustes</p>
+                        </a>
+                        <a id="logoutBtn" class="dropdown-item">
+                            <img src="/frontend/media/icons/log-out.svg" alt="cerrar-sesión">
+                            <p>Cerrar sesión</p>
+                        </a>
                     </div>
                 </div>
 
@@ -112,10 +129,10 @@
         </div>
     </footer>
 
-    <!-- MODAL LOGIN/REGISTRO -->
+    <!-- Modal Login/Registro -->
     <div class="modal-overlay" id="modal-overlay">
         <div class="modal" id="modal">
-            <!-- LOGIN -->
+            <!-- Login -->
             <div id="loginView">
                 <h2>Iniciar sesión</h2>
                 <div id="mensajeLogin" style="display:none;color:red;text-align:center;"></div>
@@ -129,7 +146,7 @@
                 </p>
 
             </div>
-            <!-- REGISTRO -->
+            <!-- Registro -->
             <div id="registerView" style="display:none;">
                 <h2>Registro</h2>
                 <div id="mensajeRegistro" style="display:none;color:red;text-align:center;"></div>
@@ -148,7 +165,24 @@
         </div>
     </div>
 
+    <!-- Modal carrito  -->
+    <div id="carritoLateral" class="panelCarrito">
+        <div class="carrito-header">
+            <h3>Mi Carrito</h3>
+            <button class="close-btn" onclick="toggleCarrito()">X</button>
+        </div>
+
+        <div id="carritoItems" class="carrito-items"></div>
+
+        <button class="btn-vaciar" onclick="vaciarCarrito()">Vaciar carrito</button>
+
+        <div class="carrito-footer">
+            <h3>Total: $<span id="totalCarrito">0</span></h3>
+        </div>
+    </div>
+
     <script src="/frontend/scripts/modals.js"></script>
+    <script src="/frontend/scripts/carrito.js"></script>
 
 </body>
 

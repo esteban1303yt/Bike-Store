@@ -1,40 +1,61 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>Productos - Admin</title>
-<style>
-    body { font-family: Arial; padding: 20px; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { padding: 8px; border: 1px solid #ccc; text-align: left; }
-    button { margin-right: 5px; }
-    input { width: 90%; }
-</style>
-</head>
-<body>
-<h1>Productos</h1>
-<table id="tablaProductos">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Precio</th>
-            <th>Stock</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
 
-<script>
-async function cargarProductos() {
-    const res = await fetch('/api/productos');
-    const productos = await res.json();
-    const tbody = document.querySelector('#tablaProductos tbody');
-    tbody.innerHTML = '';
-    productos.forEach(p => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
+<head>
+    <meta charset="UTF-8">
+    <title>Productos - Admin</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        button {
+            margin-right: 5px;
+        }
+
+        input {
+            width: 90%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Productos</h1>
+    <table id="tablaProductos">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        async function cargarProductos() {
+            const res = await fetch('/api/productos');
+            const productos = await res.json();
+            const tbody = document.querySelector('#tablaProductos tbody');
+            tbody.innerHTML = '';
+            productos.forEach(p => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
             <td>${p.id_producto}</td>
             <td><input type="text" value="${p.nombre_producto}" id="nombre-${p.id_producto}"></td>
             <td><input type="number" value="${p.precio}" id="precio-${p.id_producto}"></td>
@@ -44,32 +65,33 @@ async function cargarProductos() {
                 <button onclick="eliminar(${p.id_producto})">Eliminar</button>
             </td>
         `;
-        tbody.appendChild(tr);
-    });
-}
+                tbody.appendChild(tr);
+            });
+        }
 
-async function eliminar(id) {
-    await fetch('/api/productos/' + id, { method: 'DELETE' });
-    cargarProductos();
-}
+        async function eliminar(id) {
+            await fetch('/api/productos/' + id, { method: 'DELETE' });
+            cargarProductos();
+        }
 
-async function editar(id) {
-    const nombre = document.getElementById('nombre-' + id).value;
-    const precio = document.getElementById('precio-' + id).value;
-    const stock = document.getElementById('stock-' + id).value;
-    await fetch('/api/productos/' + id, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-            nombre_producto: nombre, 
-            precio: precio, 
-            stock: stock 
-        })
-    });
-    cargarProductos();
-}
+        async function editar(id) {
+            const nombre = document.getElementById('nombre-' + id).value;
+            const precio = document.getElementById('precio-' + id).value;
+            const stock = document.getElementById('stock-' + id).value;
+            await fetch('/api/productos/' + id, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    nombre_producto: nombre,
+                    precio: precio,
+                    stock: stock
+                })
+            });
+            cargarProductos();
+        }
 
-cargarProductos();
-</script>
+        cargarProductos();
+    </script>
 </body>
+
 </html>
