@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Administrar Productos</title>
+<link rel="stylesheet" href="/frontend/styles/pages/admin/admin_productos.css">
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <h2>Admin</h2>
+        <hr>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="adminproductos.html" class="active">Productos</a>
+        <a href="usuarios.html">Usuarios</a>
+        <a href="ventas.html">Ventas</a>
+        <div>
+            <a href="/frontend/pages/index.html" class="active">⬅️volver </a>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="contenido">
+
+        <!-- Sección superior -->
+        <div class="top-section">
+            <h1>Gestión de Productos</h1>
+            <p>Administra precios, nombres, stock e imágenes.</p>
+        </div>
+
+        <!-- Sección inferior -->
+        <div class="bottom-section">
+            <div id="productos-container"></div>
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- ===========================
+      MODAL ELIMINAR
+=========================== -->
+<div id="modalEliminar" class="modal" style="display:none;">
+    <div class="modal-content">
+        <h3>¿Eliminar producto?</h3>
+        <p>Esta acción no se puede deshacer.</p>
+
+        <button id="confirmEliminar">Sí, eliminar</button>
+        <button id="cancelEliminar">Cancelar</button>
+    </div>
+</div>
+
+
+<!-- ===========================
+      MODAL EDITAR
+=========================== -->
+<div id="modalEditar" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span id="cerrarModal" class="close">&times;</span>
+
+        <h3>Editar Producto</h3>
+
+        <input type="hidden" id="editId">
+
+        <label>Nombre</label>
+        <input type="text" id="editNombre">
+
+        <label>Precio</label>
+        <input type="number" id="editPrecio">
+
+        <label>Stock</label>
+        <input type="number" id="editStock">
+
+        <label>Descripción</label>
+        <textarea id="editDescripcion"></textarea>
+
+        <label>Imagen</label>
+        <input type="file" id="editImagen">
+
+        <img id="editImagenPreview" style="width:150px; margin-top:10px;">
+
+        <button id="guardarBtn">Guardar cambios</button>
+    </div>
+</div>
+
+<script src="/frontend/scripts/admin_productos.js"></script>
+
+</body>
+</html>

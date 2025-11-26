@@ -1,0 +1,91 @@
+/* ======== LAYOUT GENERAL ======== */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+.layout {
+    display: flex;
+    height: 100vh;
+}
+
+/* ======== SIDEBAR ======== */
+.sidebar {
+    width: 220px;
+    background: #222;
+    color: white;
+    padding: 20px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.sidebar h2 {
+    margin-bottom: 30px;
+}
+
+.sidebar a {
+    display: block;
+    color: #ddd;
+    padding: 10px 0;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.sidebar a:hover,
+.sidebar .active {
+    color: white;
+    font-weight: bold;
+}
+
+/* ======== CONTENIDO ======== */
+.contenido {
+    margin-left: 240px;
+    padding: 30px;
+    width: calc(100% - 240px);
+    overflow-y: auto;
+}
+
+/* Encabezado */
+.top-section {
+    margin-bottom: 20px;
+}
+
+.top-section h1 {
+    margin: 0;
+}
+
+/* Sección inferior */
+.bottom-section {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+}
+
+/* ======== BOTÓN VOLVER ======== */
+.volver {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: calc(100% - 40px);
+}
+
+.volver a {
+    display: block;
+    background: #444;
+    color: white !important;
+    text-align: center;
+    padding: 12px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.2s ease;
+    font-size: 15px;
+}
+
+.volver a:hover {
+    background: #666;
+}

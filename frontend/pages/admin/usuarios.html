@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Administración de Usuarios</title>
+<link rel="stylesheet" href="/frontend/styles/pages/admin/admin_usuarios.css">
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <h2>Admin</h2>
+        <hr>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="adminproductos.html">Productos</a>
+        <a href="usuarios.html" class="active">Usuarios</a>
+        <a href="ventas.html">Ventas</a>
+        <div>
+            <a href="/frontend/pages/index.html" class="active">⬅️volver </a>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="contenido">
+
+        <!-- Sección superior -->
+        <div class="top-section">
+            <h1>Gestión de Usuarios</h1>
+            <p>Aquí puedes editar roles o eliminar usuarios.</p>
+        </div>
+
+        <!-- Sección inferior -->
+        <div class="bottom-section">
+            <table id="tablaUsuarios">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Teléfono</th>
+                        <th>Rol</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- ===========================
+      MODAL EDITAR ROL
+=========================== -->
+<div id="modalEditar" class="modal" style="display:none;">
+    <div class="modal-content">
+
+        <span id="cerrarModal" class="close">&times;</span>
+
+        <h3>Editar Rol</h3>
+
+        <input type="hidden" id="editId">
+
+        <label>Rol del usuario:</label>
+        <select id="editRol">
+            <option value="cliente">Cliente</option>
+            <option value="administrador">Administrador</option>
+        </select>
+
+        <button id="guardarRol">Guardar</button>
+    </div>
+</div>
+
+<script src="/frontend/scripts/admin_usuarios.js"></script>
+</body>
+</html>
