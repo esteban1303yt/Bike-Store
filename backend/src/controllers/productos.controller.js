@@ -93,33 +93,27 @@ class Productos {
     }
 
     // Actualizar producto
-    async actualizarProducto(req, res) {
-        try {
-            const { id } = req.params;
-            let { nombre_producto, id_categoria, id_marca, precio, descripcion, stock, imagen } = req.body;
+  async actualizarProducto(req, res) {
+    try {
+        const { id } = req.params;
+        const { nombre_producto, precio, descripcion, stock } = req.body;
 
-            imagen = imagen ? imagen.toLowerCase() : null;
+        await db.query(
+            `UPDATE productos 
+             SET nombre_producto = ?, precio = ?, descripcion = ?, stock = ?
+             WHERE id_producto = ?`,
+            [nombre_producto, precio, descripcion, stock, id]
+        );
 
-            await db.query(
-                `UPDATE productos 
-                SET nombre_producto = ?, 
-                    id_categoria = ?, 
-                    id_marca = ?, 
-                    precio = ?, 
-                    descripcion = ?, 
-                    stock = ?, 
-                    imagen = ?
-                WHERE id_producto = ?`,
-                [nombre_producto, id_categoria, id_marca, precio, descripcion, stock, imagen, id]
-            );
+        res.json({ success: true, mensaje: "Producto actualizado correctamente" });
 
-            res.json({ mensaje: "Producto actualizado" });
-
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({ mensaje: "Error al actualizar producto", error });
-        }
+    } catch (error) {
+        console.error("Error al actualizar producto:", error);
+        res.status(500).json({ success: false, mensaje: "Error al actualizar producto", error });
     }
+}
+
+
 
     // Eliminar producto
     async eliminarProducto(req, res) {

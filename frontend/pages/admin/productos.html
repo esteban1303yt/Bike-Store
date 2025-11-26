@@ -10,7 +10,6 @@
     button { margin-right: 5px; }
     input { width: 90%; }
 
-    /* --- ESTILOS DEL MODAL --- */
     .modal {
         display: none;
         position: fixed;
@@ -96,7 +95,7 @@
 
 <script>
 async function cargarProductos() {
-    const res = await fetch('/api/productos');
+    const res = await fetch('http://localhost:3000/api/productos');
     const productos = await res.json();
     const tbody = document.querySelector('#tablaProductos tbody');
     tbody.innerHTML = '';
@@ -117,43 +116,23 @@ async function cargarProductos() {
     });
 }
 
-async function eliminar(id) {
-    await fetch('/api/productos/' + id, { method: 'DELETE' });
-    cargarProductos();
-}
-
-/* --------------------------
-   MODAL: abrir con datos
---------------------------- */
 async function abrirModal(id) {
     const nombre = document.getElementById("nombre-" + id).value;
     const precio = document.getElementById("precio-" + id).value;
     const stock = document.getElementById("stock-" + id).value;
 
-    // Llenar el modal
     document.getElementById("editId").value = id;
     document.getElementById("editNombre").value = nombre;
     document.getElementById("editPrecio").value = precio;
     document.getElementById("editStock").value = stock;
 
-    // Descripción desde la BD
-    const res = await fetch('/api/productos/' + id);
+    const res = await fetch('http://localhost:3000/api/productos/' + id);
     const data = await res.json();
     document.getElementById("editDescripcion").value = data.descripcion || "";
 
     document.getElementById("modalEditar").style.display = "flex";
 }
 
-/* --------------------------
-   MODAL: cerrar
---------------------------- */
-document.getElementById("cerrarModal").onclick = () => {
-    document.getElementById("modalEditar").style.display = "none";
-};
-
-/* --------------------------
-   Modal: Guardar Cambios
---------------------------- */
 async function guardarCambios() {
     const id = document.getElementById("editId").value;
     const nombre = document.getElementById("editNombre").value;
@@ -161,7 +140,7 @@ async function guardarCambios() {
     const stock = document.getElementById("editStock").value;
     const descripcion = document.getElementById("editDescripcion").value;
 
-    await fetch('/api/productos/' + id, {
+    await fetch('http://localhost:3000/api/productos/' + id, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -175,6 +154,7 @@ async function guardarCambios() {
     document.getElementById("modalEditar").style.display = "none";
     cargarProductos();
 }
+
 
 cargarProductos();
 </script>
