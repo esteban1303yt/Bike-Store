@@ -110,12 +110,12 @@ CREATE TABLE detalle_venta (
 -- =====================================
 -- INSERTAR USUARIOS
 -- =====================================
-INSERT INTO usuarios (nombre, apellido, clave, correo, rol)
+INSERT INTO usuarios (nombre, apellido, correo, telefono, clave, rol)
 VALUES
-('Anderson', 'Erazo', '$2b$10$jq01JbaQHZv6MDbz1pWvpuDXvR/dbPTm.WZtQrBCDfZzuPxtoRiii', 'jairerazo420@gmail.com', 'administrador'),
-('Esteban', 'Garcia', '$2b$10$jq01JbaQHZv6MDbz1pWvpuDXvR/dbPTm.WZtQrBCDfZzuPxtoRiii', 'esteban.garcia.valencia13@gmail.com', 'administrador'),
-('Santiago', 'Lemos', '$2b$10$jq01JbaQHZv6MDbz1pWvpuDXvR/dbPTm.WZtQrBCDfZzuPxtoRiii', 'santyagolemosr@gmail.com', 'administrador'),
-('John', 'Doe', '$2b$10$3FqU9KpD5vYbNfH8LrS6OeQwJ7xFhT2vLkP1bZ4N0wH9YqR6JdW3C', 'john@gmail.com', 'cliente');
+('Anderson', 'Erazo', 'jairerazo420@gmail.com', '3333', '$2b$10$jq01JbaQHZv6MDbz1pWvpuDXvR/dbPTm.WZtQrBCDfZzuPxtoRiii', 'administrador'), -- clave: 123
+('Esteban', 'Garcia', 'esteban.garcia.valencia13@gmail.com', '3136284927', '$2b$10$jq01JbaQHZv6MDbz1pWvpuDXvR/dbPTm.WZtQrBCDfZzuPxtoRiii', 'administrador'), -- clave: 123
+('Santiago', 'Lemos', 'santyagolemosr@gmail.com', '3333', '$2b$10$jq01JbaQHZv6MDbz1pWvpuDXvR/dbPTm.WZtQrBCDfZzuPxtoRiii', 'administrador'), -- clave: 123
+('John', 'Doe', 'john@gmail.com', '3333', '$2b$10$jq01JbaQHZv6MDbz1pWvpuDXvR/dbPTm.WZtQrBCDfZzuPxtoRiii', 'cliente'); -- clave: 123
 
 -- =====================================
 -- INSERTAR CATEGORÍAS
