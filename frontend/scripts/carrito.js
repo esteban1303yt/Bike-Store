@@ -86,7 +86,7 @@ function mostrarCarrito() {
     cont.innerHTML = "";
 
     if (carrito.length === 0) {
-        cont.innerHTML = "<p class='empty'>Carrito vacío</p>";
+        cont.innerHTML = "<p class='empty'>No hay productos en el carrito</p>";
         total.textContent = "0";
         return;
     }
@@ -95,7 +95,7 @@ function mostrarCarrito() {
         cont.innerHTML += `
         <div class="carrito-item">
             <div class="carrito-product">
-                <img src="/frontend/media/img/products/${p.imagen ?? "default.jpg"}" alt="${p.nombre_producto}"/>
+                <img src="/frontend/media/img/products/${p.imagen ?? "default.svg"}" alt="${p.nombre_producto}"/>
                 <div class="info">
                     <h4>${p.nombre_producto}</h4>
                     <p>Precio: $${p.precio.toLocaleString("es-CO")}</p>
@@ -104,9 +104,9 @@ function mostrarCarrito() {
             </div>
 
             <div class="acciones">
-                <button onclick="agregarUnidad(${p.id_producto})">+</button>
-                <button onclick="restarProducto(${p.id_producto})">-</button>
                 <button onclick="eliminarProducto(${p.id_producto})">🗑</button>
+                <button onclick="restarProducto(${p.id_producto})">-</button>
+                <button onclick="agregarUnidad(${p.id_producto})">+</button>
             </div>
         </div>`;
     });

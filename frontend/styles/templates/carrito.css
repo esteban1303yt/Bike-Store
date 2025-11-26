@@ -3,9 +3,10 @@
     top: 0;
     right: -500px;
     width: 400px;
-    height: 100%;
+    height: -webkit-fill-available;
     background: white;
     border-left: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
     padding: 20px;
     transition: 0.4s ease;
     z-index: 9999;
@@ -17,6 +18,10 @@
     right: 0;
 }
 
+.panelCarrito h3 {
+    margin: 0px;
+}
+
 /* HEADER */
 .carrito-header {
     display: flex;
@@ -25,19 +30,22 @@
 }
 
 .close-btn {
-    background: red;
+    background: black;
     color: white;
     border: none;
-    padding: 6px 12px;
+    padding: 6px 11px;
     cursor: pointer;
     border-radius: 5px;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0px;
 }
 
 /* ITEMS */
 .carrito-items {
     flex: 1;
     overflow-y: auto;
-    margin-top: 15px;
+    padding-top: 16px;
 }
 
 .carrito-item {
@@ -54,12 +62,14 @@
 
 .carrito-item .acciones {
     display: flex;
-    gap: 5px;
+    gap: 16px;
+    justify-content: center;
 }
 
 .carrito-item .acciones button {
     padding: 12px 16px;
     cursor: pointer;
+    margin: 0px;
 }
 
 .carrito-product {
@@ -70,22 +80,29 @@
 .btn-vaciar {
     width: 100%;
     padding: 10px;
-    background: red;
+    background: black;
     color: white;
     border: none;
     border-radius: 6px;
     margin-bottom: 10px;
+    font-size: 20px;
 }
 
 .carrito-footer {
-    font-size: 20px;
     border-top: 2px solid #000;
-    padding-top: 15px;
+    padding-top: 16px;
+}
+
+.carrito-footer p {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0px;
 }
 
 
 .btn-finalizar {
-    background-color: #2ecc71; /* Verde brillante */
+    background-color: #2ecc71;
+    /* Verde brillante */
     color: #fff;
     padding: 12px 18px;
     width: 100%;
@@ -101,11 +118,18 @@
 /* Efecto al pasar el mouse: disolver (bajar opacidad) */
 .btn-finalizar:hover {
     opacity: 0.8;
-    background-color: #27ae60; /* Verde más oscuro */
+    background-color: #27ae60;
+    /* Verde más oscuro */
 }
 
 /* Efecto al hacer clic */
 .btn-finalizar:active {
     opacity: 0.6;
     transform: scale(0.98);
+}
+
+.carrito-items .empty {
+    display: flex;
+    font-size: 20px;
+    justify-content: center;
 }
