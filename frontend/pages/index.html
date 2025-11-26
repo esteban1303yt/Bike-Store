@@ -151,11 +151,12 @@
                 <h2>Registro</h2>
                 <div id="mensajeRegistro" style="display:none;color:red;text-align:center;"></div>
                 <form id="registerForm" class="modal-boxes">
-                    <input type="text" id="regNombre" placeholder="Nombre" required>
-                    <input type="text" id="regApellido" placeholder="Apellido" required>
+                    <input type="text" id="regNombre" maxlength="20" placeholder="Nombre" required>
+                    <input type="text" id="regApellido" maxlength="20" placeholder="Apellido" required>
                     <input type="email" id="regEmail" placeholder="Correo electrónico" required>
-                    <input type="password" id="regClave" placeholder="Contraseña" required>
-                    <input type="password" id="regClave2" placeholder="Confirmar contraseña" required>
+                    <input type="tel" id="regTelefono" maxlength="20" placeholder="Teléfono" required>
+                    <input type="password" id="regClave" maxlength="10" placeholder="Contraseña" required>
+                    <input type="password" id="regClave2" maxlength="10" placeholder="Confirmar contraseña" required>
                     <button type="submit">Crear cuenta</button>
                 </form>
                 <p>¿Ya tienes cuenta?
@@ -181,7 +182,7 @@
         </div>
     </div>
 
-    <script src="/frontend/scripts/modals.js"></script>
+    <script src="/frontend/scripts/login.js"></script>
     <script src="/frontend/scripts/carrito.js"></script>
 
 </body>

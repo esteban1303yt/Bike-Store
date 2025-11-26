@@ -20,10 +20,6 @@ app.use('/api/usuarios', usuariosRoutes);
 app.use('/api/productos', productosRoutes);
 app.use('/api/marcas', marcasRoutes);
 app.use('/api/categorias', categoriasRoutes);
-
-
-
-
 /* app.use('/api/ventas',ventasController)
 app.use('/api/Historial_pedidos', Historial_pedidosRoutes); */
 

@@ -5,7 +5,9 @@ class crudController {
 
   // Obtener todos los usuarios
   async obtenerUsuarios(tabla) {
-    const [resultado] = await db.query(`SELECT id_usuario, nombre, apellido, correo, telefono, rol FROM ${tabla}`);
+    const [resultado] = await db.query(
+      `SELECT id_usuario, nombre, apellido, correo, telefono, rol FROM ${tabla}`
+    );
     return resultado;
   }
 
@@ -16,6 +18,11 @@ class crudController {
         `SELECT id_usuario, nombre, apellido, correo, telefono, rol FROM ?? WHERE ?? = ?`,
         [tabla, idCampo, id]
       );
+
+      if (resultado.length === 0) {
+        throw new Error("Usuario no encontrado");
+      }
+
       return resultado[0];
     } catch (error) {
       throw error;
@@ -24,32 +31,34 @@ class crudController {
 
   // Registrar usuario (cliente por defecto)
   async registrarCliente(data) {
-    const { nombre, apellido, correo, clave } = data;
+    const { nombre, apellido, correo, clave, telefono } = data;
     const rol = "cliente";
 
     const hashed = await bcrypt.hash(clave, 10);
 
     const [resultado] = await db.query(
-      "INSERT INTO usuarios (nombre, apellido, correo, clave, rol) VALUES (?, ?, ?, ?, ?)",
-      [nombre, apellido, correo, hashed, rol]
+      `INSERT INTO usuarios (nombre, apellido, correo, clave, telefono, rol)
+      VALUES (?, ?, ?, ?, ?, ?)`,
+      [nombre, apellido, correo, hashed, telefono, rol]
     );
 
-    return { id_usuario: resultado.insertId, nombre, apellido, correo, rol };
+    return { id_usuario: resultado.insertId, nombre, apellido, correo, telefono, rol };
   }
 
   // Registrar administrador
   async registrarAdmin(data) {
-    const { nombre, apellido, correo, clave } = data;
+    const { nombre, apellido, correo, clave, telefono } = data;
     const rol = "administrador";
 
     const hashed = await bcrypt.hash(clave, 10);
 
     const [resultado] = await db.query(
-      "INSERT INTO usuarios (nombre, apellido, correo, clave, rol) VALUES (?, ?, ?, ?, ?)",
-      [nombre, apellido, correo, hashed, rol]
+      `INSERT INTO usuarios (nombre, apellido, correo, clave, telefono, rol)
+      VALUES (?, ?, ?, ?, ?, ?)`,
+      [nombre, apellido, correo, hashed, telefono, rol]
     );
 
-    return { id_usuario: resultado.insertId, nombre, apellido, correo, rol };
+    return { id_usuario: resultado.insertId, nombre, apellido, correo, telefono, rol };
   }
 
   // Actualizar un registro por ID

@@ -7,11 +7,11 @@ USE bike_store;
 -- =====================================
 CREATE TABLE usuarios (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    apellido VARCHAR(100),
-    telefono VARCHAR(20),
-    clave VARCHAR (255) NOT NULL,
+    nombre VARCHAR(20) NOT NULL,
+    apellido VARCHAR(20),
     correo VARCHAR(150) UNIQUE NOT NULL,
+    telefono VARCHAR(20) NOT NULL,
+    clave VARCHAR (255) NOT NULL,
     fecha_registro DATETIME DEFAULT CURRENT_TIMESTAMP,
     rol ENUM('administrador', 'cliente') DEFAULT 'cliente'
 );
@@ -112,10 +112,10 @@ CREATE TABLE detalle_venta (
 -- =====================================
 INSERT INTO usuarios (nombre, apellido, correo, telefono, clave, rol)
 VALUES
-('Anderson', 'Erazo', 'jairerazo420@gmail.com', '3333', '$2b$10$jq01JbaQHZv6MDbz1pWvpuDXvR/dbPTm.WZtQrBCDfZzuPxtoRiii', 'administrador'), -- clave: 123
+('Anderson', 'Erazo', 'jairerazo420@gmail.com', '3166228607', '$2b$10$jq01JbaQHZv6MDbz1pWvpuDXvR/dbPTm.WZtQrBCDfZzuPxtoRiii', 'administrador'), -- clave: 123
 ('Esteban', 'Garcia', 'esteban.garcia.valencia13@gmail.com', '3136284927', '$2b$10$jq01JbaQHZv6MDbz1pWvpuDXvR/dbPTm.WZtQrBCDfZzuPxtoRiii', 'administrador'), -- clave: 123
-('Santiago', 'Lemos', 'santyagolemosr@gmail.com', '3333', '$2b$10$jq01JbaQHZv6MDbz1pWvpuDXvR/dbPTm.WZtQrBCDfZzuPxtoRiii', 'administrador'), -- clave: 123
-('John', 'Doe', 'john@gmail.com', '3333', '$2b$10$jq01JbaQHZv6MDbz1pWvpuDXvR/dbPTm.WZtQrBCDfZzuPxtoRiii', 'cliente'); -- clave: 123
+('Santiago', 'Lemos', 'santyagolemosr@gmail.com', '3232969713', '$2b$10$jq01JbaQHZv6MDbz1pWvpuDXvR/dbPTm.WZtQrBCDfZzuPxtoRiii', 'administrador'), -- clave: 123
+('John', 'Doe', 'john@gmail.com', '3979723353', '$2b$10$00OU0C.xKlFMlQrRip8sEu3uzaH3yi5qFAOoiBIK7ox/Y3cOyljo2', 'cliente'); -- clave: hola
 
 -- =====================================
 -- INSERTAR CATEGORÍAS

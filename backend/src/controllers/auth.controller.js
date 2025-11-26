@@ -9,20 +9,27 @@ class AuthController {
     // =====================================================
     async registrar(req, res) {
         try {
-            const { nombre, apellido, correo, clave } = req.body;
+            const { nombre, apellido, correo, clave, telefono } = req.body;
 
-            if (!nombre || !apellido || !correo || !clave) {
-                return res.status(400).json({ success: false, message: "Faltan datos" });
+            // Validar datos obligatorios
+            if (!nombre || !apellido || !correo || !clave || !telefono) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Faltan datos (incluye telefono)"
+                });
             }
 
-            // Verificar si ya existe
+            // Verificar si el correo ya existe
             const [existe] = await db.query(
                 "SELECT * FROM usuarios WHERE correo = ?",
                 [correo]
             );
 
             if (existe.length > 0) {
-                return res.json({ success: false, message: "El correo ya está registrado" });
+                return res.json({
+                    success: false,
+                    message: "El correo ya está registrado"
+                });
             }
 
             // Encriptar contraseña
@@ -30,9 +37,9 @@ class AuthController {
 
             // Insertar usuario
             const [resultado] = await db.query(
-                `INSERT INTO usuarios (nombre, apellido, correo, clave, rol)
-                VALUES (?, ?, ?, ?, 'cliente')`,
-                [nombre, apellido, correo, hashed]
+                `INSERT INTO usuarios (nombre, apellido, correo, telefono, clave, rol)
+                 VALUES (?, ?, ?, ?, ?, 'cliente')`,
+                [nombre, apellido, correo, telefono, hashed]
             );
 
             return res.json({
@@ -43,13 +50,17 @@ class AuthController {
                     nombre,
                     apellido,
                     correo,
+                    telefono,
                     rol: "cliente"
                 }
             });
 
         } catch (error) {
             console.log("Error en registrar:", error);
-            return res.status(500).json({ success: false, message: "Error en el servidor" });
+            return res.status(500).json({
+                success: false,
+                message: "Error en el servidor"
+            });
         }
     }
 
@@ -61,7 +72,10 @@ class AuthController {
             const { correo, clave } = req.body;
 
             if (!correo || !clave) {
-                return res.status(400).json({ success: false, message: "Faltan datos" });
+                return res.status(400).json({
+                    success: false,
+                    message: "Faltan datos"
+                });
             }
 
             const [resultado] = await db.query(
@@ -70,25 +84,31 @@ class AuthController {
             );
 
             if (resultado.length === 0) {
-                return res.status(401).json({ success: false, message: "Credenciales inválidas" });
+                return res.status(401).json({
+                    success: false,
+                    message: "Credenciales inválidas"
+                });
             }
 
             const usuario = resultado[0];
 
-            // Verificar contraseña encriptada
+            // Comparar contraseña hasheada
             const coincide = await bcrypt.compare(clave, usuario.clave);
 
             if (!coincide) {
-                return res.status(401).json({ success: false, message: "Credenciales inválidas" });
+                return res.status(401).json({
+                    success: false,
+                    message: "Credenciales inválidas"
+                });
             }
 
-            // Crear token
+            // Crear token JWT
             const token = jwt.sign(
                 {
                     id_usuario: usuario.id_usuario,
                     rol: usuario.rol,
                 },
-                process.env.JWT_SECRET || "clave_super_secreta",
+                process.env.JWT_SECRET || "clave_secreta",
                 { expiresIn: "6h" }
             );
 
@@ -101,13 +121,17 @@ class AuthController {
                     nombre: usuario.nombre,
                     apellido: usuario.apellido,
                     correo: usuario.correo,
+                    telefono: usuario.telefono,
                     rol: usuario.rol
                 }
             });
 
         } catch (error) {
             console.log("Error en iniciarSesion:", error);
-            return res.status(500).json({ success: false, message: "Error en el servidor" });
+            return res.status(500).json({
+                success: false,
+                message: "Error en el servidor"
+            });
         }
     }
 
@@ -119,19 +143,28 @@ class AuthController {
             const id = req.params.id;
 
             const [resultado] = await db.query(
-                "SELECT id_usuario, nombre, apellido, correo, rol FROM usuarios WHERE id_usuario = ?",
+                "SELECT id_usuario, nombre, apellido, correo, telefono, rol FROM usuarios WHERE id_usuario = ?",
                 [id]
             );
 
             if (resultado.length === 0) {
-                return res.status(404).json({ success: false, message: "Usuario no encontrado" });
+                return res.status(404).json({
+                    success: false,
+                    message: "Usuario no encontrado"
+                });
             }
 
-            return res.json({ success: true, usuario: resultado[0] });
+            return res.json({
+                success: true,
+                usuario: resultado[0]
+            });
 
         } catch (error) {
             console.log("Error en verificarUsuario:", error);
-            return res.status(500).json({ success: false, message: "Error en el servidor" });
+            return res.status(500).json({
+                success: false,
+                message: "Error en el servidor"
+            });
         }
     }
 }

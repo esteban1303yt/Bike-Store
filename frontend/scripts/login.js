@@ -86,6 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 nombre: document.getElementById("regNombre").value,
                 apellido: document.getElementById("regApellido").value,
                 correo: document.getElementById("regEmail").value,
+                telefono: document.getElementById("regTelefono").value,
                 clave: document.getElementById("regClave").value
             };
 
