@@ -3,7 +3,6 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 class AuthController {
-
     // =====================================================
     // REGISTRO
     // =====================================================
@@ -15,7 +14,7 @@ class AuthController {
             if (!nombre || !apellido || !correo || !clave || !telefono) {
                 return res.status(400).json({
                     success: false,
-                    message: "Faltan datos (incluye telefono)"
+                    message: "Faltan datos"
                 });
             }
 

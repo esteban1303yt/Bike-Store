@@ -2,13 +2,13 @@ const db = require("../config/db");
 
 class HistorialPedidos {
 
-//Obtener todo el historial de pedidos realizados en la pagina
+    //Obtener todo el historial de pedidos realizados en la pagina
 
 
-//obtener todos
+    //obtener todos
     async obtenerTodos() {
-        try{
-            const query =`
+        try {
+            const query = `
             SELECT 
                 v.id_venta, 
                 v.fecha, 
@@ -22,21 +22,21 @@ class HistorialPedidos {
             JOIN productos p USING (id_producto)
             ORDER BY v.fecha DESC;
         `;
-            const[resultado] = await db.query(query);
+            const [resultado] = await db.query(query);
             return resultado;
         } catch (error) {
-           throw error
+            throw error
         }
     }
- 
 
-// obtener el historial por medio del id
 
-//obtener por id
-async obtenerporid (id) {
+    // obtener el historial por medio del id
 
-    try {
-      const query = `
+    //obtener por id
+    async obtenerporid(id) {
+
+        try {
+            const query = `
        SELECT 
           v.id_venta, v.fecha, u.nombre AS cliente,
           p.nombre_producto, dv.cantidad, dv.monto_total
@@ -47,43 +47,43 @@ async obtenerporid (id) {
         WHERE v.id_venta = ?
         ORDER BY v.fecha DESC;
       `;
-      const [resultado] = await db.query(query,[id]);
-    return resultado;
-    } catch (error) {
-        throw error;
-    }
-   
-}
+            const [resultado] = await db.query(query, [id]);
+            return resultado;
+        } catch (error) {
+            throw error;
+        }
 
-// Eliminar una historia
-        
-         async eliminarHistorial(id) {
+    }
+
+    // Eliminar una historia
+
+    async eliminarHistorial(id) {
         try {
-            const [ resultado] =  await db.query(
+            const [resultado] = await db.query(
                 "DELETE FROM detalle_venta WHERE id_venta = ?",
                 [id]
-                
+
             );
 
-          if  (resultado.affectedRows === 0) {
+            if (resultado.affectedRows === 0) {
+                return {
+                    message: "No hay registro para eliminar"
+
+                };
+
+            }
             return {
-                message:"No hay registro para eliminar"
+                message: "Historial elimiando exitosamente"
+            };
 
-          }; 
-
-     } 
-        return {
-            message:"Historial elimiando exitosamente"
-        };
-
-    }catch (error) {
-        throw error;
+        } catch (error) {
+            throw error;
+        }
     }
+
+
 }
 
 
- }
-
-    
 
 module.exports = new HistorialPedidos();

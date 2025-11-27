@@ -93,25 +93,25 @@ class Productos {
     }
 
     // Actualizar producto
-  async actualizarProducto(req, res) {
-    try {
-        const { id } = req.params;
-        const { nombre_producto, precio, descripcion, stock } = req.body;
+    async actualizarProducto(req, res) {
+        try {
+            const { id } = req.params;
+            const { nombre_producto, precio, descripcion, stock } = req.body;
 
-        await db.query(
-            `UPDATE productos 
+            await db.query(
+                `UPDATE productos 
              SET nombre_producto = ?, precio = ?, descripcion = ?, stock = ?
              WHERE id_producto = ?`,
-            [nombre_producto, precio, descripcion, stock, id]
-        );
+                [nombre_producto, precio, descripcion, stock, id]
+            );
 
-        res.json({ success: true, mensaje: "Producto actualizado correctamente" });
+            res.json({ success: true, mensaje: "Producto actualizado correctamente" });
 
-    } catch (error) {
-        console.error("Error al actualizar producto:", error);
-        res.status(500).json({ success: false, mensaje: "Error al actualizar producto", error });
+        } catch (error) {
+            console.error("Error al actualizar producto:", error);
+            res.status(500).json({ success: false, mensaje: "Error al actualizar producto", error });
+        }
     }
-}
 
 
 

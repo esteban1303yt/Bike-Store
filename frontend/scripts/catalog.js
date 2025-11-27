@@ -90,16 +90,14 @@ function renderizarProductos(productos) {
                     <p class="price">$ ${Number(p.precio).toLocaleString("es-CO")}</p>
                 </div>
                 <button class="btn-add-cart"
-    onclick='agregarAlCarrito({
-        id_producto: ${p.id_producto},
-        nombre_producto: "${p.nombre_producto}",
-        precio: Number(${p.precio}),
-        imagen: "${p.imagen}"
-    })'>
-    Agregar al carrito
-</button>
-
-
+                    onclick='agregarAlCarrito({
+                    id_producto: ${p.id_producto},
+                    nombre_producto: "${p.nombre_producto}",
+                    precio: Number(${p.precio}),
+                    imagen: "${p.imagen}"
+                    })'>
+                    Agregar al carrito
+                </button>
             </div>
         </article>
     `).join("");

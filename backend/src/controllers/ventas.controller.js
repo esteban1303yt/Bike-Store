@@ -4,7 +4,7 @@ class VentasController {
 
     async crearVenta(req, res) {
         const { id_usuario, carrito } = req.body;
-        
+
         if (!carrito || carrito.length === 0) {
             return res.status(400).json({ error: "El carrito está vacío" });
         }
