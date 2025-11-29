@@ -6,7 +6,7 @@ body {
 }
 
 .layout {
-    display: flex;
+    display: flex;     
     height: 100vh;
 }
 
@@ -58,65 +58,76 @@ body {
 }
 
 /* SECCIÓN INFERIOR - CONTÉNEDOR DE PRODUCTOS */
-.bottom-section {
-    background: white;
+
+/* ======== CONTENEDOR DE TARJETAS ======== */
+#productos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-gap: 20px;
     padding: 20px;
-    border-radius: 8px;
-    max-height: 75vh;
-    overflow-y: auto;
+
+    /* NUEVO ↓↓↓ */
+    
+    padding: 20px;
+    border-radius: 12px;
     box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
 }
 
-/* Cada tarjeta de producto renderizada por JS */
+/* ======== TARJETA ======== */
 .product-card {
-    background: #fafafa;
-    border-radius: 8px;
+    background: #fff;
+    border-radius: 10px;
     padding: 15px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    display: flex;
-    gap: 20px;
-    align-items: center;
-}
-
-.product-card img {
-    width: 120px;
-    height: auto;
-    border-radius: 6px;
-}
-
-.product-info {
-    flex: 1;
-}
-
-.product-actions {
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: auto; /* Cambiado de 100% a auto para respetar el grid */
+    height: auto;
+    margin: 0; /* Quitado margin para que el grid controle el espacio */
+}
+
+/* IMAGEN */
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* INFO */
+.product-info {
+    width: 100%;
+    text-align: left;
+    margin-top: 10px;
+}
+
+/* BOTONES */
+.product-actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
     gap: 10px;
 }
 
-/* Botones */
-button {
-    padding: 10px;
-    background: #2d6cdf;
-    color: white;
+.product-actions button {
+    flex: 1;
+    padding: 8px;
     border: none;
     border-radius: 6px;
     cursor: pointer;
+    font-weight: bold;
 }
 
-button:hover {
-    background: #1c4fb5;
+.btn-editar {
+    background: #3498db;
+    color: white;
 }
 
-.btn-delete {
-    background: #e63946;
+.btn-eliminar {
+    background: #e74c3c;
+    color: white;
 }
-
-.btn-delete:hover {
-    background: #b32833;
-}
-
 
 /* ======== MODAL ======== */
 .modal {
@@ -134,8 +145,9 @@ button:hover {
 .modal-content {
     background: white;
     padding: 20px;
-    width: 350px;
+    width: 400px;
     border-radius: 10px;
+    
 }
 
 .close {
@@ -146,7 +158,10 @@ button:hover {
 
 .modal-content input,
 .modal-content textarea {
-    width: 100%;
+    width: 90%;
     margin-bottom: 10px;
     padding: 8px;
+    border-radius: 10px;
 }
+
+

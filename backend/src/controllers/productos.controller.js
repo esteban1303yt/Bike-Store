@@ -2,7 +2,9 @@ const db = require("../config/db");
 
 class Productos {
 
-    // Obtener todos los productos
+    // ===============================
+    // OBTENER TODOS LOS PRODUCTOS
+    // ===============================
     async obtenerProductos(req, res) {
         try {
             const [rows] = await db.query(`
@@ -12,14 +14,23 @@ class Productos {
                 FROM productos p
                 LEFT JOIN marcas m ON p.id_marca = m.id_marca
             `);
+
+            // ✔ Asegurar imagen por defecto si es null
+            rows.forEach(p => {
+                if (!p.imagen) p.imagen = "default.png";
+            });
+
             res.json(rows);
+
         } catch (error) {
             console.error(error);
             res.status(500).json({ mensaje: "Error al obtener productos", error });
         }
     }
 
-    // Obtener producto por ID
+    // ===============================
+    // OBTENER PRODUCTO POR ID
+    // ===============================
     async obtenerProductoPorId(req, res) {
         try {
             const { id } = req.params;
@@ -36,14 +47,20 @@ class Productos {
                 return res.status(404).json({ mensaje: "Producto no encontrado" });
             }
 
+            // ✔ Imagen por defecto
+            if (!rows[0].imagen) rows[0].imagen = "default.png";
+
             res.json(rows[0]);
+
         } catch (error) {
             console.error(error);
             res.status(500).json({ mensaje: "Error al obtener producto", error });
         }
     }
 
-    // Buscar productos por texto (nombre, descripción o marca)
+    // ===============================
+    // BUSCAR PRODUCTOS
+    // ===============================
     async buscarProducto(req, res) {
         try {
             const { texto } = req.params;
@@ -58,6 +75,11 @@ class Productos {
                     OR m.nombre_marca LIKE ?
             `, [`%${texto}%`, `%${texto}%`, `%${texto}%`]);
 
+            // ✔ Imagen por defecto
+            rows.forEach(p => {
+                if (!p.imagen) p.imagen = "default.png";
+            });
+
             res.json(rows);
 
         } catch (error) {
@@ -66,13 +88,15 @@ class Productos {
         }
     }
 
-    // Crear producto
+    // ===============================
+    // CREAR PRODUCTO
+    // ===============================
     async crearProducto(req, res) {
         try {
-            let { nombre_producto, id_categoria, id_marca, precio, descripcion, stock, imagen } = req.body;
+            let { nombre_producto, id_categoria, id_marca, precio, descripcion, stock } = req.body;
 
-            // Convertir nombre de imagen a minúsculas
-            imagen = imagen ? imagen.toLowerCase() : null;
+            // ✔ Si NO subieron archivo → imagen por defecto
+            let imagen = req.file ? req.file.filename : "default.png";
 
             const [result] = await db.query(
                 `INSERT INTO productos 
@@ -92,17 +116,37 @@ class Productos {
         }
     }
 
-    // Actualizar producto
+    // ===============================
+    // ACTUALIZAR PRODUCTO
+    // ===============================
     async actualizarProducto(req, res) {
         try {
             const { id } = req.params;
             const { nombre_producto, precio, descripcion, stock } = req.body;
 
+            // Obtener imagen actual
+            const [actual] = await db.query(
+                "SELECT imagen FROM productos WHERE id_producto = ?",
+                [id]
+            );
+
+            if (!actual.length) {
+                return res.status(404).json({ mensaje: "Producto no encontrado" });
+            }
+
+            // ✔ Si NO suben nueva imagen, mantener la actual
+            let nuevaImagen = actual[0].imagen || "default.png";
+
+            // ✔ Si subieron nueva imagen, actualizarla
+            if (req.file) {
+                nuevaImagen = req.file.filename;
+            }
+
             await db.query(
                 `UPDATE productos 
-             SET nombre_producto = ?, precio = ?, descripcion = ?, stock = ?
-             WHERE id_producto = ?`,
-                [nombre_producto, precio, descripcion, stock, id]
+                SET nombre_producto = ?, precio = ?, descripcion = ?, stock = ?, imagen = ?
+                WHERE id_producto = ?`,
+                [nombre_producto, precio, descripcion, stock, nuevaImagen, id]
             );
 
             res.json({ success: true, mensaje: "Producto actualizado correctamente" });
@@ -113,9 +157,9 @@ class Productos {
         }
     }
 
-
-
-    // Eliminar producto
+    // ===============================
+    // ELIMINAR PRODUCTO
+    // ===============================
     async eliminarProducto(req, res) {
         try {
             const { id } = req.params;

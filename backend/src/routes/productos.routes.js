@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const productos = require('../controllers/productos.controller');
+const upload = require("../middlewares/uploads");
+
+
+
 
 // Obtener todos los productos
 router.get('/', async (req, res) => {
@@ -31,7 +35,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Crear producto
-router.post('/', async (req, res) => {
+router.post('/', upload.single("imagen"), async (req, res) => {
     try {
         await productos.crearProducto(req, res);
     } catch (error) {
@@ -39,8 +43,9 @@ router.post('/', async (req, res) => {
     }
 });
 
-// Actualizar producto
-router.put('/:id', async (req, res) => {
+
+// Actualizar producto Y IMAGEN
+router.put('/:id', upload.single('imagen'), async (req, res) => {
     try {
         await productos.actualizarProducto(req, res);
     } catch (error) {
