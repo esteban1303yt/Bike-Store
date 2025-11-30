@@ -15,6 +15,38 @@ const listaOrdenar = document.getElementById("listaOrdenar");
 const btnOrdenar = document.getElementById("btnOrdenar");
 
 
+// Abre el modal con la info del producto
+function abrirModalProducto(producto) {
+    document.getElementById("modalProdImg").src = 
+    producto.imagen 
+    ? `/frontend/media/img/products/${producto.imagen}`
+    : "/frontend/media/no-image.png";
+
+    document.getElementById("modalProdNombre").textContent = producto.nombre;
+    document.getElementById("modalProdMarca").textContent = "Marca: " + producto.marca;
+    document.getElementById("modalProdModelo").textContent = "Modelo: " + producto.modelo;
+    document.getElementById("modalProdColor").textContent = "Color: " + producto.color;
+    document.getElementById("modalProdDesc").textContent = producto.descripcion;
+    document.getElementById("modalProdPrecio").textContent = producto.precio;
+
+    // Guardar producto para agregar al carrito
+    window.productoActualModal = producto;
+
+    document.getElementById("modalProducto").classList.remove("hidden");
+}
+
+// Cerrar modal
+function cerrarModalProducto() {
+    document.getElementById("modalProducto").classList.add("hidden");
+}
+
+// Agregar al carrito
+function agregarModalAlCarrito() {
+    if (window.productoActualModal) {
+        agregarAlCarrito(window.productoActualModal); // Usa tu función existente
+        cerrarModalProducto();
+    }
+}
 
 
 // ===============================
@@ -77,30 +109,43 @@ function renderizarProductos(productos) {
     }
 
     const html = productos.map(p => `
-        <article class="product-card">
-            <div class="badge">${p.stock > 0 ? "Disponible" : "Agotado"}</div>
-            <div class="year">${p.year ?? 2025}</div>
-            <img src="/frontend/media/img/products/${p.imagen ?? "default.svg"}" alt="${p.nombre_producto}"/>
-            <div class="product-desc">
-                <div class="card-info">
-                    <div class="texto-principal">
-                        <h3>${p.nombre_producto}</h3>
-                        <p class="subtitle">${p.descripcion ?? ""}</p>
-                    </div>
-                    <p class="price">$ ${Number(p.precio).toLocaleString("es-CO")}</p>
+    <article class="product-card" onclick='abrirModalProducto({
+    nombre: "${p.nombre_producto}",
+    marca: "${p.nombre_marca ?? ""}",
+    modelo: "${p.modelo ?? ""}",
+    color: "${p.color ?? ""}",
+    descripcion: "${p.descripcion ?? ""}",
+    imagen: "${p.imagen}",
+    precio: ${p.precio},
+    id_producto: ${p.id_producto}
+})'>
+
+        <div class="badge">${p.stock > 0 ? "Disponible" : "Agotado"}</div>
+        <div class="year">${p.year ?? 2025}</div>
+        <img src="/frontend/media/img/products/${p.imagen ?? "default.svg"}" alt="${p.nombre_producto}"/>
+        <div class="product-desc">
+
+            <div class="card-info">
+                <div class="texto-principal">
+                    <h3>${p.nombre_producto}</h3>
+                    <p class="subtitle">${p.descripcion ?? ""}</p>
                 </div>
-                <button class="btn-add-cart"
-                    onclick='agregarAlCarrito({
-                    id_producto: ${p.id_producto},
-                    nombre_producto: "${p.nombre_producto}",
-                    precio: Number(${p.precio}),
-                    imagen: "${p.imagen}"
-                    })'>
-                    Agregar al carrito
-                </button>
+                <p class="price">$ ${Number(p.precio).toLocaleString("es-CO")}</p>
             </div>
-        </article>
-    `).join("");
+
+            <button class="btn-add-cart"
+                onclick='event.stopPropagation(); agregarAlCarrito({
+                id_producto: ${p.id_producto},
+                nombre_producto: "${p.nombre_producto}",
+                precio: Number(${p.precio}),
+                imagen: "${p.imagen}"
+                })'>
+                Agregar al carrito
+            </button>
+
+        </div>
+    </article>
+`).join("");
 
     contenedor.innerHTML = html;
 }
