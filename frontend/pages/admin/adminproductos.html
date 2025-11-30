@@ -1,136 +1,136 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<title>Administrar Productos</title>
-<link rel="stylesheet" href="/frontend/styles/pages/admin/admin_productos.css">
+    <meta charset="UTF-8">
+    <title>Administrar Productos</title>
+    <link rel="stylesheet" href="/frontend/styles/pages/admin/admin_productos.css">
 </head>
 
 <body>
 
-<div class="layout">
+    <div class="layout">
 
-    <!-- Sidebar -->
-    <nav class="sidebar">
-        <h2>Admin</h2>
-        <hr>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="adminproductos.html" class="active">Productos</a>
-        <a href="usuarios.html">Usuarios</a>
-        <a href="ventas.html">Ventas</a>
-        <div>
-            <a href="/frontend/pages/index.html" class="active">⬅️volver </a>
-        </div>
-    </nav>
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <h2>Admin</h2>
+            <hr>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="adminproductos.html" class="active">Productos</a>
+            <a href="usuarios.html">Usuarios</a>
+            <a href="ventas.html">Ventas</a>
+            <div>
+                <a href="/frontend/pages/index.html" class="active">⬅️volver </a>
+            </div>
+        </nav>
 
-    <!-- Contenido principal -->
-    <main class="contenido">
+        <!-- Contenido principal -->
+        <main class="contenido">
 
-        <!-- Sección superior -->
-        <div class="top-section">
-            <h1>Gestión de Productos</h1>
-            <p>Administra precios, nombres, stock e imágenes.</p>
+            <!-- Sección superior -->
+            <div class="top-section">
+                <h1>Gestión de Productos</h1>
+                <p>Administra precios, nombres, stock e imágenes.</p>
 
-             <button id="btnCrearProducto" class="btn-crear">➕ Crear Producto</button>
-        </div>
+                <button id="btnCrearProducto" class="btn-crear">➕ Crear Producto</button>
+            </div>
 
-        <!-- Sección inferior -->
-        
+            <!-- Sección inferior -->
+
             <div id="productos-container">
-        </div>
+            </div>
 
-    </main>
+        </main>
 
-</div>
+    </div>
 
 
-<!-- ===========================
+    <!-- ===========================
       MODAL ELIMINAR
 =========================== -->
-<div id="modalEliminar" class="modal" style="display:none;">
-    <div class="modal-content">
-        <h3>¿Eliminar producto?</h3>
-        <p>Esta acción no se puede deshacer.</p>
+    <div id="modalEliminar" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h3>¿Eliminar producto?</h3>
+            <p>Esta acción no se puede deshacer.</p>
 
-        <button id="confirmEliminar">Sí, eliminar</button>
-        <button id="cancelEliminar">Cancelar</button>
+            <button id="confirmEliminar">Sí, eliminar</button>
+            <button id="cancelEliminar">Cancelar</button>
+        </div>
     </div>
-</div>
 
 
-<!-- ===========================
+    <!-- ===========================
       MODAL EDITAR
 =========================== -->
-<div id="modalEditar" class="modal" style="display:none;">
-    <div class="modal-content">
-        <span id="cerrarModal" class="close">&times;</span>
+    <div id="modalEditar" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span id="cerrarModal" class="close">&times;</span>
 
-        <h3>Editar Producto</h3>
+            <h3>Editar Producto</h3>
 
-        <input type="hidden" id="editId">
+            <input type="hidden" id="editId">
 
-        <label>Nombre</label>
-        <input type="text" id="editNombre">
+            <label>Nombre</label>
+            <input type="text" id="editNombre">
 
-        <label>Precio</label>
-        <input type="number" id="editPrecio">
+            <label>Precio</label>
+            <input type="number" id="editPrecio">
 
-        <label>Stock</label>
-        <input type="number" id="editStock">
+            <label>Stock</label>
+            <input type="number" id="editStock">
 
-        <label>Descripción</label>
-        <textarea id="editDescripcion"></textarea>
+            <label>Descripción</label>
+            <textarea id="editDescripcion"></textarea>
 
-        <label>Imagen</label>
-        <input type="file" id="editImagen">
+            <label>Imagen</label>
+            <input type="file" id="editImagen">
 
-        <!-- ✔ Imagen por defecto agregada -->
-        <img id="editImagenPreview" 
-             src="/frontend/media/img/products/default.png" 
-             style="width:150px; margin-top:10px;">
+            <!-- ✔ Imagen por defecto agregada -->
+            <img id="editImagenPreview" src="/frontend/media/img/products/default.svg"
+                style="width:150px; margin-top:10px;">
 
-        <button id="guardarBtn">Guardar cambios</button>
+            <button id="guardarBtn">Guardar cambios</button>
+        </div>
     </div>
-</div>
 
 
 
 
-<!-- ===========================
+    <!-- ===========================
       MODAL CREAR PRODUCTO
 =========================== -->
-<div id="modalCrear" class="modal" style="display:none;">
-    <div class="modal-content">
-        <span id="cerrarModalCrear" class="close">&times;</span>
+    <div id="modalCrear" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span id="cerrarModalCrear" class="close">&times;</span>
 
-        <h3>Crear Producto</h3>
+            <h3>Crear Producto</h3>
 
-        <label>Nombre</label>
-        <input type="text" id="crearNombre">
+            <label>Nombre</label>
+            <input type="text" id="crearNombre">
 
-        <label>Precio</label>
-        <input type="number" id="crearPrecio">
+            <label>Precio</label>
+            <input type="number" id="crearPrecio">
 
-        <label>Stock</label>
-        <input type="number" id="crearStock">
+            <label>Stock</label>
+            <input type="number" id="crearStock">
 
-        <label>Descripción</label>
-        <textarea id="crearDescripcion"></textarea>
+            <label>Descripción</label>
+            <textarea id="crearDescripcion"></textarea>
 
-        <label>Imagen</label>
-        <input type="file" id="crearImagen">
+            <label>Imagen</label>
+            <input type="file" id="crearImagen">
 
-        <!-- ✔ Imagen por defecto agregada -->
-        <img id="crearImagenPreview" 
-             src="/frontend/media/img/products/default.png"
-             style="width:150px; margin-top:10px; display:none;">
+            <!-- ✔ Imagen por defecto agregada -->
+            <img id="crearImagenPreview" src="/frontend/media/img/products/default.svg"
+                style="width:150px; margin-top:10px; display:none;">
 
-        <button id="btnGuardarNuevo">Guardar Producto</button>
+            <button id="btnGuardarNuevo">Guardar Producto</button>
+        </div>
     </div>
-</div>
 
 
-<script src="/frontend/scripts/admin_productos.js"></script>
+    <script src="/frontend/scripts/admin_productos.js"></script>
 
 </body>
+
 </html>

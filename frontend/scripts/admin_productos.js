@@ -1,6 +1,5 @@
 const apiURL = 'http://localhost:3000/api/productos';
 
-
 // =======================
 // CARGAR PRODUCTOS (TARJETAS COMPLETAS)
 // =======================
@@ -43,8 +42,6 @@ async function cargarProductos() {
     }
 }
 
-
-
 // =======================
 // ACTIVAR BOTONES
 // =======================
@@ -60,8 +57,6 @@ function activarBotones() {
         btn.onclick = () => abrirModalEliminar(btn.dataset.id);
     });
 }
-
-
 
 // =======================
 // ELIMINAR PRODUCTO
@@ -93,8 +88,6 @@ document.getElementById("confirmEliminar").onclick = async () => {
     }
 };
 
-
-
 // =======================
 // ABRIR MODAL EDICIÓN
 // =======================
@@ -115,16 +108,12 @@ async function abrirModalEditar(id) {
     document.getElementById("modalEditar").style.display = "flex";
 }
 
-
-
 // =======================
 // CERRAR MODAL
 // =======================
 document.getElementById("cerrarModal").onclick = () => {
     document.getElementById("modalEditar").style.display = "none";
 };
-
-
 
 // =======================
 // GUARDAR CAMBIOS
@@ -164,9 +153,6 @@ document.getElementById("guardarBtn").onclick = async () => {
     }
 };
 
-
-
-
 // =======================
 // CREAR PRODUCTO
 // =======================
@@ -191,7 +177,6 @@ crearImagen.addEventListener("change", () => {
         crearPreview.style.display = "block";
     }
 });
-
 
 // =======================
 // GUARDAR NUEVO PRODUCTO
@@ -234,18 +219,5 @@ document.getElementById("btnGuardarNuevo").onclick = async () => {
         alert("Error al crear producto");
     }
 };
-
-
-
-
-
-
-// =======================
-// INICIALIZAR
-// =======================
-
-
-
-
 
 cargarProductos();

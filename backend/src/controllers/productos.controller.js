@@ -17,7 +17,7 @@ class Productos {
 
             // ✔ Asegurar imagen por defecto si es null
             rows.forEach(p => {
-                if (!p.imagen) p.imagen = "default.png";
+                if (!p.imagen) p.imagen = "default.svg";
             });
 
             res.json(rows);
@@ -48,7 +48,7 @@ class Productos {
             }
 
             // ✔ Imagen por defecto
-            if (!rows[0].imagen) rows[0].imagen = "default.png";
+            if (!rows[0].imagen) rows[0].imagen = "default.svg";
 
             res.json(rows[0]);
 
@@ -77,7 +77,7 @@ class Productos {
 
             // ✔ Imagen por defecto
             rows.forEach(p => {
-                if (!p.imagen) p.imagen = "default.png";
+                if (!p.imagen) p.imagen = "default.svg";
             });
 
             res.json(rows);
@@ -96,7 +96,7 @@ class Productos {
             let { nombre_producto, id_categoria, id_marca, precio, descripcion, stock } = req.body;
 
             // ✔ Si NO subieron archivo → imagen por defecto
-            let imagen = req.file ? req.file.filename : "default.png";
+            let imagen = req.file ? req.file.filename : "default.svg";
 
             const [result] = await db.query(
                 `INSERT INTO productos 
@@ -135,7 +135,7 @@ class Productos {
             }
 
             // ✔ Si NO suben nueva imagen, mantener la actual
-            let nuevaImagen = actual[0].imagen || "default.png";
+            let nuevaImagen = actual[0].imagen || "default.svg";
 
             // ✔ Si subieron nueva imagen, actualizarla
             if (req.file) {

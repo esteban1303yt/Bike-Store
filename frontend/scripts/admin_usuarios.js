@@ -122,7 +122,6 @@ async function eliminarUsuario(id) {
     }
 }
 
-
 // =======================
 // INICIALIZAR
 // =======================

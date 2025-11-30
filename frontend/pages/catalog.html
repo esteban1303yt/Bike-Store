@@ -227,40 +227,39 @@
 
         <div class="carrito-footer">
             <p>Total: $<span id="totalCarrito">0</span></p>
-                    <button class="btn-vaciar" onclick="">Comprar</button>
+            <button class="btn-vaciar" onclick="">Comprar</button>
 
         </div>
 
     </div>
-    
-<!-- MODAL DETALLES DEL PRODUCTO -->
-<div id="modalProducto" class="modal-producto-overlay hidden">
-    <div class="modal-producto">
-        <button class="cerrar-modal-producto" onclick="cerrarModalProducto()">X</button>
 
-        <div class="modal-producto-content">
+    <!-- MODAL DETALLES DEL PRODUCTO -->
+    <div id="modalProducto" class="modal-producto-overlay hidden">
+        <div class="modal-producto">
+            <button class="cerrar-modal-producto" onclick="cerrarModalProducto()">X</button>
 
-            <div class="modal-producto-img">
-                <img id="modalProdImg" src="" alt="producto">
-            </div>
+            <div class="modal-producto-content">
 
-            <div class="modal-producto-info">
-                <h2 id="modalProdNombre"></h2>
-                <p id="modalProdMarca"></p>
-                <p id="modalProdModelo"></p>
-                <p id="modalProdColor"></p>
+                <div class="modal-producto-img">
+                    <img id="modalProdImg" src="" alt="producto">
+                </div>
 
-                <p class="modal-prod-desc" id="modalProdDesc"></p>
+                <div class="modal-producto-info">
+                    <h2 id="modalProdNombre"></h2>
+                    <p id="modalProdMarca"></p>
+                    <p id="modalProdAno"></p>
 
-                <h3 class="modal-prod-precio">
-                    $<span id="modalProdPrecio"></span>
-                </h3>
+                    <p class="modal-prod-desc" id="modalProdDesc"></p>
 
-                <button class="btn-agregar-carrito" onclick="agregarModalAlCarrito()">Agregar al carrito</button>
+                    <h3 class="modal-prod-precio">
+                        $<span id="modalProdPrecio"></span>
+                    </h3>
+
+                    <button class="btn-agregar-carrito" onclick="agregarModalAlCarrito()">Agregar al carrito</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
     <!-- SCRIPTS -->
     <script src="/frontend/scripts/carrito.js"></script>

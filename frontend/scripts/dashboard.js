@@ -27,7 +27,7 @@ async function mostrarProductos() {
         productos.forEach(p => {
             html += `
                 <div class="tarjeta">
-                 <img src="/frontend/media/img/products/${p.imagen ?? "default.png"}" alt="${p.nombre_producto}">
+                 <img src="/frontend/media/img/products/${p.imagen ?? "default.svg"}" alt="${p.nombre_producto}">
                     <h3>${p.nombre_producto}</h3>
                     <p><strong>Precio:</strong> ${p.precio}</p>
                     <p><strong>Stock:</strong> ${p.stock}</p>
@@ -75,4 +75,3 @@ async function editarProducto(id) {
     // Mostrar modal
     document.getElementById("modalEditar").style.display = "flex";
 }
-

@@ -49,6 +49,7 @@ CREATE TABLE productos (
     nombre_producto VARCHAR(250) NOT NULL,
     id_categoria INT,
     id_marca INT NULL,
+    ano YEAR NOT NULL,
     precio DECIMAL(10,2) NOT NULL,
     descripcion TEXT,
     stock INT DEFAULT 0,
@@ -133,17 +134,17 @@ VALUES
 -- INSERTAR PRODUCTOS
 -- (marcas NULL e imágenes NULL por defecto)
 -- =====================================
-INSERT INTO productos (nombre_producto, id_categoria, id_marca, precio, descripcion, stock, imagen)
+INSERT INTO productos (nombre_producto, id_categoria, id_marca, ano, precio, descripcion, stock, imagen)
 VALUES
-('MTB Pro XT', 1, 1, 2500000, 'Bicicleta de montaña con suspensión delantera y marco de aluminio', 10, 'mtb_pro_xt.png'),
-('Trail 500', 1, 5, 1500000, 'Bicicleta de montaña para principiantes con frenos de disco mecánicos', 8, 'trail_500.png'),
-('Cadena Shimano HG40', 6, NULL, 65000, 'Cadena para bicicleta de 8 velocidades', 15, 'cadena_shimano_hg40.png'),
-('Urban Glide Classic 28', 4, 6, 1900000, 'Urban Glide Classic 28, bicicleta urbana de estilo retro.', 7, 'urban_glide_glassic_28.png'),
-('Scott Sub Cross 6', 3, 4, 1200000, 'Bicicleta urbana / trekking Scott', 12, NULL),
-('Verde TrailRider 300', 4, 3, 4000000, 'Bicicleta de montaña diseñada para aventureros.', 3, 'verde_trailrider_300.png'),
-('Ground Control Grid 2Bliss Ready T7', 6, NULL, 650000, 'Utiliza un dibujo en la banda de rodadura', 15, 'ground_control_grid_2Bliss_ready_t7.png'),
-('TENWAYS CGO600', 5, 2, 1500000, 'E-Bike ligera para ciudad', 8, NULL),
-('Blue Ridge X-Trail', 2, 5, 900000, 'Bicicleta de montaña moderna, diseñada para ofrecer control y rendimiento en terrenos exigentes.', 10, 'blue_ridge_x-trail.png');
+('MTB Pro XT', 1, 1, 2018, 2500000, 'Bicicleta de montaña con suspensión delantera y marco de aluminio', 10, 'mtb_pro_xt.png'),
+('Trail 500', 1, 5, 2020, 1500000, 'Bicicleta de montaña para principiantes con frenos de disco mecánicos', 8, 'trail_500.png'),
+('Cadena Shimano HG40', 6, NULL, 2017, 65000, 'Cadena para bicicleta de 8 velocidades', 15, 'cadena_shimano_hg40.png'),
+('Urban Glide Classic 28', 4, 6, 2019, 1900000, 'Urban Glide Classic 28, bicicleta urbana de estilo retro.', 7, 'urban_glide_glassic_28.png'),
+('Scott Sub Cross 6', 3, 4, 2021, 1200000, 'Bicicleta urbana / trekking Scott', 12, NULL),
+('Verde TrailRider 300', 4, 3, 2023, 4000000, 'Bicicleta de montaña diseñada para aventureros.', 3, 'verde_trailrider_300.png'),
+('Ground Control Grid 2Bliss Ready T7', 6, NULL, 2016, 650000, 'Utiliza un dibujo en la banda de rodadura', 15, 'ground_control_grid_2Bliss_ready_t7.png'),
+('TENWAYS CGO600', 5, 2, 2024, 1500000, 'E-Bike ligera para ciudad', 8, NULL),
+('Blue Ridge X-Trail', 2, 5, 2025, 900000, 'Bicicleta de montaña moderna, diseñada para ofrecer control y rendimiento en terrenos exigentes.', 10, 'blue_ridge_x-trail.png');
 
 -- =====================================
 -- INSERTAR ENTRADAS (inventario)

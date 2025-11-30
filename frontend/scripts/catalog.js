@@ -17,15 +17,14 @@ const btnOrdenar = document.getElementById("btnOrdenar");
 
 // Abre el modal con la info del producto
 function abrirModalProducto(producto) {
-    document.getElementById("modalProdImg").src = 
-    producto.imagen 
-    ? `/frontend/media/img/products/${producto.imagen}`
-    : "/frontend/media/no-image.png";
+    document.getElementById("modalProdImg").src =
+        producto.imagen
+            ? `/frontend/media/img/products/${producto.imagen}`
+            : "/frontend/media/img/default.svg";
 
     document.getElementById("modalProdNombre").textContent = producto.nombre;
     document.getElementById("modalProdMarca").textContent = "Marca: " + producto.marca;
-    document.getElementById("modalProdModelo").textContent = "Modelo: " + producto.modelo;
-    document.getElementById("modalProdColor").textContent = "Color: " + producto.color;
+    document.getElementById("modalProdAno").textContent = "Año: " + (producto.año || producto.ano || "N/A");
     document.getElementById("modalProdDesc").textContent = producto.descripcion;
     document.getElementById("modalProdPrecio").textContent = producto.precio;
 
@@ -47,7 +46,6 @@ function agregarModalAlCarrito() {
         cerrarModalProducto();
     }
 }
-
 
 // ===============================
 // AGREGAR AL CARRITO
@@ -77,10 +75,6 @@ function agregarProductoCatalogo(producto) {
     // Abrir el carrito al agregar
     toggleCarrito();
 }
-
-
-
-
 
 // Cache de productos
 let productosCache = [];
@@ -112,8 +106,7 @@ function renderizarProductos(productos) {
     <article class="product-card" onclick='abrirModalProducto({
     nombre: "${p.nombre_producto}",
     marca: "${p.nombre_marca ?? ""}",
-    modelo: "${p.modelo ?? ""}",
-    color: "${p.color ?? ""}",
+    año: "${p.ano ?? ""}",
     descripcion: "${p.descripcion ?? ""}",
     imagen: "${p.imagen}",
     precio: ${p.precio},
@@ -121,7 +114,7 @@ function renderizarProductos(productos) {
 })'>
 
         <div class="badge">${p.stock > 0 ? "Disponible" : "Agotado"}</div>
-        <div class="year">${p.year ?? 2025}</div>
+        <div class="year">${p.ano ?? 2025}</div>
         <img src="/frontend/media/img/products/${p.imagen ?? "default.svg"}" alt="${p.nombre_producto}"/>
         <div class="product-desc">
 
@@ -247,10 +240,10 @@ function aplicarFiltros() {
             filtrados.sort((a, b) => b.nombre_producto.localeCompare(a.nombre_producto));
             break;
         case "anio-asc":
-            filtrados.sort((a, b) => (a.year ?? 2025) - (b.year ?? 2025));
+            filtrados.sort((a, b) => (b.ano ?? 2025) - (a.ano ?? 2025));
             break;
         case "anio-desc":
-            filtrados.sort((a, b) => (b.year ?? 2025) - (a.year ?? 2025));
+            filtrados.sort((a, b) => (a.ano ?? 2025) - (b.ano ?? 2025));
             break;
     }
 
