@@ -140,10 +140,10 @@ VALUES
 ('Trail 500', 1, 5, 2020, 1500000, 'Bicicleta de montaña para principiantes con frenos de disco mecánicos', 8, 'trail_500.png'),
 ('Cadena Shimano HG40', 6, NULL, 2017, 65000, 'Cadena para bicicleta de 8 velocidades', 15, 'cadena_shimano_hg40.png'),
 ('Urban Glide Classic 28', 4, 6, 2019, 1900000, 'Urban Glide Classic 28, bicicleta urbana de estilo retro.', 7, 'urban_glide_glassic_28.png'),
-('Scott Sub Cross 6', 3, 4, 2021, 1200000, 'Bicicleta urbana / trekking Scott', 12, NULL),
+('Scott Sub Cross 6', 3, 4, 2021, 1200000, 'Bicicleta urbana / trekking Scott', 12, 'scott_sub_cross_6.png'),
 ('Verde TrailRider 300', 4, 3, 2023, 4000000, 'Bicicleta de montaña diseñada para aventureros.', 3, 'verde_trailrider_300.png'),
 ('Ground Control Grid 2Bliss Ready T7', 6, NULL, 2016, 650000, 'Utiliza un dibujo en la banda de rodadura', 15, 'ground_control_grid_2Bliss_ready_t7.png'),
-('TENWAYS CGO600', 5, 2, 2024, 1500000, 'E-Bike ligera para ciudad', 8, NULL),
+('TENWAYS CGO600', 5, 2, 2024, 1500000, 'E-Bike ligera para ciudad', 8, 'tenways_cgo600.png'),
 ('Blue Ridge X-Trail', 2, 5, 2025, 900000, 'Bicicleta de montaña moderna, diseñada para ofrecer control y rendimiento en terrenos exigentes.', 10, 'blue_ridge_x-trail.png');
 
 -- =====================================
