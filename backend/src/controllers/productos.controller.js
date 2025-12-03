@@ -93,16 +93,21 @@ class Productos {
     // ===============================
     async crearProducto(req, res) {
         try {
-            let { nombre_producto, id_categoria, id_marca, precio, descripcion, stock } = req.body;
+            let { nombre_producto, id_categoria, id_marca, ano, precio, descripcion, stock } = req.body;
+
+            // Validación básica
+            if (!ano) {
+                return res.status(400).json({ mensaje: "El campo 'ano' es obligatorio" });
+            }
 
             // ✔ Si NO subieron archivo → imagen por defecto
             let imagen = req.file ? req.file.filename : "default.svg";
 
             const [result] = await db.query(
                 `INSERT INTO productos 
-                (nombre_producto, id_categoria, id_marca, precio, descripcion, stock, imagen)
-                VALUES (?, ?, ?, ?, ?, ?, ?)`,
-                [nombre_producto, id_categoria, id_marca, precio, descripcion, stock, imagen]
+            (nombre_producto, id_categoria, id_marca, ano, precio, descripcion, stock, imagen)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+                [nombre_producto, id_categoria, id_marca, ano, precio, descripcion, stock, imagen]
             );
 
             res.json({
@@ -122,9 +127,23 @@ class Productos {
     async actualizarProducto(req, res) {
         try {
             const { id } = req.params;
-            const { nombre_producto, precio, descripcion, stock } = req.body;
 
-            // Obtener imagen actual
+            const {
+                nombre_producto,
+                id_categoria,
+                id_marca,
+                ano,
+                precio,
+                descripcion,
+                stock
+            } = req.body;
+
+            // Validación básica
+            if (!ano) {
+                return res.status(400).json({ mensaje: "El campo 'ano' es obligatorio" });
+            }
+
+            // Obtener datos actuales del producto
             const [actual] = await db.query(
                 "SELECT imagen FROM productos WHERE id_producto = ?",
                 [id]
@@ -134,19 +153,36 @@ class Productos {
                 return res.status(404).json({ mensaje: "Producto no encontrado" });
             }
 
-            // ✔ Si NO suben nueva imagen, mantener la actual
+            // ✔ Mantener imagen actual si no se sube nueva
             let nuevaImagen = actual[0].imagen || "default.svg";
 
-            // ✔ Si subieron nueva imagen, actualizarla
+            // ✔ Si suben nueva imagen → reemplazar
             if (req.file) {
                 nuevaImagen = req.file.filename;
             }
 
             await db.query(
                 `UPDATE productos 
-                SET nombre_producto = ?, precio = ?, descripcion = ?, stock = ?, imagen = ?
-                WHERE id_producto = ?`,
-                [nombre_producto, precio, descripcion, stock, nuevaImagen, id]
+            SET nombre_producto = ?, 
+                id_categoria = ?,
+                id_marca = ?,
+                ano = ?,
+                precio = ?, 
+                descripcion = ?, 
+                stock = ?, 
+                imagen = ?
+            WHERE id_producto = ?`,
+                [
+                    nombre_producto,
+                    id_categoria,
+                    id_marca,
+                    ano,
+                    precio,
+                    descripcion,
+                    stock,
+                    nuevaImagen,
+                    id
+                ]
             );
 
             res.json({ success: true, mensaje: "Producto actualizado correctamente" });

@@ -15,12 +15,17 @@ const listaOrdenar = document.getElementById("listaOrdenar");
 const btnOrdenar = document.getElementById("btnOrdenar");
 
 
-// Abre el modal con la info del producto
+// ===============================
+// ABRIR MODAL DE PRODUCTO
+// ===============================
 function abrirModalProducto(producto) {
-    document.getElementById("modalProdImg").src =
-        producto.imagen
-            ? `/frontend/media/img/products/${producto.imagen}`
-            : "/frontend/media/img/default.svg";
+
+    // Ruta correcta de imagen (corregida)
+    const imgSrc = producto.imagen
+        ? `/frontend/media/img/products/${producto.imagen}`
+        : `/frontend/media/img/default.svg`;
+
+    document.getElementById("modalProdImg").src = imgSrc;
 
     document.getElementById("modalProdNombre").textContent = producto.nombre;
     document.getElementById("modalProdMarca").textContent = "Marca: " + producto.marca;
@@ -28,21 +33,18 @@ function abrirModalProducto(producto) {
     document.getElementById("modalProdDesc").textContent = producto.descripcion;
     document.getElementById("modalProdPrecio").textContent = producto.precio;
 
-    // Guardar producto para agregar al carrito
     window.productoActualModal = producto;
 
     document.getElementById("modalProducto").classList.remove("hidden");
 }
 
-// Cerrar modal
 function cerrarModalProducto() {
     document.getElementById("modalProducto").classList.add("hidden");
 }
 
-// Agregar al carrito
 function agregarModalAlCarrito() {
     if (window.productoActualModal) {
-        agregarAlCarrito(window.productoActualModal); // Usa tu función existente
+        agregarAlCarrito(window.productoActualModal);
         cerrarModalProducto();
     }
 }
@@ -53,7 +55,6 @@ function agregarModalAlCarrito() {
 function agregarProductoCatalogo(producto) {
     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-    // ¿El producto ya está en el carrito?
     const itemExistente = carrito.find(item => item.id_producto === producto.id_producto);
 
     if (itemExistente) {
@@ -67,12 +68,10 @@ function agregarProductoCatalogo(producto) {
 
     localStorage.setItem("carrito", JSON.stringify(carrito));
 
-    // Actualizar el carrito visual inmediatamente
     if (typeof renderizarCarrito === "function") {
         renderizarCarrito();
     }
 
-    // Abrir el carrito al agregar
     toggleCarrito();
 }
 
@@ -102,43 +101,53 @@ function renderizarProductos(productos) {
         return;
     }
 
-    const html = productos.map(p => `
-    <article class="product-card" onclick='abrirModalProducto({
-    nombre: "${p.nombre_producto}",
-    marca: "${p.nombre_marca ?? ""}",
-    año: "${p.ano ?? ""}",
-    descripcion: "${p.descripcion ?? ""}",
-    imagen: "${p.imagen}",
-    precio: ${p.precio},
-    id_producto: ${p.id_producto}
-})'>
+    const html = productos.map(p => {
 
-        <div class="badge">${p.stock > 0 ? "Disponible" : "Agotado"}</div>
-        <div class="year">${p.ano ?? 2025}</div>
-        <img src="/frontend/media/img/products/${p.imagen ?? "default.svg"}" alt="${p.nombre_producto}"/>
-        <div class="product-desc">
+        // IMAGEN CORRECTA SEGÚN DISPONIBILIDAD
+        const imgSrc = p.imagen
+            ? `/frontend/media/img/products/${p.imagen}`
+            : `/frontend/media/img/default.svg`;
 
-            <div class="card-info">
-                <div class="texto-principal">
-                    <h3>${p.nombre_producto}</h3>
-                    <p class="subtitle">${p.descripcion ?? ""}</p>
+        return `
+        <article class="product-card" onclick='abrirModalProducto({
+            nombre: "${p.nombre_producto}",
+            marca: "${p.nombre_marca ?? ""}",
+            ano: "${p.ano ?? ""}",
+            descripcion: "${p.descripcion ?? ""}",
+            imagen: "${p.imagen}",
+            precio: ${p.precio},
+            id_producto: ${p.id_producto}
+        })'>
+
+            <div class="badge">${p.stock > 0 ? "Disponible" : "Agotado"}</div>
+            <div class="year">${p.ano ?? 2025}</div>
+
+            <img src="${imgSrc}" alt="${p.nombre_producto}"/>
+
+            <div class="product-desc">
+
+                <div class="card-info">
+                    <div class="texto-principal">
+                        <h3>${p.nombre_producto}</h3>
+                        <p class="subtitle">${p.descripcion ?? ""}</p>
+                    </div>
+                    <p class="price">$ ${Number(p.precio).toLocaleString("es-CO")}</p>
                 </div>
-                <p class="price">$ ${Number(p.precio).toLocaleString("es-CO")}</p>
-            </div>
 
-            <button class="btn-add-cart"
-                onclick='event.stopPropagation(); agregarAlCarrito({
-                id_producto: ${p.id_producto},
-                nombre_producto: "${p.nombre_producto}",
-                precio: Number(${p.precio}),
-                imagen: "${p.imagen}"
+                <button class="btn-add-cart"
+                    onclick='event.stopPropagation(); agregarAlCarrito({
+                        id_producto: ${p.id_producto},
+                        nombre_producto: "${p.nombre_producto}",
+                        precio: Number(${p.precio}),
+                        imagen: "${p.imagen}"
                 })'>
-                Agregar al carrito
-            </button>
+                    Agregar al carrito
+                </button>
 
-        </div>
-    </article>
-`).join("");
+            </div>
+        </article>
+        `;
+    }).join("");
 
     contenedor.innerHTML = html;
 }
@@ -177,7 +186,7 @@ async function cargarFiltros() {
 }
 
 // ==========================================
-// Toggle acordeón
+// Toggle de filtros
 // ==========================================
 function toggleDropdown(btn, lista) {
     lista.classList.toggle("active");
@@ -188,7 +197,6 @@ btnMarcas.addEventListener("click", () => toggleDropdown(btnMarcas, listaMarcas)
 btnCategorias.addEventListener("click", () => toggleDropdown(btnCategorias, listaCategorias));
 btnOrdenar.addEventListener("click", () => toggleDropdown(btnOrdenar, listaOrdenar));
 
-// Cerrar dropdowns si clic afuera
 document.addEventListener("click", (e) => {
     if (!e.target.closest(".filter-box")) {
         listaMarcas.classList.remove("active");
@@ -206,15 +214,12 @@ document.addEventListener("click", (e) => {
 function aplicarFiltros() {
     let filtrados = [...productosCache];
 
-    // Filtrar por marcas
     const checkMarcas = Array.from(document.querySelectorAll(".checkbox-marca:checked")).map(cb => cb.value);
     if (checkMarcas.length > 0) filtrados = filtrados.filter(p => checkMarcas.includes(String(p.id_marca)));
 
-    // Filtrar por categorías
     const checkCategorias = Array.from(document.querySelectorAll(".checkbox-categoria:checked")).map(cb => cb.value);
     if (checkCategorias.length > 0) filtrados = filtrados.filter(p => checkCategorias.includes(String(p.id_categoria)));
 
-    // Búsqueda
     const textoBusqueda = searchInput.value.trim().toLowerCase();
     if (textoBusqueda !== "") {
         filtrados = filtrados.filter(p =>
@@ -224,7 +229,6 @@ function aplicarFiltros() {
         );
     }
 
-    // Ordenar
     const ordenSeleccionado = document.querySelector('input[name="ordenar"]:checked')?.value;
     switch (ordenSeleccionado) {
         case "precio-asc":
@@ -240,19 +244,16 @@ function aplicarFiltros() {
             filtrados.sort((a, b) => b.nombre_producto.localeCompare(a.nombre_producto));
             break;
         case "anio-asc":
-            filtrados.sort((a, b) => (b.ano ?? 2025) - (a.ano ?? 2025));
+            filtrados.sort((a, b) => (a.ano ?? 2025) - (b.ano ?? 2025));
             break;
         case "anio-desc":
-            filtrados.sort((a, b) => (a.ano ?? 2025) - (b.ano ?? 2025));
+            filtrados.sort((a, b) => (b.ano ?? 2025) - (a.ano ?? 2025));
             break;
     }
 
     renderizarProductos(filtrados);
 }
 
-// ==========================================
-// Escuchar cambios
-// ==========================================
 document.addEventListener("change", aplicarFiltros);
 searchInput.addEventListener("input", aplicarFiltros);
 
