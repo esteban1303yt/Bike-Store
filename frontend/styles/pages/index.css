@@ -2,6 +2,11 @@ main {
     display: flex;
     padding: 40px 20px;
     flex-direction: column;
+    background-image: linear-gradient(rgba(168, 166, 166, 0.589), rgb(17, 17, 17)), 
+    url("/frontend/media/img/index/image1.png");
+    background-repeat: no-repeat;
+    background-position: center;
+   
 }
 
 /* CONTENEDOR QUE OCUPA TODA LA PANTALLA */
@@ -56,8 +61,8 @@ main {
 }
 
 .brands-title {
-    color: rgb(0, 0, 0);
-    border-bottom: 4px #000000 solid;
+    color: rgb(255, 255, 255);
+    border-bottom: 3px #ffffff solid;
     text-align: center;
     width: fit-content;
 }
@@ -68,15 +73,15 @@ main {
     justify-content: space-between;
     align-items: center;
     padding: 80px 10%;
-    background: white;
-    border: 6px solid #F1F1F1;
-    border-radius: 16px;
+
+
+    
 }
 
 .hero-text {
     width: fit-content;
+    color: white;
 }
-
 .hero-text h1 {
     font-size: 64px;
     margin: 0;

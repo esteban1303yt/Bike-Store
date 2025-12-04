@@ -100,7 +100,7 @@ function renderizarProductos(productos) {
         contenedor.innerHTML = `<div class="product-grid-empty">No se encontraron productos.</div>`;
         return;
     }
-
+    
     const html = productos.map(p => {
 
         // IMAGEN CORRECTA SEGÚN DISPONIBILIDAD
@@ -118,6 +118,15 @@ function renderizarProductos(productos) {
             precio: ${p.precio},
             id_producto: ${p.id_producto}
         })'>
+
+            <!-- NUEVO BOTÓN FAVORITOS -->
+            <button class="btn-favorito"
+                onclick="event.stopPropagation(); agregarAFavoritos(${p.id_producto})">
+                <img src="/frontend/media/icons/favoritos.svg" 
+                    class="icon-fav ${JSON.parse(localStorage.getItem('favoritos') || '[]').includes(p.id_producto) ? 'fav-activo' : ''}"
+                    alt="favoritos">
+            </button>
+
 
             <div class="badge">${p.stock > 0 ? "Disponible" : "Agotado"}</div>
             <div class="year">${p.ano ?? 2025}</div>
@@ -151,6 +160,7 @@ function renderizarProductos(productos) {
 
     contenedor.innerHTML = html;
 }
+
 
 // ==========================================
 // Cargar filtros (marcas y categorías)

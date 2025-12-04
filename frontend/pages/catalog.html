@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="/frontend/styles/header.css"> <!-- CSS del header -->
     <link rel="stylesheet" href="/frontend/styles/pages/catalog.css"> <!-- CSS de la página -->
     <link rel="stylesheet" href="/frontend/styles/footer.css"> <!-- CSS del footer -->
-    <link rel="stylesheet" href="/frontend/styles/templates/carrito.css"> <!-- Carrito -->
+    <link rel="stylesheet" href="/frontend/styles/templates/carrito.css">
+    <link rel="stylesheet" href="/frontend/styles/pages/modalfavorito.css"> <!-- Carrito -->
 </head>
 
 <body>
@@ -60,8 +61,9 @@
                         </a>
                     </div>
                 </div>
-
-                <img src="/frontend/media/icons/ellipsis_vertical.svg" alt="otro" class="btn-icons">
+                 <button onclick="toggleFavoritos()" class="btn-icons">
+                        <img src="/frontend/media/icons/favoritos.svg" alt="favoritos" width="40px">
+                </button>
             </div>
         </div>
     </header>
@@ -261,10 +263,27 @@
         </div>
     </div>
 
+<!-- Modal de Favoritos-->
+    <div id="modalFavoritos" class="modal-fav-overlay hidden">
+        <div class="modal-fav">
+            <div class="fav-header">
+                <h3>Mis Favoritos</h3>
+                <button class="fav-close-btn" onclick="toggleFavoritos()">X</button>
+            </div>
+
+            <div id="favoritosItems" class="fav-items"></div>
+
+            <div class="fav-footer">
+                <button class="fav-clear" onclick="vaciarFavoritos()">Vaciar favoritos</button>
+            </div>
+        </div>
+    </div>
+
     <!-- SCRIPTS -->
     <script src="/frontend/scripts/carrito.js"></script>
     <script src="/frontend/scripts/catalog.js"></script>
     <script src="/frontend/scripts/login.js"></script>
+    <script src="/frontend/scripts/modalfavorito.js"></script>
 
 </body>
 

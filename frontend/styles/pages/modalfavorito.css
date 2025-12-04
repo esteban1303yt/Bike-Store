@@ -1,0 +1,152 @@
+/* =======================
+    MODAL FAVORITOS
+======================= */
+.icon-fav {
+    transition: 0.2s ease;
+}
+
+.icon-fav.fav-activo {
+    filter: invert(28%) sepia(92%) saturate(2791%) hue-rotate(344deg) brightness(95%) contrast(110%);
+}
+
+/*=======boton de favoritos en productos============*/
+.btn-favorito {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    background: #fff;
+    border-radius: 2px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    z-index: 10;
+}
+
+.btn-favorito img {
+    width: 20px;
+    height: 20px;
+    filter: invert(0); /* mantiene el negro del ícono */
+}
+
+.btn-favorito:hover {
+    transform: scale(1.05);
+}
+
+.product-card {
+    position: relative; /* NECESARIO para posicionar el corazón */
+}
+
+
+.modal-fav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.65);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-fav-overlay.hidden {
+    display: none;
+}
+
+.modal-fav {
+    width: 400px;
+    max-height: 80vh;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 20px;
+    overflow-y: auto;
+    color: black;
+    border: 3px solid #ffffff;
+    animation: aparecerFav .25s ease-out;
+}
+
+@keyframes aparecerFav {
+    from { opacity: 0; transform: scale(0.85); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.fav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 10px;
+}
+
+.fav-close-btn {
+    background: #000000;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.fav-items {
+    margin-top: 15px;
+}
+
+.fav-item {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    border: 1px solid #a0a0a07c;
+}
+
+.fav-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 12px;
+}
+
+.fav-item-info h4 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.fav-item-info p {
+    margin: 3px 0 0 0;
+    color: #ccc;
+    font-size: 14px;
+}
+
+.fav-remove {
+    margin-left: auto;
+    background: #444;
+    border: none;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.fav-clear {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    background: #030303;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.fav-clear:hover {
+    background: #666;
+}
