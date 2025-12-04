@@ -54,11 +54,16 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
         // Si NO hay usuario, abrir modal de login
         profileBtn.addEventListener("click", () => {
-            modalOverlay.classList.add("show");
-            modal.classList.add("show");
-            loginView.style.display = "block";
-            registerView.style.display = "none";
-        });
+
+    // Cerrar carrito si está abierto
+    document.getElementById("carritoLateral").classList.remove("active");
+
+    //  Abrir el modal de login
+    modalOverlay.classList.add("show");
+    modal.classList.add("show");
+    loginView.style.display = "block";
+    registerView.style.display = "none";
+});
     }
 
     // ──────────── SWITCH LOGIN → REGISTRO ────────────
@@ -111,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const result = await res.json();
 
                 if (result.success) {
-                    localStorage.setItem("usuarioActual", JSON.stringify(result.usuario));
+                    localStorage.setItem("usuario", JSON.stringify(usuario));
 
                     // Si backend devuelve token, lo guardamos
                     if (result.token) {
@@ -199,4 +204,15 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+});
+
+
+document.getElementById("btnIrLogin").addEventListener("click", function () {
+
+    // Ocultar mensaje de éxito
+    document.getElementById("registroExitoso").style.display = "none";
+
+    // Mostrar formulario de login
+    document.getElementById("loginView").style.display = "block";
+
 });

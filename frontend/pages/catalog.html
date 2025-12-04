@@ -214,6 +214,14 @@
                 </p>
             </div>
         </div>
+        <div id="registroExitoso" style="display: none; text-align:center; padding:20px;">
+    <h2>🎉 Registro exitoso</h2>
+    <p>Tu cuenta ha sido creada correctamente.</p>
+    <button id="btnIrLogin" style="margin-top:15px; padding:10px 20px; background:#000; color:#fff; border:none; border-radius:5px; cursor:pointer;">
+        Iniciar sesión
+    </button>
+</div>
+
     </div>
 
     <!-- Modal carrito  -->
@@ -229,12 +237,12 @@
 
         <div class="carrito-footer">
             <p>Total: $<span id="totalCarrito">0</span></p>
-            <button class="btn-vaciar" onclick="">Comprar</button>
-
+            <button class="btn-vaciar" onclick="procesarCompra()">Comprar</button>
         </div>
 
     </div>
 
+    
     <!-- MODAL DETALLES DEL PRODUCTO -->
     <div id="modalProducto" class="modal-producto-overlay hidden">
         <div class="modal-producto">
@@ -262,6 +270,27 @@
             </div>
         </div>
     </div>
+<!--modal de compra en carrito-->
+<!-- Modal de Pago -->
+<div id="modalPago" class="modal-pago-overlay hidden">
+    <div class="modal-pago">
+        <h3>Simulación de Pago</h3>
+
+        <p>Total a pagar: $<span id="totalPagar"></span></p>
+
+        <div class="pago-form">
+            <input type="text" placeholder="Número de tarjeta" maxlength="16">
+            <input type="text" placeholder="Nombre del titular">
+            <input type="text" placeholder="MM/YY" maxlength="5">
+            <input type="text" placeholder="CVV" maxlength="3">
+
+            <button id="btnConfirmarPago" class="btn-pagar">Pagar</button>
+        </div>
+
+        <button class="cerrar-pago" onclick="cerrarModalPago()">X</button>
+    </div>
+</div>
+
 
 <!-- Modal de Favoritos-->
     <div id="modalFavoritos" class="modal-fav-overlay hidden">

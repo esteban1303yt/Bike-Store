@@ -113,3 +113,61 @@ function mostrarCarrito() {
 
     total.textContent = calcularTotal().toLocaleString("es-CO");
 }
+/*funcion para completar el proceso de compra  */
+// Verifica login y muestra modal de pago
+function procesarCompra() {
+    const user = JSON.parse(localStorage.getItem("usuarioActual"));
+
+    // Si no está logeado → abre modal login
+    if (!user) {
+
+        // CERRAR CARRITO AQUÍ 👇
+        document.getElementById("carritoLateral").classList.remove("active");
+
+        const modalOverlay = document.getElementById("modal-overlay");
+        const modal = document.getElementById("modal");
+
+        modalOverlay.classList.add("show");
+        modal.classList.add("show");
+
+        // Forzar vista login
+        document.getElementById("loginView").style.display = "block";
+        document.getElementById("registerView").style.display = "none";
+
+        return;
+    }
+
+    // Si está logueado → abre modal de pago
+    abrirModalPago();
+}
+
+
+// Abrir modal de pago
+function abrirModalPago() {
+    const modalPago = document.getElementById("modalPago");
+    const total = calcularTotal();
+
+    document.getElementById("totalPagar").textContent = total.toLocaleString("es-CO");
+    modalPago.classList.remove("hidden");
+}
+
+// Cerrar modal pago
+function cerrarModalPago() {
+    document.getElementById("modalPago").classList.add("hidden");
+}
+
+// Confirmar pago
+document.addEventListener("DOMContentLoaded", () => {
+    const btnPagar = document.getElementById("btnConfirmarPago");
+
+    if (btnPagar) {
+        btnPagar.addEventListener("click", () => {
+            // Simulación
+            alert("Pago realizado con éxito ✔️");
+
+            vaciarCarrito();
+            cerrarModalPago();
+            toggleCarrito(); // cerrar carrito
+        });
+    }
+});
