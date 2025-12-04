@@ -69,8 +69,7 @@ header {
     margin: 8px;
     display: flex;
     gap: 20px;
-    width: 160px;
-    height: fit-content;
+    width: fit-content;
 }
 
 .btn-icons {
@@ -79,4 +78,8 @@ header {
     padding: 0px;
     margin: 4px;
     display: flex;
+}
+
+.btn-icons img {
+    width: 40px;
 }
