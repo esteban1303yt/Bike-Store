@@ -6,7 +6,6 @@ main {
     url("/frontend/media/img/index/image1.png");
     background-repeat: no-repeat;
     background-position: center;
-   
 }
 
 /* CONTENEDOR QUE OCUPA TODA LA PANTALLA */
@@ -128,7 +127,7 @@ main {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 25px;
-    width: 90%;
+    width: 75%;
     margin: auto;
 }
 
@@ -138,7 +137,7 @@ main {
     border-radius: 12px;
     text-align: center;
     overflow: hidden;
-    height: fit-content;
+    height: -webkit-fill-available;
 }
 
 .producto img {
