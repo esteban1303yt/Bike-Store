@@ -1,6 +1,4 @@
-// ===============================
-// CARRITO CON LOCALSTORAGE
-// ===============================
+// Carrito con local storage
 
 //Mostrar / ocultar carrito
 function toggleCarrito() {
@@ -18,8 +16,10 @@ function cargarCarrito() {
 function guardarCarrito(carrito) {
     localStorage.setItem("carrito", JSON.stringify(carrito));
 }
+
 // Agregar producto al carrito
 function agregarAlCarrito(producto) {
+<<<<<<< HEAD
     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
     const existe = carrito.find(item => item.id_producto === producto.id_producto);
     if (existe) {
@@ -43,6 +43,14 @@ function agregarAlCarrito(producto) {
     }
     localStorage.setItem("carrito", JSON.stringify(carrito));
     mostrarCarrito();
+=======
+    let carrito = cargarCarrito();
+    const item = carrito.find(p => p.id_producto === producto.id_producto);
+    if (item) item.cantidad++;
+    else carrito.push({ ...producto, cantidad: 1 });
+    guardarCarrito(carrito);
+    toggleCarrito();
+>>>>>>> 7642a74dfe88d5d9e770230f30fa51fbfc02b5b0
 }
 // Suma la cantidad y el valor del carrito
 function agregarUnidad(id) {
@@ -63,18 +71,23 @@ function agregarUnidad(id) {
     mostrarCarrito();
 }
 
-
 // Resta la cantidad y el valor del producto
 function restarUnidad(id) {
     let carrito = cargarCarrito();
     const item = carrito.find(p => p.id_producto === id);
     if (!item) return;
+<<<<<<< HEAD
 
     // Mínimo 1 unidad
     if (item.cantidad > 1) {
         item.cantidad--;
     }
 
+=======
+    item.cantidad--;
+    if (item.cantidad <= 0)
+        carrito = carrito.filter(p => p.id_producto !== id);
+>>>>>>> 7642a74dfe88d5d9e770230f30fa51fbfc02b5b0
     guardarCarrito(carrito);
     mostrarCarrito();
 }
@@ -86,19 +99,16 @@ function eliminarProducto(id) {
     mostrarCarrito();
 }
 
-
 // Vaciar carrito
 function vaciarCarrito() {
     localStorage.removeItem("carrito");
     mostrarCarrito();
 }
 
-
 // Calcular total de todos los productos y arrojar el valor total
 function calcularTotal() {
     return cargarCarrito().reduce((acc, p) => acc + p.precio * p.cantidad, 0);
 }
-
 
 // Mostrar el carrito 
 function mostrarCarrito() {
@@ -115,10 +125,14 @@ function mostrarCarrito() {
     }
 
     carrito.forEach(p => {
+        const imgSrc = (p.imagen && p.imagen !== "default.svg")
+            ? `/frontend/media/img/products/${p.imagen}`
+            : `/frontend/media/img/default.svg`;
+
         cont.innerHTML += `
         <div class="carrito-item">
             <div class="carrito-product">
-                <img src="/frontend/media/img/products/${p.imagen ?? "default.svg"}" alt="${p.nombre_producto}"/>
+                <img src="${imgSrc}" alt="${p.nombre_producto}"/>
                 <div class="info">
                     <h4>${p.nombre_producto}</h4>
                     <p>Precio: $${p.precio.toLocaleString("es-CO")}</p>

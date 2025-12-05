@@ -7,34 +7,25 @@ const searchInput = document.getElementById("searchInput");
 // Dropdowns
 const listaMarcas = document.getElementById("listaMarcas");
 const btnMarcas = document.getElementById("btnMarcas");
-
 const listaCategorias = document.getElementById("listaCategorias");
 const btnCategorias = document.getElementById("btnCategorias");
-
 const listaOrdenar = document.getElementById("listaOrdenar");
 const btnOrdenar = document.getElementById("btnOrdenar");
 
-
-// ===============================
-// ABRIR MODAL DE PRODUCTO
-// ===============================
+// Abrir modal de producto
 function abrirModalProducto(producto) {
-
     // Ruta correcta de imagen (corregida)
-    const imgSrc = producto.imagen
+    const imgSrc = (producto.imagen && producto.imagen !== "default.svg")
         ? `/frontend/media/img/products/${producto.imagen}`
         : `/frontend/media/img/default.svg`;
-
     document.getElementById("modalProdImg").src = imgSrc;
-
     document.getElementById("modalProdNombre").textContent = producto.nombre;
     document.getElementById("modalProdMarca").textContent = "Marca: " + producto.marca;
     document.getElementById("modalProdAno").textContent = "Año: " + (producto.año || producto.ano || "N/A");
+    document.getElementById("modalDisponible").textContent = "Disponibles: " + producto.stock;
     document.getElementById("modalProdDesc").textContent = producto.descripcion;
     document.getElementById("modalProdPrecio").textContent = producto.precio;
-
     window.productoActualModal = producto;
-
     document.getElementById("modalProducto").classList.remove("hidden");
 }
 
@@ -49,14 +40,10 @@ function agregarModalAlCarrito() {
     }
 }
 
-// ===============================
-// AGREGAR AL CARRITO
-// ===============================
+// Agregar producto al carrito
 function agregarProductoCatalogo(producto) {
     let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
     const itemExistente = carrito.find(item => item.id_producto === producto.id_producto);
-
     if (itemExistente) {
         itemExistente.cantidad++;
     } else {
@@ -65,22 +52,17 @@ function agregarProductoCatalogo(producto) {
             cantidad: 1
         });
     }
-
     localStorage.setItem("carrito", JSON.stringify(carrito));
-
     if (typeof renderizarCarrito === "function") {
         renderizarCarrito();
     }
-
     toggleCarrito();
 }
 
 // Cache de productos
 let productosCache = [];
 
-// ==========================================
 // Cargar Productos
-// ==========================================
 async function cargarProductos() {
     try {
         const res = await fetch(`${API}/productos`);
@@ -92,9 +74,7 @@ async function cargarProductos() {
     }
 }
 
-// ==========================================
 // Renderizar Productos
-// ==========================================
 function renderizarProductos(productos) {
     if (!productos || productos.length === 0) {
         contenedor.innerHTML = `<div class="product-grid-empty">No se encontraron productos.</div>`;
@@ -104,67 +84,57 @@ function renderizarProductos(productos) {
     const html = productos.map(p => {
 
         // IMAGEN CORRECTA SEGÚN DISPONIBILIDAD
-        const imgSrc = p.imagen
+        const imgSrc = (p.imagen && p.imagen !== "default.svg")
             ? `/frontend/media/img/products/${p.imagen}`
             : `/frontend/media/img/default.svg`;
 
         return `
-        <article class="product-card" onclick='abrirModalProducto({
+                    <article class="product-card" onclick='abrirModalProducto({
             nombre: "${p.nombre_producto}",
             marca: "${p.nombre_marca ?? ""}",
             ano: "${p.ano ?? ""}",
+            stock: "${p.stock}",
             descripcion: "${p.descripcion ?? ""}",
             imagen: "${p.imagen}",
             precio: ${p.precio},
-            id_producto: ${p.id_producto}
-        })'>
+            id_producto: ${p.id_producto}})'>
 
-            <!-- NUEVO BOTÓN FAVORITOS -->
-            <button class="btn-favorito"
-                onclick="event.stopPropagation(); agregarAFavoritos(${p.id_producto})">
-                <img src="/frontend/media/icons/heart.svg" 
-                    class="icon-fav ${JSON.parse(localStorage.getItem('favoritos') || '[]').includes(p.id_producto) ? 'fav-activo' : ''}"
-                    alt="favoritos">
-            </button>
-
-
-            <div class="badge">${p.stock > 0 ? "Disponible" : "Agotado"}</div>
-            <div class="year">${p.ano ?? 2025}</div>
-
-            <img src="${imgSrc}" alt="${p.nombre_producto}"/>
-
-            <div class="product-desc">
-
-                <div class="card-info">
-                    <div class="texto-principal">
-                        <h3>${p.nombre_producto}</h3>
-                        <p class="subtitle">${p.descripcion ?? ""}</p>
-                    </div>
-                    <p class="price">$ ${Number(p.precio).toLocaleString("es-CO")}</p>
-                </div>
-
-                <button class="btn-add-cart"
-                    onclick='event.stopPropagation(); agregarAlCarrito({
+                <div class="badge">${p.stock > 0 ? "Disponible" : "Agotado"}</div>
+                <div class="year">${p.ano ?? 2025}</div>
+                <img src="${imgSrc}" alt="${p.nombre_producto}" />
+                
+                <div class="product-desc">
+                    <div class="card-info">
+                        <div class="texto-principal">
+                            <div class="nombre-producto">
+                                <h3>${p.nombre_producto}</h3>
+                                <button class="btn-favorito"
+                                    onclick="event.stopPropagation(); agregarAFavoritos(${p.id_producto})">
+                                    <img src="/frontend/media/icons/heart.svg" 
+                                        class="icon-fav ${JSON.parse(localStorage.getItem('favoritos') || '[]').includes(p.id_producto) ? 'fav-activo' : ''}"
+                                        alt="favoritos">
+                                </button>
+                            </div>
+                            <p class="subtitle">${p.descripcion ?? ""}</p>
+                        </div>
+                        <p class="price">$ ${Number(p.precio).toLocaleString("es-CO")}</p>
+                        <button class="btn-add-cart" onclick='event.stopPropagation(); agregarAlCarrito({
                         id_producto: ${p.id_producto},
                         nombre_producto: "${p.nombre_producto}",
                         precio: Number(${p.precio}),
-                        imagen: "${p.imagen}"
-                })'>
-                    Agregar al carrito
-                </button>
-
-            </div>
-        </article>
+                        imagen: "${p.imagen}"})'>
+                            Agregar al carrito
+                        </button>
+                    </div>
+                </div>
+            </article>
         `;
     }).join("");
-
     contenedor.innerHTML = html;
 }
 
 
-// ==========================================
 // Cargar filtros (marcas y categorías)
-// ==========================================
 async function cargarFiltros() {
     // Marcas
     try {
@@ -195,9 +165,8 @@ async function cargarFiltros() {
     }
 }
 
-// ==========================================
+
 // Toggle de filtros
-// ==========================================
 function toggleDropdown(btn, lista) {
     lista.classList.toggle("active");
     btn.querySelector(".toggle-icon").textContent = lista.classList.contains("active") ? "-" : "+";
@@ -211,9 +180,8 @@ document.addEventListener("click", (e) => {
     
 });
 
-// ==========================================
+
 // Aplicar filtros, búsqueda y orden
-// ==========================================
 function aplicarFiltros() {
     let filtrados = [...productosCache];
 
@@ -253,15 +221,12 @@ function aplicarFiltros() {
             filtrados.sort((a, b) => (b.ano ?? 2025) - (a.ano ?? 2025));
             break;
     }
-
     renderizarProductos(filtrados);
 }
 
 document.addEventListener("change", aplicarFiltros);
 searchInput.addEventListener("input", aplicarFiltros);
 
-// ==========================================
 // Inicializar
-// ==========================================
 cargarFiltros();
 cargarProductos();

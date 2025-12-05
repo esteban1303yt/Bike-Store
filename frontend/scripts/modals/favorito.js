@@ -31,7 +31,7 @@ function renderizarFavoritos() {
     }
 
     cont.innerHTML = favoritos.map(p => {
-        const imgSrc = p.imagen
+        const imgSrc = (p.imagen && p.imagen !== "default.svg")
             ? `/frontend/media/img/products/${p.imagen}`
             : `/frontend/media/img/default.svg`;
 

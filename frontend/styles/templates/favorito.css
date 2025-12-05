@@ -1,49 +1,6 @@
 /* =======================
     MODAL FAVORITOS
 ======================= */
-.icon-fav {
-    transition: 0.2s ease;
-}
-
-.icon-fav.fav-activo {
-    filter: invert(28%) sepia(92%) saturate(2791%) hue-rotate(344deg) brightness(95%) contrast(110%);
-}
-
-/*=======boton de favoritos en productos============*/
-.btn-favorito {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    width: 36px;
-    height: 36px;
-    background: #fff;
-    border-radius: 2px;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-    z-index: 10;
-}
-
-.btn-favorito img {
-    width: 20px;
-    height: 20px;
-    filter: invert(0);
-    /* mantiene el negro del ícono */
-}
-
-.btn-favorito:hover {
-    transform: scale(1.05);
-}
-
-.product-card {
-    position: relative;
-    /* NECESARIO para posicionar el corazón */
-}
-
-
 .modal-fav-overlay {
     position: fixed;
     top: 0;
