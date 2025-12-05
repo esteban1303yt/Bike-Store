@@ -208,14 +208,7 @@ btnCategorias.addEventListener("click", () => toggleDropdown(btnCategorias, list
 btnOrdenar.addEventListener("click", () => toggleDropdown(btnOrdenar, listaOrdenar));
 
 document.addEventListener("click", (e) => {
-    if (!e.target.closest(".filter-box")) {
-        listaMarcas.classList.remove("active");
-        listaCategorias.classList.remove("active");
-        listaOrdenar.classList.remove("active");
-        btnMarcas.querySelector(".toggle-icon").textContent = "+";
-        btnCategorias.querySelector(".toggle-icon").textContent = "+";
-        btnOrdenar.querySelector(".toggle-icon").textContent = "+";
-    }
+    
 });
 
 // ==========================================

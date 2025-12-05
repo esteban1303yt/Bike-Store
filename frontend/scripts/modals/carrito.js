@@ -20,37 +20,60 @@ function guardarCarrito(carrito) {
 }
 // Agregar producto al carrito
 function agregarAlCarrito(producto) {
-    let carrito = cargarCarrito();
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    const existe = carrito.find(item => item.id_producto === producto.id_producto);
+    if (existe) {
 
-    const item = carrito.find(p => p.id_producto === producto.id_producto);
+        // ❗ límite de 3 unidades
+        if (existe.cantidad >= 3) {
+            alert("Solo puedes agregar máximo 3 unidades de este producto.");
+            return;
+        }
 
-    if (item) item.cantidad++;
-    else carrito.push({ ...producto, cantidad: 1 });
+        existe.cantidad++;
 
-    guardarCarrito(carrito);
-    toggleCarrito();
+    } else {
+        carrito.push({
+            id_producto: producto.id_producto,
+            nombre_producto: producto.nombre_producto,
+            precio: producto.precio,
+            imagen: producto.imagen,
+            cantidad: 1
+        });
+    }
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    mostrarCarrito();
 }
-
 // Suma la cantidad y el valor del carrito
 function agregarUnidad(id) {
     let carrito = cargarCarrito();
     const item = carrito.find(p => p.id_producto === id);
-    if (item) item.cantidad++;
+
+    if (!item) return;
+
+    // ❗ LIMITE DE 3
+    if (item.cantidad >= 3) {
+        alert("Solo puedes agregar máximo 3 unidades de este producto.");
+        return;
+    }
+
+    item.cantidad++;
+
     guardarCarrito(carrito);
     mostrarCarrito();
 }
 
 
 // Resta la cantidad y el valor del producto
-function restarProducto(id) {
+function restarUnidad(id) {
     let carrito = cargarCarrito();
     const item = carrito.find(p => p.id_producto === id);
     if (!item) return;
 
-    item.cantidad--;
-
-    if (item.cantidad <= 0)
-        carrito = carrito.filter(p => p.id_producto !== id);
+    // Mínimo 1 unidad
+    if (item.cantidad > 1) {
+        item.cantidad--;
+    }
 
     guardarCarrito(carrito);
     mostrarCarrito();
@@ -105,7 +128,7 @@ function mostrarCarrito() {
 
             <div class="acciones">
                 <button onclick="eliminarProducto(${p.id_producto})">🗑</button>
-                <button onclick="restarProducto(${p.id_producto})">-</button>
+                <button onclick="restarUnidad(${p.id_producto})">-</button>
                 <button onclick="agregarUnidad(${p.id_producto})">+</button>
             </div>
         </div>`;
@@ -142,8 +165,61 @@ function procesarCompra() {
 }
 
 
+// funcion de proceso de compra solo si hay productos en el carrito 
+function procesarCompra() {
+    const carrito = cargarCarrito();
+
+    // ❗ Si el carrito está vacío → NO dejar abrir modal de pago
+    if (carrito.length === 0) {
+        alert("Tu carrito está vacío. Agrega productos para continuar.");
+        return;
+    }
+
+    const user = JSON.parse(localStorage.getItem("usuarioActual"));
+
+    // Si no está logeado → abre modal login
+    if (!user) {
+        // CERRAR CARRITO AQUÍ 👇
+        document.getElementById("carritoLateral").classList.remove("active");
+
+        const modalOverlay = document.getElementById("modal-overlay");
+        const modal = document.getElementById("modal");
+
+        modalOverlay.classList.add("show");
+        modal.classList.add("show");
+
+        // Forzar vista login
+        document.getElementById("loginView").style.display = "block";
+        document.getElementById("registerView").style.display = "none";
+
+        return;
+    }
+
+    // Si está logueado → abre modal pago
+    abrirModalPago();
+}
+document.addEventListener("DOMContentLoaded", () => {
+    const modalPago = document.getElementById("modalPago");
+
+
+    
+// Cierre al hacer clic fuera del contenido
+    modalPago.addEventListener("click", (e) => {
+        if (e.target === modalPago) {
+            cerrarModalPago();
+        }
+    });
+});
+
+
 // Abrir modal de pago
 function abrirModalPago() {
+    const carrito = cargarCarrito();
+
+    if (carrito.length === 0) {
+        return; // Evita abrir el modal si no hay productos
+    }
+
     const modalPago = document.getElementById("modalPago");
     const total = calcularTotal();
 
