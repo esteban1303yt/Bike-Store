@@ -326,3 +326,27 @@ main {
 .btn-agregar-carrito:hover {
     background: #333;
 }
+
+.nombre-producto {
+    display: flex;
+    justify-content: space-between;
+}
+
+/*=======boton de favoritos en productos============*/
+.btn-favorito {
+    padding: 0px;
+    border: none;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    transition: 0.2s ease;
+}
+
+.btn-favorito img {
+    width: 26px;
+    height: 26px;
+}
+
+.btn-favorito:hover {
+    transform: scale(1.05);
+}

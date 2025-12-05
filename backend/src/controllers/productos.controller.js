@@ -1,7 +1,6 @@
 const db = require("../config/db");
 
 class Productos {
-
     // ===============================
     // OBTENER TODOS LOS PRODUCTOS
     // ===============================
