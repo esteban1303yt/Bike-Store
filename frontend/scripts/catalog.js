@@ -85,9 +85,10 @@ function renderizarProductos(productos) {
     const html = productos.map(p => {
 
         // IMAGEN CORRECTA SEGÚN DISPONIBILIDAD
-        const imgSrc = p.imagen
+        const imgSrc = (p.imagen && p.imagen !== "default.svg")
             ? `/frontend/media/img/products/${p.imagen}`
             : `/frontend/media/img/default.svg`;
+
 
         return `
                     <article class="product-card" onclick='abrirModalProducto({

@@ -13,9 +13,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         contenedor.innerHTML = "";
 
         aleatorios.forEach(prod => {
-            const imagen = prod.imagen
+            const imagen = (prod.imagen && prod.imagen !== "default.svg")
                 ? `/frontend/media/img/products/${prod.imagen}`
                 : `/frontend/media/img/default.svg`;
+
 
             contenedor.innerHTML += `
                 <div class="producto">

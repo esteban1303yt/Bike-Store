@@ -92,10 +92,14 @@ function mostrarCarrito() {
     }
 
     carrito.forEach(p => {
+        const rutaImagen = (p.imagen && p.imagen !== "default.svg")
+            ? `/frontend/media/img/products/${p.imagen}`
+            : `/frontend/media/img/default.svg`;
+
         cont.innerHTML += `
         <div class="carrito-item">
             <div class="carrito-product">
-                <img src="/frontend/media/img/products/${p.imagen ?? "default.svg"}" alt="${p.nombre_producto}"/>
+                <img src="${rutaImagen}" alt="${p.nombre_producto}"/>
                 <div class="info">
                     <h4>${p.nombre_producto}</h4>
                     <p>Precio: $${p.precio.toLocaleString("es-CO")}</p>
