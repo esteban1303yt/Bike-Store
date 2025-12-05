@@ -30,9 +30,7 @@
                     <li><a href="#" class="active">Contacto</a></li>
                 </ul>
             </nav>
-            <!-- Botones de inicio/registro, carrito y opciones -->
             <div class="nav-other">
-
                 <!-- Botón carrito -->
                 <button onclick="toggleCarrito()" class="btn-icons">
                     <img src="/frontend/media/icons/cart.svg" alt="carrito">
@@ -63,7 +61,10 @@
                     </div>
                 </div>
 
-                <img src="/frontend/media/icons/favoritos.svg" alt="favoritos" width="40px">
+                <!-- Botón de favoritos -->
+                <button onclick="toggleFavoritos()" class="btn-icons">
+                    <img src="/frontend/media/icons/heart.svg" alt="favoritos" width="40px">
+                </button>
             </div>
         </div>
 
@@ -157,6 +158,15 @@
                 </p>
             </div>
         </div>
+        <div id="registroExitoso" style="display: none; text-align:center; padding:20px;">
+            <h2>🎉 Registro exitoso</h2>
+            <p>Tu cuenta ha sido creada correctamente.</p>
+            <button id="btnIrLogin"
+                style="margin-top:15px; padding:10px 20px; background:#000; color:#fff; border:none; border-radius:5px; cursor:pointer;">
+                Iniciar sesión
+            </button>
+        </div>
+
     </div>
 
     <!-- Modal carrito  -->
@@ -172,12 +182,80 @@
 
         <div class="carrito-footer">
             <p>Total: $<span id="totalCarrito">0</span></p>
+            <button class="btn-vaciar" onclick="procesarCompra()">Comprar</button>
+        </div>
+
+    </div>
+
+    <!-- Modal detalles -->
+    <div id="modalProducto" class="modal-producto-overlay hidden">
+        <div class="modal-producto">
+            <button class="cerrar-modal-producto" onclick="cerrarModalProducto()">X</button>
+
+            <div class="modal-producto-content">
+
+                <div class="modal-producto-img">
+                    <img id="modalProdImg" src="" alt="producto">
+                </div>
+
+                <div class="modal-producto-info">
+                    <h2 id="modalProdNombre"></h2>
+                    <p id="modalProdMarca"></p>
+                    <p id="modalProdAno"></p>
+
+                    <p class="modal-prod-desc" id="modalProdDesc"></p>
+
+                    <h3 class="modal-prod-precio">
+                        $<span id="modalProdPrecio"></span>
+                    </h3>
+
+                    <button class="btn-agregar-carrito" onclick="agregarModalAlCarrito()">Agregar al carrito</button>
+                </div>
+            </div>
         </div>
     </div>
 
-    <script src="/frontend/scripts/contact.js"></script>
-    <script src="/frontend/scripts/login.js"></script>
-    <script src="/frontend/scripts/carrito.js"></script>
+    <!-- Modal pago -->
+    <div id="modalPago" class="modal-pago-overlay hidden">
+        <div class="modal-pago">
+            <h3>Simulación de Pago</h3>
+
+            <p>Total a pagar: $<span id="totalPagar"></span></p>
+
+            <div class="pago-form">
+                <input type="text" placeholder="Número de tarjeta" maxlength="16">
+                <input type="text" placeholder="Nombre del titular">
+                <input type="text" placeholder="MM/YY" maxlength="5">
+                <input type="text" placeholder="CVV" maxlength="3">
+
+                <button id="btnConfirmarPago" class="btn-pagar">Pagar</button>
+            </div>
+
+            <button class="cerrar-pago" onclick="cerrarModalPago()">X</button>
+        </div>
+    </div>
+
+    <!-- Modal favoritos-->
+    <div id="modalFavoritos" class="modal-fav-overlay hidden">
+        <div class="modal-fav">
+            <div class="fav-header">
+                <h3>Mis Favoritos</h3>
+                <button class="fav-close-btn" onclick="toggleFavoritos()">X</button>
+            </div>
+
+            <div id="favoritosItems" class="fav-items"></div>
+
+            <div class="fav-footer">
+                <button class="fav-clear" onclick="vaciarFavoritos()">Vaciar favoritos</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/frontend/scripts/contact.js"></script><!-- Script principal -->
+    <script src="/frontend/scripts/modals/carrito.js"></script><!-- Modal carrito -->
+    <script src="/frontend/scripts/modals/login.js"></script><!-- Modal login/registro -->
+    <script src="/frontend/scripts/modals/favorito.js"></script><!-- Modal favorito -->
 
 </body>
 

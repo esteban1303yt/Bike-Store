@@ -7,29 +7,30 @@
     <title>Document</title>
 </head>
 <!--estructura de la lista del carito  donde se visualizan los productos -->
+
 <body>
     <div id="listaProductos"></div>
 
     <h2>Carrito</h2>
     <div id="carrito"></div>
 
-<div id="carritoLateral" class="panelCarrito">
+    <div id="carritoLateral" class="panelCarrito">
 
-    <div class="carrito-header">
+        <div class="carrito-header">
             <h3>Mi Carrito</h3>
             <button class="close-btn" onclick="toggleCarrito()">X</button>
         </div>
 
         <div id="carritoItems" class="carrito-items"></div>
 
-    <button class="btn-vaciar" onclick="vaciarCarrito()">Vaciar carrito</button>
+        <button class="btn-vaciar" onclick="vaciarCarrito()">Vaciar carrito</button>
 
-    <div class="carrito-footer">
-        <p class="total">Total: <span id="totalCarrito">0</span></p>
-        <button class="btn-finalizar">Finalizar compra</button>
-    </div>
+        <div class="carrito-footer">
+            <p class="total">Total: <span id="totalCarrito">0</span></p>
+            <button class="btn-finalizar">Finalizar compra</button>
+        </div>
 
-    
+
     </div>
 
     <script src="carrito.html"></script>

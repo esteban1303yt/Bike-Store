@@ -100,7 +100,7 @@ function renderizarProductos(productos) {
         contenedor.innerHTML = `<div class="product-grid-empty">No se encontraron productos.</div>`;
         return;
     }
-    
+
     const html = productos.map(p => {
 
         // IMAGEN CORRECTA SEGÚN DISPONIBILIDAD
@@ -122,7 +122,7 @@ function renderizarProductos(productos) {
             <!-- NUEVO BOTÓN FAVORITOS -->
             <button class="btn-favorito"
                 onclick="event.stopPropagation(); agregarAFavoritos(${p.id_producto})">
-                <img src="/frontend/media/icons/favoritos.svg" 
+                <img src="/frontend/media/icons/heart.svg" 
                     class="icon-fav ${JSON.parse(localStorage.getItem('favoritos') || '[]').includes(p.id_producto) ? 'fav-activo' : ''}"
                     alt="favoritos">
             </button>

@@ -10,12 +10,16 @@ document.addEventListener("DOMContentLoaded", async () => {
             .sort(() => Math.random() - 0.5) // desordenar
             .slice(0, 4); // tomar 4
 
-        contenedor.innerHTML = ""; 
+        contenedor.innerHTML = "";
 
         aleatorios.forEach(prod => {
+            const imagen = prod.imagen
+                ? `/frontend/media/img/products/${prod.imagen}`
+                : `/frontend/media/img/default.svg`;
+
             contenedor.innerHTML += `
                 <div class="producto">
-                    <img src="/frontend/media/img/products/${prod.imagen || 'default.png'}" alt="${prod.nombre_producto}">
+                    <img src="${imagen}" alt="${prod.nombre_producto}">
                     <div class="info-producto">
                         <p>${prod.nombre_producto}</p>
                         <p>$${Number(prod.precio).toLocaleString()}</p>
