@@ -101,6 +101,9 @@ async function abrirModalEditar(id) {
     document.getElementById("editPrecio").value = data.precio;
     document.getElementById("editStock").value = data.stock;
     document.getElementById("editDescripcion").value = data.descripcion || "";
+    document.getElementById("editAno").value = data.ano || "";
+    document.getElementById("editMarca").value = data.id_marca || "";
+
 
     document.getElementById("editImagenPreview").src =
         `/frontend/media/img/products/${data.imagen}`;
@@ -128,6 +131,8 @@ document.getElementById("guardarBtn").onclick = async () => {
     body.append("precio", document.getElementById("editPrecio").value);
     body.append("stock", document.getElementById("editStock").value);
     body.append("descripcion", document.getElementById("editDescripcion").value);
+    body.append("ano", document.getElementById("editAno").value);
+    body.append("id_marca", document.getElementById("editMarca").value);
 
     if (imagenFile) body.append("imagen", imagenFile);
 
@@ -188,6 +193,8 @@ document.getElementById("btnGuardarNuevo").onclick = async () => {
     body.append("precio", document.getElementById("crearPrecio").value);
     body.append("stock", document.getElementById("crearStock").value);
     body.append("descripcion", document.getElementById("crearDescripcion").value);
+    body.append("ano", document.getElementById("crearAnio").value);
+    body.append("id_marca", document.getElementById("crearMarca").value);
 
     const imagenFile = document.getElementById("crearImagen").files[0];
     if (imagenFile) body.append("imagen", imagenFile);

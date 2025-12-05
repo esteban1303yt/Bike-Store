@@ -100,6 +100,7 @@ body {
     width: 100%;
     text-align: left;
     margin-top: 10px;
+    flex-grow: 1;
 }
 
 /* BOTONES */
@@ -120,12 +121,12 @@ body {
 }
 
 .btn-editar {
-    background: #3498db;
+    background: #202020;
     color: white;
 }
 
 .btn-eliminar {
-    background: #e74c3c;
+    background: #202020;
     color: white;
 }
 
