@@ -12,11 +12,10 @@ const btnCategorias = document.getElementById("btnCategorias");
 const listaOrdenar = document.getElementById("listaOrdenar");
 const btnOrdenar = document.getElementById("btnOrdenar");
 
-
 // Abrir modal de producto
 function abrirModalProducto(producto) {
     // Ruta correcta de imagen (corregida)
-    const imgSrc = producto.imagen
+    const imgSrc = (producto.imagen && producto.imagen !== "default.svg")
         ? `/frontend/media/img/products/${producto.imagen}`
         : `/frontend/media/img/default.svg`;
     document.getElementById("modalProdImg").src = imgSrc;
@@ -88,7 +87,6 @@ function renderizarProductos(productos) {
         const imgSrc = (p.imagen && p.imagen !== "default.svg")
             ? `/frontend/media/img/products/${p.imagen}`
             : `/frontend/media/img/default.svg`;
-
 
         return `
                     <article class="product-card" onclick='abrirModalProducto({
