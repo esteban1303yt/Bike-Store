@@ -17,19 +17,16 @@ function guardarCarrito(carrito) {
     localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
-// Agregar producto al carrito
 function agregarAlCarrito(producto) {
-<<<<<<< HEAD
-    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    let carrito = cargarCarrito();
+
     const existe = carrito.find(item => item.id_producto === producto.id_producto);
     if (existe) {
-
-        // ❗ límite de 3 unidades
+        // Límite de 3 unidades
         if (existe.cantidad >= 3) {
             alert("Solo puedes agregar máximo 3 unidades de este producto.");
             return;
         }
-
         existe.cantidad++;
 
     } else {
@@ -41,17 +38,12 @@ function agregarAlCarrito(producto) {
             cantidad: 1
         });
     }
-    localStorage.setItem("carrito", JSON.stringify(carrito));
-    mostrarCarrito();
-=======
-    let carrito = cargarCarrito();
-    const item = carrito.find(p => p.id_producto === producto.id_producto);
-    if (item) item.cantidad++;
-    else carrito.push({ ...producto, cantidad: 1 });
+
     guardarCarrito(carrito);
-    toggleCarrito();
->>>>>>> 7642a74dfe88d5d9e770230f30fa51fbfc02b5b0
+    mostrarCarrito();
+    toggleCarrito(); // abre carrito después de agregar
 }
+
 // Suma la cantidad y el valor del carrito
 function agregarUnidad(id) {
     let carrito = cargarCarrito();
@@ -76,18 +68,11 @@ function restarUnidad(id) {
     let carrito = cargarCarrito();
     const item = carrito.find(p => p.id_producto === id);
     if (!item) return;
-<<<<<<< HEAD
 
     // Mínimo 1 unidad
     if (item.cantidad > 1) {
         item.cantidad--;
     }
-
-=======
-    item.cantidad--;
-    if (item.cantidad <= 0)
-        carrito = carrito.filter(p => p.id_producto !== id);
->>>>>>> 7642a74dfe88d5d9e770230f30fa51fbfc02b5b0
     guardarCarrito(carrito);
     mostrarCarrito();
 }

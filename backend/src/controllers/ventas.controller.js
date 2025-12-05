@@ -71,6 +71,22 @@ class VentasController {
             res.status(500).json({ error: "Error en el servidor" });
         }
     }
+
+    // NUEVO MÉTODO PARA LISTAR VENTAS
+    async listarVentas(req, res) {
+        try {
+            const [ventas] = await db.query(`
+                SELECT v.id_venta, u.nombre AS cliente, v.monto_total, v.fecha
+                FROM venta v
+                JOIN usuarios u ON v.id_usuario = u.id_usuario
+                ORDER BY v.fecha DESC
+            `);
+            res.json(ventas);
+        } catch (error) {
+            console.log("Error obteniendo ventas:", error);
+            res.status(500).json({ error: "Error en el servidor" });
+        }
+    }
 }
 
 module.exports = new VentasController();

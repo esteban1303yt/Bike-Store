@@ -4,5 +4,5 @@ const ventasController = require('../controllers/ventas.controller');
 
 // Ruta para procesar el carrito y generar la venta
 router.post('/', (req, res) => ventasController.crearVenta(req, res));
-
+router.get('/', (req, res) => ventasController.listarVentas(req, res));
 module.exports = router;
