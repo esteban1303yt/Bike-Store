@@ -181,6 +181,7 @@ document.addEventListener("click", (e) => {
 });
 
 
+
 // Aplicar filtros, búsqueda y orden
 function aplicarFiltros() {
     let filtrados = [...productosCache];
@@ -230,3 +231,13 @@ searchInput.addEventListener("input", aplicarFiltros);
 // Inicializar
 cargarFiltros();
 cargarProductos();
+
+// Cerrar modal al hacer clic fuera
+document.getElementById("modalProducto").addEventListener("click", function (e) {
+    const modalBox = document.querySelector(".modal-producto");
+
+    // Si el clic NO es dentro del modal, cerrar
+    if (!modalBox.contains(e.target)) {
+        cerrarModalProducto();
+    }
+});

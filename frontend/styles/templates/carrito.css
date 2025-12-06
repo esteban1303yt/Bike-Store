@@ -64,31 +64,35 @@
 }
 
 
-
-/*estilos del panel de*/
-
+/* PANEL DEL CARRITO ANIMACION SUAVE  */
 .panelCarrito {
     position: fixed;
     top: 0;
-    right: -500px;
+    right: 0;
+    height: 100vh;
     width: 400px;
-    height: -webkit-fill-available;
+    max-width: 90%;
     background: white;
     border-left: 2px solid #ccc;
-    border-bottom: 2px solid #ccc;
     padding: 20px;
-    transition: 0.4s ease;
-    z-index: 9999;
     display: flex;
     flex-direction: column;
+
+    transform: translateX(100%);
+    opacity: 0;
+    backdrop-filter: blur(0px);
+    /* ➜ Animación más lenta, suave y elegante */
+    transition:
+        transform 0.65s cubic-bezier(0.25, 1, 0.5, 1),
+        opacity 0.55s ease,
+        backdrop-filter 0.65s ease;
+    z-index: 9999;
 }
 
 .panelCarrito.active {
-    right: 0;
-}
-
-.panelCarrito h3 {
-    margin: 0px;
+    transform: translateX(0);
+    opacity: 1;
+    backdrop-filter: blur(6px);
 }
 
 /* HEADER */

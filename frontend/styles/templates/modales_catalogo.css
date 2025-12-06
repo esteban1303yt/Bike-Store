@@ -1,0 +1,80 @@
+/*=======boton de favoritos en productos============*/
+.btn-favorito {
+    padding: 0px;
+    border: none;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    transition: 0.2s ease;
+}
+
+.btn-favorito img {
+    width: 26px;
+    height: 26px;
+}
+
+.btn-favorito:hover {
+    transform: scale(1.05);
+}
+/* Modal de registro exitoso */
+#registroExitoso {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 25px 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 350px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.25);
+    z-index: 9999;
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Fondo oscurecido */
+#fondoExito {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.50);
+    z-index: 9998;
+    display: none;
+}
+
+/* Animación corregida */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+#registroExitoso h2 {
+    margin-bottom: 5px;
+    font-size: 22px;
+}
+
+#registroExitoso p {
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.btn-exito-login {
+    background: black;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.btn-exito-login:hover {
+    opacity: 0.8;
+}
+
+/*fin de modal de registro exitoso*/

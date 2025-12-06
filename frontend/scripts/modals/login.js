@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ──────────── FORMULARIO REGISTRO ────────────
-    if (registerForm) {
+   if (registerForm) {
         registerForm.addEventListener("submit", async (e) => {
             e.preventDefault();
 
@@ -116,14 +116,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 const result = await res.json();
 
                 if (result.success) {
-                    localStorage.setItem("usuario", JSON.stringify(usuario));
+                    // Ocultamos el formulario de registro
+                    registerView.style.display = "none";
+                    modal.classList.remove("show");
 
-                    // Si backend devuelve token, lo guardamos
-                    if (result.token) {
-                        localStorage.setItem("token", result.token);
-                    }
+                    // Mostrar modal de "Registro Exitoso"
+                    const regOk = document.getElementById("registroExitoso");
+                    regOk.style.display = "block";
 
-                    window.location.reload();
+                    // Esperar 3 segundos y pasar al login
+                    setTimeout(() => {
+                        regOk.style.display = "none";
+                        modal.classList.add("show");
+
+                        loginView.style.display = "block";
+                        registerView.style.display = "none";
+                    }, 3000);
                 } else {
                     mensajeRegistro.style.display = "block";
                     mensajeRegistro.style.color = "red";
@@ -215,4 +223,7 @@ document.getElementById("btnIrLogin").addEventListener("click", function () {
     // Mostrar formulario de login
     document.getElementById("loginView").style.display = "block";
 
+    //Reedirigimos al login despues de 3 segundos
+    document.getElementById("registerView").style.display = "none";
+modal.classList.add("show");
 });

@@ -247,18 +247,32 @@ main {
     max-width: 850px;
     padding: 20px;
     position: relative;
-    animation: fadeIn .3s ease;
+
+    /* Transición más suave */
+    animation: fadeBlurIn .6s ease forwards;
+    /* forzamos que quede en su estado final */
+    opacity: 0;
+    transform: translateY(-20px);
+    filter: blur(8px);
 }
 
-@keyframes fadeIn {
-    from {
+/* Animación suave con disolución */
+@keyframes fadeBlurIn {
+    0% {
         opacity: 0;
+        transform: translateY(-10px);
+        filter: blur(10px);
+    }
+    95% {
+        opacity: 0.9;
         transform: translateY(-20px);
+        filter: blur(1px);
     }
 
-    to {
+    100% {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(-20px);
+        filter: blur(0);
     }
 }
 
@@ -266,7 +280,7 @@ main {
     position: absolute;
     top: 10px;
     right: 10px;
-    background: #000000;
+    background: #000;
     color: #fff;
     border: none;
     width: 16px;
@@ -274,7 +288,9 @@ main {
     display: flex;
     justify-content: center;
     font-size: 16px;
+    border-radius: 4px;
 }
+
 
 .modal-producto-content {
     display: flex;
