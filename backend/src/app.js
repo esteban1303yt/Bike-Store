@@ -24,6 +24,7 @@ app.use('/api/marcas', marcasRoutes);
 app.use('/api/categorias', categoriasRoutes);
 app.use('/api/pagos', pagosRoutes)
 app.use('/api/ventas',ventasRouter)
+
 // Servir toda la carpeta frontend
 app.use(express.static(path.join(__dirname, '../../frontend')));
 

@@ -22,9 +22,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <div class="producto">
                     <img src="${imgSrc}" alt="${prod.nombre_producto}">
                     <div class="info-producto">
-                        <p>${prod.nombre_producto}</p>
+                        <p class="nombre-producto">${prod.nombre_producto}</p>
                         <p>$${Number(prod.precio).toLocaleString()}</p>
-                        <a href="#" class="btn">Añadir al carrito</a>
+                        <button class="btn">Añadir al carrito</button>
                     </div>
                 </div>
             `;

@@ -263,6 +263,7 @@ main {
         transform: translateY(-10px);
         filter: blur(10px);
     }
+
     95% {
         opacity: 0.9;
         transform: translateY(-20px);
@@ -350,6 +351,7 @@ main {
 
 /*=======boton de favoritos en productos============*/
 .btn-favorito {
+    background: none;
     padding: 0px;
     border: none;
     display: flex;
@@ -364,5 +366,5 @@ main {
 }
 
 .btn-favorito:hover {
-    transform: scale(1.05);
+    transform: scale(1.08);
 }

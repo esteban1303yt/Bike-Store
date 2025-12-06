@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="/frontend/styles/pages/catalog.css"> <!-- CSS de la página -->
     <link rel="stylesheet" href="/frontend/styles/footer.css"> <!-- CSS del footer -->
     <link rel="stylesheet" href="/frontend/styles/templates/carrito.css"> <!-- Carrito -->
+    <link rel="stylesheet" href="/frontend/styles/templates/login.css"> <!-- Login/registro -->
     <link rel="stylesheet" href="/frontend/styles/templates/favorito.css"> <!-- Favoritos -->
-    <link rel="stylesheet" href="/frontend/styles/templates/modales_catalogo.css"> <!-- Favoritos -->
 </head>
 
 <body>
@@ -220,11 +220,7 @@
         <div id="registroExitoso" style="display: none; text-align:center; padding:20px;">
             <h2>🎉 Registro exitoso</h2>
             <p>Tu cuenta ha sido creada correctamente.</p>
-            <button id="btnIrLogin"
-                style="margin-top:15px; padding:10px 20px; background:#000; color:#fff; border:none; border-radius:5px; cursor:pointer;">
-                Iniciar sesión
-            </button>
-        </div> 
+        </div>
 
     </div>
 
@@ -290,11 +286,11 @@
 
                 <button id="btnConfirmarPago" class="btn-pagar">Pagar</button>
             </div>
-                <div id="modalPago" class="modal-pago-overlay hidden">
-                    <div class="modal-pago">
-                        <!-- contenido -->
-                    </div>
+            <div id="modalPago" class="modal-pago-overlay hidden">
+                <div class="modal-pago">
+                    <!-- contenido -->
                 </div>
+            </div>
         </div>
     </div>
 
@@ -313,19 +309,6 @@
             </div>
         </div>
     </div>
-
-        <!-- Fondo oscurecido del modal de registro -->
-        <div id="fondoExito"></div>
-
-        <!-- Modal de Registro Exitoso -->
-        <div id="registroExitoso" style="display:none;">
-            <h2>🎉 Registro exitoso</h2>
-            <p>Tu cuenta ha sido creada correctamente.</p>
-
-            <button id="btnIrLogin" class="btn-exito-login">
-                Iniciar sesión
-            </button>
-        </div>
 
     <!-- Scripts -->
     <script src="/frontend/scripts/catalog.js"></script><!-- Script principal -->

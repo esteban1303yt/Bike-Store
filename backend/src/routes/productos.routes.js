@@ -3,9 +3,6 @@ const router = express.Router();
 const productos = require('../controllers/productos.controller');
 const upload = require("../middlewares/uploads");
 
-
-
-
 // Obtener todos los productos
 router.get('/', async (req, res) => {
     try {

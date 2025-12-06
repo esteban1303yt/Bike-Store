@@ -55,15 +55,15 @@ document.addEventListener("DOMContentLoaded", () => {
         // Si NO hay usuario, abrir modal de login
         profileBtn.addEventListener("click", () => {
 
-    // Cerrar carrito si está abierto
-    document.getElementById("carritoLateral").classList.remove("active");
+            // Cerrar carrito si está abierto
+            document.getElementById("carritoLateral").classList.remove("active");
 
-    //  Abrir el modal de login
-    modalOverlay.classList.add("show");
-    modal.classList.add("show");
-    loginView.style.display = "block";
-    registerView.style.display = "none";
-});
+            //  Abrir el modal de login
+            modalOverlay.classList.add("show");
+            modal.classList.add("show");
+            loginView.style.display = "block";
+            registerView.style.display = "none";
+        });
     }
 
     // ──────────── SWITCH LOGIN → REGISTRO ────────────
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ──────────── FORMULARIO REGISTRO ────────────
-   if (registerForm) {
+    if (registerForm) {
         registerForm.addEventListener("submit", async (e) => {
             e.preventDefault();
 
@@ -124,14 +124,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     const regOk = document.getElementById("registroExitoso");
                     regOk.style.display = "block";
 
-                    // Esperar 3 segundos y pasar al login
+                    // Esperar 1 segundo y pasar al login
                     setTimeout(() => {
                         regOk.style.display = "none";
                         modal.classList.add("show");
 
                         loginView.style.display = "block";
                         registerView.style.display = "none";
-                    }, 3000);
+                    }, 1100);
                 } else {
                     mensajeRegistro.style.display = "block";
                     mensajeRegistro.style.color = "red";
@@ -225,5 +225,5 @@ document.getElementById("btnIrLogin").addEventListener("click", function () {
 
     //Reedirigimos al login despues de 3 segundos
     document.getElementById("registerView").style.display = "none";
-modal.classList.add("show");
+    modal.classList.add("show");
 });
