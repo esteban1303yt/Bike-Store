@@ -166,3 +166,16 @@ body {
 }
 
 
+.input-box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+
+.input-field {
+    width: 95%;
+    padding: 8px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    font-size: 14px;
+}

@@ -103,6 +103,10 @@ async function abrirModalEditar(id) {
     document.getElementById("editDescripcion").value = data.descripcion || "";
     document.getElementById("editAno").value = data.ano || "";
     document.getElementById("editMarca").value = data.id_marca || "";
+    document.getElementById("editCategoria").value = data.id_categoria;
+    document.getElementById("editMarca").value = data.id_marca;
+
+
 
 
     document.getElementById("editImagenPreview").src =
@@ -132,7 +136,11 @@ document.getElementById("guardarBtn").onclick = async () => {
     body.append("stock", document.getElementById("editStock").value);
     body.append("descripcion", document.getElementById("editDescripcion").value);
     body.append("ano", document.getElementById("editAno").value);
+
+    body.append("id_categoria", document.getElementById("editCategoria").value);
     body.append("id_marca", document.getElementById("editMarca").value);
+
+
 
     if (imagenFile) body.append("imagen", imagenFile);
 
@@ -195,6 +203,7 @@ document.getElementById("btnGuardarNuevo").onclick = async () => {
     body.append("descripcion", document.getElementById("crearDescripcion").value);
     body.append("ano", document.getElementById("crearAnio").value);
     body.append("id_marca", document.getElementById("crearMarca").value);
+   body.append("id_categoria", document.getElementById("crearCategoria").value);
 
     const imagenFile = document.getElementById("crearImagen").files[0];
     if (imagenFile) body.append("imagen", imagenFile);
