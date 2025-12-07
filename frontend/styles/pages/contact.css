@@ -1,4 +1,4 @@
-main {
+.contact-main {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,6 +15,7 @@ main {
 }
 
 .contact-content {
+    gap: 8px;
     display: flex;
     flex-direction: column;
 }
@@ -26,12 +27,9 @@ main {
     margin: auto;
 }
 
-
 label {
-    margin: 18px 0 8px;
     color: hsla(0, 0%, 0%, 0.7);
 }
-
 
 input,
 textarea {
@@ -41,7 +39,6 @@ textarea {
     border-radius: 8px;
     font-size: 16px;
 }
-
 
 textarea {
     height: 150px;

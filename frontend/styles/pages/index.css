@@ -1,11 +1,7 @@
-main {
+.home-main {
     display: flex;
     padding: 40px 20px;
     flex-direction: column;
-    /*     background-image: linear-gradient(rgba(168, 166, 166, 0.589), rgb(17, 17, 17)), 
-    url("/frontend/media/img/background.png");
-    background-repeat: no-repeat;
-    background-position: center; */
 }
 
 /* Hero */
@@ -37,48 +33,6 @@ main {
 .hero img {
     width: 100%;
     border-radius: 10px;
-}
-
-/* ===========================
-   RESPONSIVE HERO SECTION
-   =========================== */
-@media (max-width: 768px) {
-
-    .hero {
-        flex-direction: column;
-        /* Texto arriba, imagen abajo */
-        text-align: center;
-        gap: 20px;
-        padding: 20px;
-    }
-
-    .hero-text {
-        width: 100%;
-        /* Asegura que todo se vea */
-    }
-
-    .hero-text .btn {
-        margin-top: 20px;
-        display: inline-block;
-    }
-
-    .hero-text h1 {
-        font-size: 36px;
-        /* Reduce tamaño del título */
-    }
-
-    .hero-text p {
-        width: 100%;
-        /* Que el texto no quede estrecho */
-        font-size: 16px;
-    }
-
-    .hero img {
-        width: 100%;
-        max-width: 350px;
-        /* Controla el tamaño en móviles */
-        border-radius: 12px;
-    }
 }
 
 /* Sección productos */
@@ -205,4 +159,44 @@ main {
 
 .btn:hover {
     opacity: 0.85;
+}
+
+/* Responsives */
+@media (max-width: 768px) {
+
+    .hero {
+        flex-direction: column;
+        /* Texto arriba, imagen abajo */
+        text-align: center;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .hero-text {
+        width: 100%;
+        /* Asegura que todo se vea */
+    }
+
+    .hero-text .btn {
+        margin-top: 20px;
+        display: inline-block;
+    }
+
+    .hero-text h1 {
+        font-size: 36px;
+        /* Reduce tamaño del título */
+    }
+
+    .hero-text p {
+        width: 100%;
+        /* Que el texto no quede estrecho */
+        font-size: 16px;
+    }
+
+    .hero img {
+        width: 100%;
+        max-width: 350px;
+        /* Controla el tamaño en móviles */
+        border-radius: 12px;
+    }
 }
