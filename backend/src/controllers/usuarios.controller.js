@@ -104,4 +104,77 @@ class crudController {
   }
 }
 
-module.exports = crudController;
+
+/* SECCIÓN DE AJUSTES */
+
+// ==========================
+// ACTUALIZAR CORREO
+// ==========================
+exports.actualizarCorreo = async (req, res) => {
+    try {
+        const id_usuario = req.params.id;
+        const { nuevoCorreo } = req.body;
+
+        const sql = "UPDATE usuarios SET correo = ? WHERE id_usuario = ?";
+        await db.query(sql, [nuevoCorreo, id_usuario]);
+
+        res.json({ mensaje: "Correo actualizado correctamente" });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Error en el servidor" });
+    }
+};
+
+
+// ==========================
+// ACTUALIZAR CONTRASEÑA
+// ==========================
+exports.actualizarPassword = async (req, res) => {
+    try {
+        const id_usuario = req.params.id;
+        const { claveActual, nuevaClave } = req.body;
+
+        // 1. Obtener contraseña actual
+        const [rows] = await db.query(
+            "SELECT clave FROM usuarios WHERE id_usuario = ?",
+            [id_usuario]
+        );
+
+        if (rows.length === 0) {
+            return res.status(404).json({ error: "Usuario no encontrado" });
+        }
+
+        const claveBD = rows[0].clave;
+
+        // 2. Comparar contraseña actual con hash
+        const esValida = await bcrypt.compare(claveActual, claveBD);
+
+        if (!esValida) {
+            return res.status(400).json({ error: "La contraseña actual no es correcta" });
+        }
+
+        // 3. Hashear nueva contraseña
+        const hash = await bcrypt.hash(nuevaClave, 10);
+
+        await db.query(
+            "UPDATE usuarios SET clave = ? WHERE id_usuario = ?",
+            [hash, id_usuario]
+        );
+
+        res.json({ mensaje: "Contraseña actualizada correctamente" });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Error en el servidor" });
+    }
+};
+
+
+// ============================================
+// EXPORTACIÓN (ÚNICO CAMBIO REALIZADO)
+// ============================================
+module.exports = {
+  crudController,
+  ...exports
+};

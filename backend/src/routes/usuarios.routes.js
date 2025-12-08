@@ -1,11 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const crudController = require('../controllers/usuarios.controller');
+
+const { crudController, actualizarCorreo, actualizarPassword } =
+    require('../controllers/usuarios.controller');
+
 const { autenticarToken, autorizarRoles } = require('../middlewares/auth.middleware');
 
 const crud = new crudController();
 const tabla = 'usuarios';
 const idCampo = 'id_usuario';
+
+// Actualizar correo
+router.put("/correo/:id", actualizarCorreo);
+
+// Actualizar contraseña
+router.put("/password/:id", actualizarPassword);
 
 // Obtener todos los usuarios (solo admin)
 router.get('/', autenticarToken, autorizarRoles('administrador'), async (req, res) => {

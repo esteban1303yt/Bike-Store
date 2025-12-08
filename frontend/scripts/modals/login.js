@@ -170,6 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (result.success) {
                     localStorage.setItem("usuarioActual", JSON.stringify(result.usuario));
+                    localStorage.setItem("id_usuario", result.usuario.id_usuario);
                     localStorage.setItem("token", result.token);
                     window.location.reload();
                 } else {
@@ -191,6 +192,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (logoutBtn) {
         logoutBtn.addEventListener("click", () => {
             localStorage.removeItem("usuarioActual");
+            localStorage.removeItem("id_usuario");
+
             localStorage.removeItem("token");
             window.location.reload();
         });
@@ -215,15 +218,23 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-document.getElementById("btnIrLogin").addEventListener("click", function () {
 
-    // Ocultar mensaje de éxito
-    document.getElementById("registroExitoso").style.display = "none";
+const btnIrLogin = document.getElementById("btnIrLogin");
 
-    // Mostrar formulario de login
-    document.getElementById("loginView").style.display = "block";
+if (btnIrLogin) {
+    btnIrLogin.addEventListener("click", function () {
 
-    //Reedirigimos al login despues de 3 segundos
-    document.getElementById("registerView").style.display = "none";
-    modal.classList.add("show");
-});
+        // Ocultar mensaje de éxito
+        document.getElementById("registroExitoso").style.display = "none";
+
+        // Mostrar formulario de login
+        document.getElementById("loginView").style.display = "block";
+
+        // Ocultar formulario de registro
+        document.getElementById("registerView").style.display = "none";
+
+        // Abrir modal
+        modal.classList.add("show");
+    });
+}
+

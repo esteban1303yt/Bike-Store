@@ -203,11 +203,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     
 // Cierre al hacer clic fuera del contenido
+    if (modalPago) {
     modalPago.addEventListener("click", (e) => {
         if (e.target === modalPago) {
             cerrarModalPago();
         }
     });
+}
+
 });
 
 
