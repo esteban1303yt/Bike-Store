@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bike Trail | Ajustes</title>
+    <title>Bike Trail</title>
     <link rel="icon" href="/frontend/media/icons/logo_black.svg">
-   <link rel="stylesheet" href="../styles/styles.css"> <!-- CSS general -->
-<link rel="stylesheet" href="../styles/header.css"> <!-- CSS header -->
-<link rel="stylesheet" href="../styles/settings.css"> <!-- CSS página -->
-<link rel="stylesheet" href="../styles/footer.css"> <!-- CSS footer -->
-<link rel="stylesheet" href="../styles/templates/carrito.css"> <!-- CSS carrito -->
-<link rel="stylesheet" href="../styles/templates/login.css"> <!-- CSS login -->
-<link rel="stylesheet" href="../styles/templates/favorito.css"> <!-- CSS favoritos -->
+    <link rel="stylesheet" href="/frontend/styles/styles.css"> <!-- CSS general -->
+    <link rel="stylesheet" href="/frontend/styles/header.css"> <!-- CSS header -->
+    <link rel="stylesheet" href="/frontend/styles//pages/settings.css"> <!-- CSS página -->
+    <link rel="stylesheet" href="/frontend/styles/footer.css"> <!-- CSS footer -->
+    <link rel="stylesheet" href="/frontend/styles/templates/carrito.css"> <!-- CSS carrito -->
+    <link rel="stylesheet" href="/frontend/styles/templates/login.css"> <!-- CSS login -->
+    <link rel="stylesheet" href="/frontend/styles/templates/favorito.css"> <!-- CSS favoritos -->
 
 </head>
 
@@ -29,7 +29,7 @@
             <!-- Barra de navegación -->
             <nav class="header-nav">
                 <ul>
-                    <li><a href="#" class="active">Inicio</a></li>
+                    <li><a href="/frontend/pages/index.html">Inicio</a></li>
                     <li><a href="/frontend/pages/catalog.html">Catálogo</a></li>
                     <li><a href="/frontend/pages/contact.html">Contacto</a></li>
                 </ul>
@@ -73,36 +73,36 @@
 
     </header>
 
-     <main class="settings-wrapper">
-    <div class="settings-card">
+    <main class="settings-wrapper">
+        <div class="settings-card">
 
-        <h2>Ajustes de cuenta</h2>
+            <h2>Ajustes de cuenta</h2>
 
-        <!-- Cambiar correo -->
-        <form id="changeEmailForm" class="settings-form">
-            <label for="newEmail">Nuevo correo</label>
-            <input type="email" id="newEmail" placeholder="Nuevo correo" required>
-            <button type="submit" class="settings-btn">Actualizar correo</button>
-            <p id="emailMsg" class="settings-msg"></p>
-        </form>
+            <!-- Cambiar correo -->
+            <form id="changeEmailForm" class="settings-form">
+                <label for="newEmail">Nuevo correo</label>
+                <input type="email" id="newEmail" placeholder="Nuevo correo" required>
+                <button type="submit" class="settings-btn">Actualizar correo</button>
+                <p id="emailMsg" class="settings-msg"></p>
+            </form>
 
-        <!-- Cambiar contraseña -->
-        <form id="changePasswordForm" class="settings-form">
-            <label for="oldPassword">Contraseña actual</label>
-            <input type="password" id="oldPassword" placeholder="Contraseña actual" required>
+            <!-- Cambiar contraseña -->
+            <form id="changePasswordForm" class="settings-form">
+                <label for="oldPassword">Contraseña actual</label>
+                <input type="password" id="oldPassword" placeholder="Contraseña actual" required>
 
-            <label for="newPassword">Nueva contraseña</label>
-            <input type="password" id="newPassword" placeholder="Nueva contraseña" required>
+                <label for="newPassword">Nueva contraseña</label>
+                <input type="password" id="newPassword" placeholder="Nueva contraseña" required>
 
-            <label for="newPassword2">Confirmar contraseña</label>
-            <input type="password" id="newPassword2" placeholder="Confirmar contraseña" required>
+                <label for="newPassword2">Confirmar contraseña</label>
+                <input type="password" id="newPassword2" placeholder="Confirmar contraseña" required>
 
-            <button type="submit" class="settings-btn">Actualizar contraseña</button>
-            <p id="passwordMsg" class="settings-msg"></p>
-        </form>
+                <button type="submit" class="settings-btn">Actualizar contraseña</button>
+                <p id="passwordMsg" class="settings-msg"></p>
+            </form>
 
-    </div>
-</main>
+        </div>
+    </main>
 
     <!-- Pie de página -->
     <footer>
@@ -195,8 +195,6 @@
     <script src="../scripts/modals/login.js"></script>
     <script src="../scripts/modals/carrito.js"></script>
     <script src="../scripts/settings.js"></script>
-    
-    <link rel="stylesheet" href="../styles/settings.css">
 
 </body>
 
