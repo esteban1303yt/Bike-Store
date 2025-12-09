@@ -134,14 +134,14 @@
     display: flex;
     gap: 16px;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .product-card {
     gap: 4px;
     position: relative;
-    width: 450px;
-    height: 470px;
+    width: 390px;
+    height: 420px;
     background: #ffffff;
     border: 2px solid #F1F1F1;
     border-radius: 10px;
@@ -158,7 +158,7 @@
 
 .product-card img {
     width: 100%;
-    height: 65%;
+    height: 64%;
     object-fit: cover;
     background-color: #fff;
 }
@@ -220,7 +220,6 @@
     color: hsla(0, 0%, 0%, 0.527);
     font-size: 14px;
 }
-
 
 /*vista del producto modal*/
 .modal-producto-overlay {
@@ -367,4 +366,101 @@
 
 .btn-favorito:hover {
     transform: scale(1.08);
+}
+
+@media (max-width: 1280px) {
+
+    /* PRODUCT GRID */
+    .product-grid {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .product-card {
+        gap: 4px;
+        position: relative;
+        width: 330px;
+        height: 360px;
+        background: #ffffff;
+        border: 2px solid #F1F1F1;
+        border-radius: 10px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .product-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .product-card img {
+        width: 100%;
+        height: 58%;
+        object-fit: cover;
+        background-color: #fff;
+    }
+
+    .product-desc {
+        display: flex;
+        flex-direction: column;
+        padding: 0px 16px;
+    }
+
+    .card-info {
+        display: grid;
+        gap: 6px;
+    }
+
+    .texto-principal {
+        display: grid;
+        gap: 3px;
+    }
+
+    .card-info h3 {
+        font-size: 24px;
+        font-weight: 700;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    .subtitle {
+        color: hsla(0, 0%, 0%, 0.500);
+        text-align: left;
+        font-size: 14px;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    .price {
+        font-weight: bold;
+        font-size: 15px;
+        text-align: left;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    .badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: #111;
+        color: #fff;
+        font-size: 13px;
+        padding: 5px 10px;
+        border-radius: 6px;
+    }
+
+    .year {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: hsla(0, 0%, 0%, 0.527);
+        font-size: 14px;
+    }
+
+
 }
