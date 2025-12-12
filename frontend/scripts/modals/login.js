@@ -33,6 +33,32 @@ document.addEventListener("DOMContentLoaded", () => {
     // Datos del usuario
     const user = JSON.parse(localStorage.getItem("usuarioActual"));
 
+    // ──────────── VALIDACIONES EN TIEMPO REAL ────────────
+    const regNombre = document.getElementById("regNombre");
+    const regApellido = document.getElementById("regApellido");
+    const regTelefono = document.getElementById("regTelefono");
+
+    // Solo letras para Nombre
+    if (regNombre) {
+        regNombre.addEventListener("input", (e) => {
+            e.target.value = e.target.value.replace(/[^A-Za-záéíóúÁÉÍÓÚÑñ ]/g, "");
+        });
+    }
+
+    // Solo letras para Apellido
+    if (regApellido) {
+        regApellido.addEventListener("input", (e) => {
+            e.target.value = e.target.value.replace(/[^A-Za-záéíóúÁÉÍÓÚÑñ ]/g, "");
+        });
+    }
+
+    // Solo números para Telefono
+    if (regTelefono) {
+        regTelefono.addEventListener("input", (e) => {
+            e.target.value = e.target.value.replace(/[^0-9]/g, "");
+        });
+    }
+
     // ──────────── SI EL USUARIO ESTÁ LOGUEADO ────────────
     if (user) {
         profileName.textContent = `${user.nombre} ${user.apellido}`;
@@ -218,7 +244,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-
+// ──────────── BOTÓN IR A LOGIN (DESPUÉS DE REGISTRO) ────────────
 const btnIrLogin = document.getElementById("btnIrLogin");
 
 if (btnIrLogin) {
@@ -237,4 +263,3 @@ if (btnIrLogin) {
         modal.classList.add("show");
     });
 }
-
