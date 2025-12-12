@@ -141,7 +141,7 @@
     gap: 4px;
     position: relative;
     width: 390px;
-    height: 420px;
+    height: 400px;
     background: #ffffff;
     border: 2px solid #F1F1F1;
     border-radius: 10px;
@@ -179,11 +179,16 @@
     gap: 3px;
 }
 
-.card-info h3 {
+.nombre-producto h3 {
     font-size: 24px;
     font-weight: 700;
     margin-top: auto;
     margin-bottom: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    max-width: 75%;
 }
 
 .subtitle {
@@ -192,6 +197,11 @@
     font-size: 14px;
     margin-top: auto;
     margin-bottom: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    max-width: 100%;
 }
 
 .price {
@@ -443,53 +453,6 @@
     .card-info {
         display: grid;
         gap: 6px;
-    }
-
-    .texto-principal {
-        display: grid;
-        gap: 3px;
-    }
-
-    .card-info h3 {
-        font-size: 24px;
-        font-weight: 700;
-        margin-top: auto;
-        margin-bottom: auto;
-    }
-
-    .subtitle {
-        color: hsla(0, 0%, 0%, 0.500);
-        text-align: left;
-        font-size: 14px;
-        margin-top: auto;
-        margin-bottom: auto;
-    }
-
-    .price {
-        font-weight: bold;
-        font-size: 15px;
-        text-align: left;
-        margin-top: auto;
-        margin-bottom: auto;
-    }
-
-    .badge {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        background: #111;
-        color: #fff;
-        font-size: 13px;
-        padding: 5px 10px;
-        border-radius: 6px;
-    }
-
-    .year {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        color: hsla(0, 0%, 0%, 0.527);
-        font-size: 14px;
     }
 
 }

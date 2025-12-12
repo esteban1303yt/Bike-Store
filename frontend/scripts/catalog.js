@@ -216,10 +216,10 @@ function aplicarFiltros() {
             filtrados.sort((a, b) => b.nombre_producto.localeCompare(a.nombre_producto));
             break;
         case "anio-asc":
-            filtrados.sort((a, b) => (a.ano ?? 2025) - (b.ano ?? 2025));
+            filtrados.sort((a, b) => (b.ano ?? 2025) - (a.ano ?? 2025));
             break;
         case "anio-desc":
-            filtrados.sort((a, b) => (b.ano ?? 2025) - (a.ano ?? 2025));
+            filtrados.sort((a, b) => (a.ano ?? 2025) - (b.ano ?? 2025));
             break;
     }
     renderizarProductos(filtrados);

@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     <div class="info-producto">
                         <p class="nombre-producto">${prod.nombre_producto}</p>
                         <p>$${Number(prod.precio).toLocaleString()}</p>
-                         <a href="/frontend/pages/catalog.html" class="btn">Ver más</a>
+                         <a href="/frontend/pages/catalog.html" class="button-home">Ver más</a>
                     </div>
                 </div>
             `;
