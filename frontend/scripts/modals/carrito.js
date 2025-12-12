@@ -239,13 +239,52 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnPagar = document.getElementById("btnConfirmarPago");
 
     if (btnPagar) {
-        btnPagar.addEventListener("click", () => {
-            // Simulación
-            alert("Pago realizado con éxito ✔️");
+        btnPagar.addEventListener("click", async () => {
 
-            vaciarCarrito();
-            cerrarModalPago();
-            toggleCarrito(); // cerrar carrito
+            const user = JSON.parse(localStorage.getItem("usuarioActual"));
+            const carrito = cargarCarrito();
+
+            if (!user) {
+                alert("Debes iniciar sesión para completar el pago.");
+                return;
+            }
+
+            if (carrito.length === 0) {
+                alert("Tu carrito está vacío.");
+                return;
+            }
+
+            try {
+                // 📌 Hacer petición al backend para crear la venta
+                const respuesta = await fetch("http://localhost:3000/api/ventas", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        id_usuario: user.id_usuario,
+                        carrito: carrito
+                    })
+                });
+
+                const data = await respuesta.json();
+
+                if (respuesta.ok) {
+                    alert("Pago realizado con éxito ✔️");
+
+                    // Vaciar carrito
+                    vaciarCarrito();
+
+                    // Cerrar modal
+                    cerrarModalPago();
+                    toggleCarrito();
+
+                } else {
+                    alert("Error al procesar la venta: " + data.error);
+                }
+
+            } catch (error) {
+                console.error("Error en el pago:", error);
+                alert("Error en el servidor.");
+            }
         });
     }
 });
