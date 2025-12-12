@@ -4,6 +4,22 @@
     flex-direction: column;
 }
 
+
+.btn{
+    display: inline-block;
+    background-color: black;
+    color: white !important;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s ease;
+    text-align: center;
+    margin-top: 10px;
+    
+}
+
+
 /* Hero */
 .hero {
     display: flex;
