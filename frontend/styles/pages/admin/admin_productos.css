@@ -57,17 +57,11 @@ body {
     margin: 0;
 }
 
-/* SECCIÓN INFERIOR - CONTÉNEDOR DE PRODUCTOS */
-
 /* ======== CONTENEDOR DE TARJETAS ======== */
 #productos-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     grid-gap: 20px;
-    padding: 20px;
-
-    /* NUEVO ↓↓↓ */
-    
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
@@ -82,9 +76,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: auto; /* Cambiado de 100% a auto para respetar el grid */
+    width: auto;
     height: auto;
-    margin: 0; /* Quitado margin para que el grid controle el espacio */
+    margin: 0;
 }
 
 /* IMAGEN */
@@ -148,7 +142,6 @@ body {
     padding: 20px;
     width: 400px;
     border-radius: 10px;
-    
 }
 
 .close {
@@ -165,7 +158,6 @@ body {
     border-radius: 10px;
 }
 
-
 .input-box {
     display: flex;
     flex-direction: column;
@@ -178,4 +170,52 @@ body {
     border: 1px solid #aaa;
     border-radius: 6px;
     font-size: 14px;
+}
+
+/* =========================================================
+   ======== CORRECCIONES (NO MODIFICAN LO EXISTENTE) ========
+   ========================================================= */
+
+/*  Modal adaptable a cualquier pantalla */
+.modal-content {
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Imagen */
+.modal-content img {
+    max-width: 100%;
+    max-height: 200px;
+    object-fit: contain;
+    display: block;
+    margin: 10px auto;
+}
+
+/*  Botones del modal centrados */
+.modal-content button {
+    display: block;
+    margin: 20px auto 0 auto;
+}
+
+/*  Ajuste fino para móviles */
+@media (max-width: 600px) {
+    .modal-content {
+        width: 95%;
+        padding: 15px;
+    }
+}
+
+/* Botones del modal eliminar en horizontal */
+.modal_accion {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.modal_accion button {
+    padding: 8px 16px;
+}
+#modalEliminar h3 {
+    text-align: center;
 }

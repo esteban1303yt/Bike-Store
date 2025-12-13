@@ -232,7 +232,7 @@ document.getElementById("btnGuardarNuevo").onclick = async () => {
 
     } catch (err) {
         console.error(err);
-        alert("Error al crear producto");
+        alert("Debes que llenar los campos");
     }
 };
 
