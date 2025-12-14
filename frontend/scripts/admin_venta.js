@@ -1,31 +1,86 @@
-// Función para cargar todas las ventas desde el backend
+let ventas = [];
+
+// ================================
+// CARGAR VENTAS
+// ================================
 async function cargarVentas() {
     try {
-       const response = await fetch('http://localhost:3000/api/ventas'); // Ajusta la ruta si tu backend tiene prefijo
+        const response = await fetch('http://localhost:3000/api/ventas');
         if (!response.ok) {
             throw new Error("Error al obtener ventas");
         }
 
-        const ventas = await response.json();
+        ventas = await response.json(); // ✔️ usamos el array GLOBAL
 
-        const tablaBody = document.querySelector('#tablaVentas tbody');
-        tablaBody.innerHTML = ''; // Limpiar tabla antes de insertar
-
-        ventas.forEach(venta => {
-            const fila = document.createElement('tr');
-            fila.innerHTML = `
-                <td>${venta.id_venta}</td>
-                <td>${venta.cliente}</td>
-                <td>${venta.monto_total}</td>
-                <td>${new Date(venta.fecha).toLocaleString()}</td>
-            `;
-            tablaBody.appendChild(fila);
-        });
+        renderizarTabla(ventas);
+        actualizarResumen(ventas);
 
     } catch (error) {
         console.error("Error cargando ventas:", error);
     }
 }
 
-// Ejecutar la carga de ventas cuando la página se haya cargado
+// ================================
+// RENDERIZAR TABLA
+// ================================
+function renderizarTabla(listaVentas) {
+    const tablaBody = document.querySelector('#tablaVentas tbody');
+    tablaBody.innerHTML = '';
+
+    listaVentas.forEach(venta => {
+        const fila = document.createElement('tr');
+        fila.innerHTML = `
+            <td>${venta.id_venta}</td>
+            <td>${venta.cliente}</td>
+            <td>$${Number(venta.monto_total).toLocaleString("es-CO")}</td>
+            <td>${new Date(venta.fecha).toLocaleString("es-CO")}</td>
+        `;
+        tablaBody.appendChild(fila);
+    });
+}
+
+// ================================
+// RESUMEN
+// ================================
+function actualizarResumen(listaVentas) {
+
+    if (!listaVentas || listaVentas.length === 0) {
+        document.getElementById("totalVendido").textContent = "$0";
+        document.getElementById("cantidadVentas").textContent = "0";
+        document.getElementById("ultimaVenta").textContent = "—";
+        return;
+    }
+
+    const total = listaVentas.reduce(
+        (acc, v) => acc + Number(v.monto_total), 0
+    );
+
+    document.getElementById("totalVendido").textContent =
+        "$" + total.toLocaleString("es-CO");
+
+    document.getElementById("cantidadVentas").textContent =
+        listaVentas.length;
+
+    document.getElementById("ultimaVenta").textContent =
+        new Date(listaVentas[0].fecha).toLocaleString("es-CO");
+}
+
+// ================================
+// BUSCADOR
+// ================================
+document.getElementById("buscarCliente").addEventListener("input", e => {
+    const texto = e.target.value.toLowerCase();
+
+    const filtradas = ventas.filter(v =>
+        v.cliente.toLowerCase().includes(texto) ||
+        String(v.id_venta).includes(texto)
+    );
+
+    renderizarTabla(filtradas);
+});
+
+
+// ================================
+// INIT
+// ================================
 window.addEventListener('DOMContentLoaded', cargarVentas);

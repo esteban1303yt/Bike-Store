@@ -282,6 +282,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     // Cerrar modal
                     cerrarModalPago();
                     toggleCarrito();
+                    
+                    // 🔄 Recargar para actualizar stock
+                    location.reload();
 
                 } else {
                     alert("Error al procesar la venta: " + data.error);

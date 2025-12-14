@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de administrador</title>
     <link rel="icon" href="/frontend/media/icons/logo_black.svg">
     <link rel="stylesheet" href="/frontend/styles/pages/admin/dashboard.css">
@@ -21,20 +22,44 @@
             <a href="usuarios.html">Usuarios</a>
             <a href="ventas.html">Ventas</a>
             <div>
-                <a href="/frontend/pages/index.html" class="active">⬅️volver </a>
+                <a href="/frontend/pages/index.html">⬅️ volver</a>
             </div>
         </nav>
 
         <!-- Contenido -->
         <main class="contenido">
+
             <div class="top-section">
-                <h1>Bienvenido al Dashboard</h1>
-                <p>Selecciona un módulo del menú lateral.</p>
+                <h1>Bienvenido, Administrador 👋</h1>
+                <p>Este es el resumen general del sistema Bike Store.</p>
             </div>
 
+            <!-- TARJETAS RESUMEN -->
+                <div class="dashboard-cards">
+
+                    <!-- PRODUCTOS -->
+                    <div class="card">
+                        <h3>Productos disponibles</h3>
+                        <p id="totalProductos">0</p>
+                    </div>
+
+                    <!-- VENTAS -->
+                    <div class="card">
+                        <h3>Ventas realizadas</h3>
+                        <p id="totalVentas">0</p>
+                    </div>
+
+                </div>
+
+            <!-- MENSAJE -->
             <div class="bottom-section">
-                <p>Puedes ver estadísticas, gestionar productos, usuarios y ventas.</p>
+                <h3>📊 Estado del sistema</h3>
+                <p>
+                    Desde aquí puedes administrar productos, usuarios y ventas.
+                    Revisa constantemente este panel para tener control total de tu tienda.
+                </p>
             </div>
+
         </main>
 
     </div>
