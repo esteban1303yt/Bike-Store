@@ -27,6 +27,9 @@ function abrirModalProducto(producto) {
     document.getElementById("modalProdPrecio").textContent = producto.precio;
     window.productoActualModal = producto;
     document.getElementById("modalProducto").classList.remove("hidden");
+    const btnModal = document.querySelector(".btn-agregar-carrito");
+    btnModal.disabled = producto.stock <= 0;
+
 }
 
 function cerrarModalProducto() {
@@ -118,11 +121,15 @@ function renderizarProductos(productos) {
                             <p class="subtitle">${p.descripcion ?? ""}</p>
                         </div>
                         <p class="price">$ ${Number(p.precio).toLocaleString("es-CO")}</p>
-                        <button class="btn-add-cart" onclick='event.stopPropagation(); agregarAlCarrito({
-                        id_producto: ${p.id_producto},
-                        nombre_producto: "${p.nombre_producto}",
-                        precio: Number(${p.precio}),
-                        imagen: "${p.imagen}"})'>
+                        <button class="btn-add-cart"
+                            ${p.stock <= 0 ? "disabled" : ""}
+                            onclick='event.stopPropagation(); agregarAlCarrito({
+                                id_producto: ${p.id_producto},
+                                nombre_producto: "${p.nombre_producto}",
+                                precio: Number(${p.precio}),
+                                imagen: "${p.imagen}",
+                                stock: ${p.stock}
+                            })'>
                             Agregar al carrito
                         </button>
                     </div>
