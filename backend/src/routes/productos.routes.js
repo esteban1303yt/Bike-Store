@@ -22,6 +22,16 @@ router.get('/buscar/:texto', async (req, res) => {
     }
 });
 
+
+// Obtener stock de un producto
+router.get("/:id/stock", async (req, res) => {
+    await productos.obtenerStock(req, res);
+});
+    
+
+
+
+
 // Obtener un producto por ID
 router.get('/:id', async (req, res) => {
     try {

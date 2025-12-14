@@ -104,8 +104,8 @@ class Productos {
 
             const [result] = await db.query(
                 `INSERT INTO productos 
-            (nombre_producto, id_categoria, id_marca, ano, precio, descripcion, stock, imagen)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+                (nombre_producto, id_categoria, id_marca, ano, precio, descripcion, stock, imagen)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
                 [nombre_producto, id_categoria, id_marca, ano, precio, descripcion, stock, imagen]
             );
 
@@ -162,15 +162,15 @@ class Productos {
 
             await db.query(
                 `UPDATE productos 
-            SET nombre_producto = ?, 
-                id_categoria = ?,
-                id_marca = ?,
-                ano = ?,
-                precio = ?, 
-                descripcion = ?, 
-                stock = ?, 
-                imagen = ?
-            WHERE id_producto = ?`,
+                SET nombre_producto = ?, 
+                    id_categoria = ?,
+                    id_marca = ?,
+                    ano = ?,
+                    precio = ?, 
+                    descripcion = ?, 
+                    stock = ?, 
+                    imagen = ?
+                WHERE id_producto = ?`,
                 [
                     nombre_producto,
                     id_categoria,
@@ -206,6 +206,30 @@ class Productos {
         } catch (error) {
             console.error(error);
             res.status(500).json({ mensaje: "Error al eliminar producto", error });
+        }
+    }
+
+    // ===============================
+    // OBTENER STOCK DEL PRODUCTO  ✅ NUEVO
+    // ===============================
+    async obtenerStock(req, res) {
+        try {
+            const { id } = req.params;
+
+            const [rows] = await db.query(
+                "SELECT stock FROM productos WHERE id_producto = ?",
+                [id]
+            );
+
+            if (rows.length === 0) {
+                return res.status(404).json({ mensaje: "Producto no encontrado" });
+            }
+
+            res.json({ stock: rows[0].stock });
+
+        } catch (error) {
+            console.error("Error al obtener stock:", error);
+            res.status(500).json({ mensaje: "Error al obtener stock" });
         }
     }
 }

@@ -1,5 +1,14 @@
 // Carrito con local storage
 
+// ===============================
+// OBTENER STOCK DESDE BACKEND
+// ===============================
+async function obtenerStockProducto(idProducto) {
+    const resp = await fetch(`http://localhost:3000/api/productos/${idProducto}/stock`);
+    const data = await resp.json();
+    return data.stock;
+}
+
 //Mostrar / ocultar carrito
 function toggleCarrito() {
     const sidebar = document.getElementById("carritoLateral");
@@ -17,16 +26,22 @@ function guardarCarrito(carrito) {
     localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
-function agregarAlCarrito(producto) {
+// ===============================
+// AGREGAR AL CARRITO
+// ===============================
+async function agregarAlCarrito(producto) {
     let carrito = cargarCarrito();
 
     const existe = carrito.find(item => item.id_producto === producto.id_producto);
     if (existe) {
-        // Límite de 3 unidades
-        if (existe.cantidad >= 3) {
-            alert("Solo puedes agregar máximo 3 unidades de este producto.");
+
+        const stock = await obtenerStockProducto(producto.id_producto);
+
+        if (existe.cantidad >= stock) {
+            alert("No hay más stock disponible.");
             return;
         }
+
         existe.cantidad++;
 
     } else {
@@ -44,16 +59,19 @@ function agregarAlCarrito(producto) {
     toggleCarrito(); // abre carrito después de agregar
 }
 
-// Suma la cantidad y el valor del carrito
-function agregarUnidad(id) {
+// ===============================
+// SUMAR UNIDAD
+// ===============================
+async function agregarUnidad(id) {
     let carrito = cargarCarrito();
     const item = carrito.find(p => p.id_producto === id);
 
     if (!item) return;
 
-    // ❗ LIMITE DE 3
-    if (item.cantidad >= 3) {
-        alert("Solo puedes agregar máximo 3 unidades de este producto.");
+    const stock = await obtenerStockProducto(id);
+
+    if (item.cantidad >= stock) {
+        alert("No hay más stock disponible.");
         return;
     }
 
@@ -63,13 +81,14 @@ function agregarUnidad(id) {
     mostrarCarrito();
 }
 
-// Resta la cantidad y el valor del producto
+// ===============================
+// RESTAR UNIDAD
+// ===============================
 function restarUnidad(id) {
     let carrito = cargarCarrito();
     const item = carrito.find(p => p.id_producto === id);
     if (!item) return;
 
-    // Mínimo 1 unidad
     if (item.cantidad > 1) {
         item.cantidad--;
     }
@@ -77,7 +96,9 @@ function restarUnidad(id) {
     mostrarCarrito();
 }
 
-// Eliminar todas las cantidades del producto que estan en el carrito
+// ===============================
+// ELIMINAR PRODUCTO
+// ===============================
 function eliminarProducto(id) {
     let carrito = cargarCarrito().filter(p => p.id_producto !== id);
     guardarCarrito(carrito);
@@ -90,12 +111,14 @@ function vaciarCarrito() {
     mostrarCarrito();
 }
 
-// Calcular total de todos los productos y arrojar el valor total
+// Calcular total
 function calcularTotal() {
     return cargarCarrito().reduce((acc, p) => acc + p.precio * p.cantidad, 0);
 }
 
-// Mostrar el carrito 
+// ===============================
+// MOSTRAR CARRITO
+// ===============================
 function mostrarCarrito() {
     const carrito = cargarCarrito();
     const cont = document.getElementById("carritoItems");
@@ -135,40 +158,14 @@ function mostrarCarrito() {
 
     total.textContent = calcularTotal().toLocaleString("es-CO");
 }
-/*funcion para completar el proceso de compra  */
-// Verifica login y muestra modal de pago
-function procesarCompra() {
-    const user = JSON.parse(localStorage.getItem("usuarioActual"));
 
-    // Si no está logeado → abre modal login
-    if (!user) {
+/* ===============================
+   PROCESO DE COMPRA
+   =============================== */
 
-        // CERRAR CARRITO AQUÍ 👇
-        document.getElementById("carritoLateral").classList.remove("active");
-
-        const modalOverlay = document.getElementById("modal-overlay");
-        const modal = document.getElementById("modal");
-
-        modalOverlay.classList.add("show");
-        modal.classList.add("show");
-
-        // Forzar vista login
-        document.getElementById("loginView").style.display = "block";
-        document.getElementById("registerView").style.display = "none";
-
-        return;
-    }
-
-    // Si está logueado → abre modal de pago
-    abrirModalPago();
-}
-
-
-// funcion de proceso de compra solo si hay productos en el carrito 
 function procesarCompra() {
     const carrito = cargarCarrito();
 
-    // ❗ Si el carrito está vacío → NO dejar abrir modal de pago
     if (carrito.length === 0) {
         alert("Tu carrito está vacío. Agrega productos para continuar.");
         return;
@@ -176,9 +173,7 @@ function procesarCompra() {
 
     const user = JSON.parse(localStorage.getItem("usuarioActual"));
 
-    // Si no está logeado → abre modal login
     if (!user) {
-        // CERRAR CARRITO AQUÍ 👇
         document.getElementById("carritoLateral").classList.remove("active");
 
         const modalOverlay = document.getElementById("modal-overlay");
@@ -187,40 +182,31 @@ function procesarCompra() {
         modalOverlay.classList.add("show");
         modal.classList.add("show");
 
-        // Forzar vista login
         document.getElementById("loginView").style.display = "block";
         document.getElementById("registerView").style.display = "none";
 
         return;
     }
 
-    // Si está logueado → abre modal pago
     abrirModalPago();
 }
+
 document.addEventListener("DOMContentLoaded", () => {
     const modalPago = document.getElementById("modalPago");
 
-
-    
-// Cierre al hacer clic fuera del contenido
     if (modalPago) {
-    modalPago.addEventListener("click", (e) => {
-        if (e.target === modalPago) {
-            cerrarModalPago();
-        }
-    });
-}
-
+        modalPago.addEventListener("click", (e) => {
+            if (e.target === modalPago) {
+                cerrarModalPago();
+            }
+        });
+    }
 });
-
 
 // Abrir modal de pago
 function abrirModalPago() {
     const carrito = cargarCarrito();
-
-    if (carrito.length === 0) {
-        return; // Evita abrir el modal si no hay productos
-    }
+    if (carrito.length === 0) return;
 
     const modalPago = document.getElementById("modalPago");
     const total = calcularTotal();
@@ -255,7 +241,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             try {
-                // 📌 Hacer petición al backend para crear la venta
                 const respuesta = await fetch("http://localhost:3000/api/ventas", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -269,14 +254,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (respuesta.ok) {
                     alert("Pago realizado con éxito ✔️");
-
-                    // Vaciar carrito
                     vaciarCarrito();
-
-                    // Cerrar modal
                     cerrarModalPago();
                     toggleCarrito();
-
                 } else {
                     alert("Error al procesar la venta: " + data.error);
                 }
