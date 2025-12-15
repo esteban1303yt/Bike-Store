@@ -203,7 +203,7 @@ document.getElementById("btnGuardarNuevo").onclick = async () => {
     body.append("descripcion", document.getElementById("crearDescripcion").value);
     body.append("ano", document.getElementById("crearAnio").value);
     body.append("id_marca", document.getElementById("crearMarca").value);
-   body.append("id_categoria", document.getElementById("crearCategoria").value);
+    body.append("id_categoria", document.getElementById("crearCategoria").value);
 
     const imagenFile = document.getElementById("crearImagen").files[0];
     if (imagenFile) body.append("imagen", imagenFile);

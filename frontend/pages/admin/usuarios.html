@@ -5,55 +5,52 @@
     <meta charset="UTF-8">
     <title>Administrar usuarios</title>
     <link rel="icon" href="/frontend/media/icons/logo_black.svg">
-    <link rel="stylesheet" href="/frontend/styles/pages/admin/admin_usuarios.css">
+    <link rel="stylesheet" href="/frontend/styles/pages/admin/usuarios.css">
 </head>
 
 <body>
 
-    <div class="layout">
-
+    <aside class="sidebar">
         <!-- Sidebar -->
-        <nav class="sidebar">
-            <h2>Admin</h2>
-            <hr>
+        <h2>Admin</h2>
+        <nav>
             <a href="dashboard.html">Dashboard</a>
-            <a href="adminproductos.html">Productos</a>
+            <a href="productos.html">Productos</a>
             <a href="usuarios.html" class="active">Usuarios</a>
             <a href="ventas.html">Ventas</a>
-            <div>
-                <a href="/frontend/pages/index.html" class="active">⬅️volver </a>
-            </div>
+            <a href="/frontend/pages/index.html">⬅️ Volver</a>
         </nav>
+    </aside>
 
-        <!-- Contenido principal -->
-        <main class="contenido">
+    <!-- Contenido principal -->
+    <main class="contenido">
 
-            <!-- Sección superior -->
-            <div class="top-section">
-                <h1>Gestión de Usuarios</h1>
-                <p>Aquí puedes editar roles o eliminar usuarios.</p>
-            </div>
+        <!-- Sección superior -->
+        <div class="top-section">
+            <h1>Gestión de Usuarios</h1>
+            <p>Aquí puedes editar roles o eliminar usuarios.</p>
+        </div>
 
-            <!-- Sección inferior -->
-            <div class="bottom-section">
-                <table id="tablaUsuarios">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Correo</th>
-                            <th>Teléfono</th>
-                            <th>Rol</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-            </div>
+        <!-- Sección inferior -->
+        <div class="bottom-section">
+            <table id="tablaUsuarios">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Teléfono</th>
+                        <th>Rol</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
 
-        </main>
+    </main>
 
-    </div>
+
 
 
     <!-- ===========================
@@ -78,7 +75,7 @@
         </div>
     </div>
 
-    <script src="/frontend/scripts/admin_usuarios.js"></script>
+    <script src="/frontend/scripts/admin/usuarios.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,43 @@
+/* ======== LAYOUT GENERAL ======== */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+.layout {
+    display: flex;
+    height: 100vh;
+}
+
+/* ======== SIDEBAR ======== */
+.sidebar {
+    width: 256px;
+    background: #222;
+    color: white;
+    padding: 20px;
+    height: 100vh;
+}
+
+.sidebar h2 {
+    border-bottom: 2px white solid;
+}
+
+.sidebar a {
+    display: block;
+    color: #ddd;
+    padding: 10px 0;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.sidebar a:hover,
+.sidebar .active {
+    color: white;
+    font-weight: bold;
+}
+
+/* ======== CONTENIDO ======== */
+.contenido {
+    display: flex;
+}

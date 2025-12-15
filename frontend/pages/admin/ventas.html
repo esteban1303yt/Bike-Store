@@ -5,76 +5,72 @@
     <meta charset="UTF-8">
     <title>Registro de ventas</title>
     <link rel="icon" href="/frontend/media/icons/logo_black.svg">
-    <link rel="stylesheet" href="/frontend/styles/pages/admin/admin_venta.css">
+    <link rel="stylesheet" href="/frontend/styles/pages/admin/ventas.css">
 </head>
 
 <body>
 
-    <div class="layout">
-
+    <aside class="sidebar">
         <!-- Sidebar -->
-        <nav class="sidebar">
-            <h2>Admin</h2>
-            <hr>
+        <h2>Admin</h2>
+        <nav>
             <a href="dashboard.html">Dashboard</a>
-            <a href="adminproductos.html">Productos</a>
+            <a href="productos.html">Productos</a>
             <a href="usuarios.html">Usuarios</a>
             <a href="ventas.html" class="active">Ventas</a>
-
-            <div>
-                <a href="/frontend/pages/index.html" class="active">⬅️volver </a>
-            </div>
+            <a href="/frontend/pages/index.html">⬅️ Volver</a>
         </nav>
+    </aside>
 
-        <!-- Contenido -->
-        <main class="contenido">
+    <!-- Contenido -->
+    <main class="contenido">
 
-            <!-- Encabezado -->
-            <div class="top-section">
-                <h1>Historial de Ventas</h1>
-                <p>Consulta todas las ventas registradas.</p>
+        <!-- Encabezado -->
+        <div class="top-section">
+            <h1>Historial de Ventas</h1>
+            <p>Consulta todas las ventas registradas.</p>
+        </div>
+        <!-- Resumen -->
+        <div class="resumen-ventas">
+            <div class="card-resumen">
+                <h4>Total vendido</h4>
+                <p id="totalVendido">$0</p>
             </div>
-                        <!-- Resumen -->
-            <div class="resumen-ventas">
-                <div class="card-resumen">
-                    <h4>Total vendido</h4>
-                    <p id="totalVendido">$0</p>
-                </div>
-                <div class="card-resumen">
-                    <h4>Cantidad de ventas</h4>
-                    <p id="cantidadVentas">0</p>
-                </div>
-                <div class="card-resumen">
-                    <h4>Última venta</h4>
-                    <p id="ultimaVenta">—</p>
-                </div>
+            <div class="card-resumen">
+                <h4>Cantidad de ventas</h4>
+                <p id="cantidadVentas">0</p>
             </div>
-
-<!-- Buscador -->
-<div class="buscador-ventas">
-    <input type="text" id="buscarCliente" placeholder="Buscar por cliente...">
-</div>
-
-            <!-- Tabla -->
-            <div class="bottom-section">
-                <table id="tablaVentas">
-                    <thead>
-                        <tr>
-                            <th>ID Venta</th>
-                            <th>Cliente</th>
-                            <th>Total</th>
-                            <th>Fecha</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+            <div class="card-resumen">
+                <h4>Última venta</h4>
+                <p id="ultimaVenta">—</p>
             </div>
+        </div>
 
-        </main>
+        <!-- Buscador -->
+        <div class="buscador-ventas">
+            <input type="text" id="buscarCliente" placeholder="Buscar por cliente...">
+        </div>
 
-    </div>
+        <!-- Tabla -->
+        <div class="bottom-section">
+            <table id="tablaVentas">
+                <thead>
+                    <tr>
+                        <th>ID Venta</th>
+                        <th>Cliente</th>
+                        <th>Total</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
 
-    <script src="/frontend/scripts/admin_venta.js"></script>
+    </main>
+
+
+
+    <script src="/frontend/scripts/admin/ventas.js"></script>
 </body>
 
 </html>

@@ -6,63 +6,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de administrador</title>
     <link rel="icon" href="/frontend/media/icons/logo_black.svg">
+    <link rel="stylesheet" href="/frontend/styles/pages/admin/styles.css">
     <link rel="stylesheet" href="/frontend/styles/pages/admin/dashboard.css">
 </head>
 
 <body>
 
-    <div class="layout">
-
-        <!-- Sidebar -->
-        <nav class="sidebar">
+    <main class="contenido">
+        <aside class="sidebar">
+            <!-- Sidebar -->
             <h2>Admin</h2>
-            <hr>
-            <a href="dashboard.html" class="active">Dashboard</a>
-            <a href="adminproductos.html">Productos</a>
-            <a href="usuarios.html">Usuarios</a>
-            <a href="ventas.html">Ventas</a>
-            <div>
-                <a href="/frontend/pages/index.html">⬅️ volver</a>
-            </div>
-        </nav>
-
+            <nav>
+                <a href="dashboard.html" class="active">Dashboard</a>
+                <a href="productos.html">Productos</a>
+                <a href="usuarios.html">Usuarios</a>
+                <a href="ventas.html">Ventas</a>
+                <a href="/frontend/pages/index.html">⬅️ Volver</a>
+            </nav>
+        </aside>
         <!-- Contenido -->
-        <main class="contenido">
+        <section class="dashboard">
 
             <div class="top-section">
-                <h1>Bienvenido, Administrador 👋</h1>
-                <p>Este es el resumen general del sistema Bike Store.</p>
+                <h1>Panel</h1>
+                <p>Aquí obtendras un resumen para un acceso rápido a los productos, categorías, usuarios, marcas e
+                    informes</p>
             </div>
 
-            <!-- TARJETAS RESUMEN -->
-                <div class="dashboard-cards">
+            <div class="titulo">
+                <h2>General</h2>
+            </div>
 
-                    <!-- PRODUCTOS -->
-                    <div class="card">
-                        <h3>Productos disponibles</h3>
+            <!-- Resumen -->
+            <div class="dashboard-cards">
+
+                <!-- Productos -->
+                <div class="card">
+                    <div class="text">
+                        <h3>Productos</h3>
                         <p id="totalProductos">0</p>
                     </div>
+                </div>
 
-                    <!-- VENTAS -->
-                    <div class="card">
+                <!-- Marcas -->
+                <div class="card">
+                    <div class="text">
+                        <h3>Marcas</h3>
+                        <p id="totalMarcas">0</p>
+                    </div>
+                </div>
+
+                <!-- Categorías -->
+                <div class="card">
+                    <div class="text">
+                        <h3>Categorías</h3>
+                        <p id="totalCategorias">0</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Informes -->
+            <div class="titulo">
+                <h2>Informes</h2>
+            </div>
+
+            <!-- Informes -->
+            <div class="dashboard-cards">
+                <!-- Ventas -->
+                <div class="card">
+                    <div class="text">
                         <h3>Ventas realizadas</h3>
                         <p id="totalVentas">0</p>
                     </div>
-
                 </div>
 
-            <!-- MENSAJE -->
-            <div class="bottom-section">
-                <h3>📊 Estado del sistema</h3>
-                <p>
-                    Desde aquí puedes administrar productos, usuarios y ventas.
-                    Revisa constantemente este panel para tener control total de tu tienda.
-                </p>
             </div>
 
-        </main>
+        </section>
+    </main>
 
-    </div>
 
     <script src="/frontend/scripts/dashboard.js"></script>
 </body>

@@ -5,45 +5,41 @@
     <meta charset="UTF-8">
     <title>Administrar productos</title>
     <link rel="icon" href="/frontend/media/icons/logo_black.svg">
-    <link rel="stylesheet" href="/frontend/styles/pages/admin/admin_productos.css">
+    <link rel="stylesheet" href="/frontend/styles/pages/admin/productos.css">
 </head>
 
 <body>
 
-    <div class="layout">
-
+    <aside class="sidebar">
         <!-- Sidebar -->
-        <nav class="sidebar">
-            <h2>Admin</h2>
-            <hr>
+        <h2>Admin</h2>
+        <nav>
             <a href="dashboard.html">Dashboard</a>
-            <a href="adminproductos.html" class="active">Productos</a>
+            <a href="productos.html" class="active">Productos</a>
             <a href="usuarios.html">Usuarios</a>
             <a href="ventas.html">Ventas</a>
-            <div>
-                <a href="/frontend/pages/index.html" class="active">⬅️volver </a>
-            </div>
+            <a href="/frontend/pages/index.html">⬅️ Volver</a>
         </nav>
+    </aside>
 
-        <!-- Contenido principal -->
-        <main class="contenido">
+    <!-- Contenido principal -->
+    <main class="contenido">
 
-            <!-- Sección superior -->
-            <div class="top-section">
-                <h1>Gestión de Productos</h1>
-                <p>Administra precios, nombres, stock e imágenes.</p>
+        <!-- Sección superior -->
+        <div class="top-section">
+            <h1>Gestión de Productos</h1>
+            <p>Administra precios, nombres, stock e imágenes.</p>
 
-                <button id="btnCrearProducto" class="btn-crear">➕ Crear Producto</button>
-            </div>
+            <button id="btnCrearProducto" class="btn-crear">➕ Crear Producto</button>
+        </div>
 
-            <!-- Sección inferior -->
+        <!-- Sección inferior -->
 
-            <div id="productos-container">
-            </div>
+        <div id="productos-container">
+        </div>
 
-        </main>
+    </main>
 
-    </div>
 
 
     <!-- ===========================
@@ -54,12 +50,12 @@
             <h3>¿Eliminar producto?</h3>
             <p>Esta Seguro que deseas eliminar este producto del panel administrativo .</p>
 
-        <div class="modal_accion">
-            <button id="confirmEliminar">Sí, eliminar</button>
-            <button id="cancelEliminar">Cancelar</button>
+            <div class="modal_accion">
+                <button id="confirmEliminar">Sí, eliminar</button>
+                <button id="cancelEliminar">Cancelar</button>
 
-        </div>
-            
+            </div>
+
         </div>
     </div>
 
@@ -193,7 +189,7 @@
     </div>
 
 
-    <script src="/frontend/scripts/admin_productos.js"></script>
+    <script src="/frontend/scripts/admin/productos.js"></script>
 
 </body>
 
