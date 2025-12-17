@@ -109,19 +109,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ──────────── FORMULARIO REGISTRO ────────────
-    if (registerForm) {
-        registerForm.addEventListener("submit", async (e) => {
-            e.preventDefault();
+if (registerForm) {
+    registerForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-            const data = {
-                nombre: document.getElementById("regNombre").value,
-                apellido: document.getElementById("regApellido").value,
-                correo: document.getElementById("regEmail").value,
-                telefono: document.getElementById("regTelefono").value,
-                clave: document.getElementById("regClave").value
-            };
+        const data = {
+            nombre: document.getElementById("regNombre").value,
+            apellido: document.getElementById("regApellido").value,
+            correo: document.getElementById("regEmail").value,
+            telefono: document.getElementById("regTelefono").value,
+            clave: document.getElementById("regClave").value
+        };
 
-            const clave2 = document.getElementById("regClave2").value;
+        const clave2 = document.getElementById("regClave2").value;
 
             if (data.clave !== clave2) {
                 mensajeRegistro.style.display = "block";
@@ -129,6 +129,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 mensajeRegistro.textContent = "Las contraseñas no coinciden";
                 return;
             }
+            // Validar longitud de contraseña
+            if (data.clave.length < 8 || data.clave.length > 16) {
+                mensajeRegistro.style.display = "block";
+                mensajeRegistro.style.color = "red";
+                mensajeRegistro.textContent = "La contraseña debe tener entre 8 y 16 caracteres";
+                return;
+            }
+
 
             try {
                 const res = await fetch(`${API_BASE}/registro`, {
@@ -167,7 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
             } catch (error) {
                 mensajeRegistro.style.display = "block";
                 mensajeRegistro.style.color = "red";
-                mensajeRegistro.textContent = "Error en el servidor";
+                mensajeRegistro.textContent = "Usuario o contraseña incorrecta";
                 console.error(error);
             }
         });
@@ -208,7 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
             } catch (error) {
                 mensajeLogin.style.display = "block";
                 mensajeLogin.style.color = "red";
-                mensajeLogin.textContent = "Error en el servidor";
+                mensajeLogin.textContent = "Usuario o contraseña incorrecta";
                 console.error(error);
             }
         });

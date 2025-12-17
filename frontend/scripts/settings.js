@@ -67,6 +67,9 @@ changePasswordForm.addEventListener("submit", async (e) => {
     const nueva = newPasswordInput.value.trim();
     const confirmar = newPassword2Input.value.trim();
 
+    passwordMsg.textContent = "";
+    passwordMsg.style.color = "red";
+
     if (!actual || !nueva || !confirmar) {
         passwordMsg.textContent = "Llena todos los campos.";
         return;
@@ -85,17 +88,31 @@ changePasswordForm.addEventListener("submit", async (e) => {
                 "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify({
-    claveActual: actual,
-    nuevaClave: nueva
-})
-
+                claveActual: actual,
+                nuevaClave: nueva
+            })
         });
 
         const data = await res.json();
-        passwordMsg.textContent = data.message || "Contraseña actualizada.";
+
+        // ❌ Si el backend rechaza la contraseña actual
+        if (!res.ok) {
+            passwordMsg.textContent = data.message || "La contraseña actual es incorrecta.";
+            return;
+        }
+
+        // ✅ Solo si TODO salió bien
+        passwordMsg.style.color = "green";
+        passwordMsg.textContent = data.message || "Contraseña actualizada correctamente.";
+
+        // Opcional: limpiar campos
+        oldPasswordInput.value = "";
+        newPasswordInput.value = "";
+        newPassword2Input.value = "";
 
     } catch (error) {
         console.error(error);
-        passwordMsg.textContent = "Error al actualizar contraseña.";
+        passwordMsg.textContent = "Error en el servidor.";
     }
 });
+

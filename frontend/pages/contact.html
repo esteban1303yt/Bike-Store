@@ -77,10 +77,10 @@
             <h2>Contáctanos</h2>
             <div class="contact-content">
                 <label for="nombre">Nombre completo</label>
-                <input type="text" id="nombre" placeholder="Ingresa tu nombre" required>
+                <input type="text" id="nombre" maxlength="20" placeholder="Ingresa tu nombre" required>
 
                 <label for="email">Correo electrónico</label>
-                <input type="email" id="email" placeholder="Ingresa tu correo" required>
+                <input type="email" id="email" maxlength="80" placeholder="Ingresa tu correo" required>
 
                 <label for="mensaje">Mensaje</label>
                 <textarea id="mensaje" placeholder="Escribe tu mensaje" required></textarea>
@@ -165,6 +165,14 @@
             <p>Tu cuenta ha sido creada correctamente.</p>
         </div>
 
+    </div>
+
+        <!-- Modal mensaje enviado -->
+    <div id="modalExito" class="modal-exito-overlay">
+        <div class="modal-exito">
+            <h3>✅ Mensaje enviado</h3>
+            <p>Tu mensaje fue enviado con éxito.</p>
+        </div>
     </div>
 
     <!-- Modal carrito  -->
